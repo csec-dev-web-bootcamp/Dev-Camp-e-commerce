@@ -1,4 +1,5 @@
 import "./globals.css";
+import Header from "../components/ui/header";
 
 import { Inter as FontSans } from "next/font/google";
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
           fontSans.variable
         )}
       >
+        <Header />
         {children}
       </body>
     </html>
