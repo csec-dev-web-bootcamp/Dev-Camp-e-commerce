@@ -1,15 +1,13 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 import { MdFavoriteBorder } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
-
 import { useCartStore } from "@app/client/store/store";
-
+import { Cart } from "./cart";
 const Header = () => {
-
   // const cart = useCartStore((state)=> state.cart);
 
   return (
@@ -28,11 +26,14 @@ const Header = () => {
           <Link href="/about">
             <li>About</li>
           </Link>
-         <li className="flex relative">
-         
-         <input type="text" placeholder="Search" className="border items-center border-slate-200 rounded-md py-3 px-10  shadow-md focus:outline-none focus:border-sky-400 focus:ring-sky-500 focus:ring-1 sm:text-sm" />
-         <CiSearch size={24} className="absolute top-3 right-6"/>
-         </li>
+          <li className="flex relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="border items-center border-slate-200 rounded-md py-3 px-10  shadow-md focus:outline-none focus:border-sky-400 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            />
+            <CiSearch size={24} className="absolute top-3 right-6" />
+          </li>
 
           <Link href="/contact">
             <li>Contact</li>
@@ -42,15 +43,10 @@ const Header = () => {
           </Link>
         </ul>
         <ul className="flex gap-4 items-center">
-          <Link href="/cart">
+          <Link href="">
             <MdFavoriteBorder size={30} />
           </Link>
-          <Link href="/cart">
-            <div className="flex items-center justify-center">
-            {/* <span className="bg-yellow-500 text-white p-4">{cart}</span> */}
-            <BsCart2 size={30} />
-            </div>
-          </Link>
+          <Cart />
 
           <Link href="/profile">
             <FiUser size={30} />
