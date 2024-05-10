@@ -5,7 +5,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
-import { useCartStore } from "@app/client/store/store";
+import { useCartStore } from "@app/client/store/cart";
 import { Cart } from "./cart";
 const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
