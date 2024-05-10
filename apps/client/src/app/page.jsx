@@ -11,8 +11,8 @@ export default function Page() {
 
     <main className="w-full  mx-auto">
       <div className="w-full flex flex-col gap-4 ">
-         <Welcome />
-         <Categories />
+          <Welcome />
+          <Categories />
 
 
       </div>
