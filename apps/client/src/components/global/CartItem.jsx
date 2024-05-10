@@ -2,7 +2,7 @@ import React from "react";
 import { X } from "lucide-react";
 import { useCart } from "@app/client/store/cart";
 export default function CartItem({ product }) {
-  const { removeProductFromCart } = useCart();
+  const { removeFromCart } = useCart();
   return (
     <div key={product.id} className="flex mb-5 relative items-center gap-4">
       <img className="w-20 h-20" src={`${product.image}`} alt="" />
@@ -12,7 +12,7 @@ export default function CartItem({ product }) {
       </div>
       <button
         className="absolute top-0 left-0"
-        onClick={() => removeProductFromCart(product.id)}
+        onClick={() => removeFromCart(product.id)}
       >
         <X className="h-6 w-6" />
       </button>

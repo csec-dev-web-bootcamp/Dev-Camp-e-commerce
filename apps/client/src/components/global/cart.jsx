@@ -2,6 +2,7 @@
 import { useCart } from "@app/client/store/cart";
 import { BsCart2 } from "react-icons/bs";
 import { Button } from "../../components/ui/button";
+import Link from "next/link";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { X } from "lucide-react";
@@ -93,7 +94,12 @@ export function Cart() {
         <SheetFooter>
           {/* <SheetClose asChild>
             <Button type="submit">Save changes</Button>
-          </SheetClose> */}
+          </SheetClose>
+           */}
+
+           <Link href="shop/carts">
+             <Button>View Carts</Button>
+           </Link>
         </SheetFooter>
       </SheetContent>
     </Sheet>
