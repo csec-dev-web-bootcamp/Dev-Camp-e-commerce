@@ -15,7 +15,6 @@ const Welcome = () => {
           width:'100%'
         }}
         > 
-        <button>Add to cart</button>
             <h1 className='text-4xl font-bold'>Welcome To E-shop</h1>
         </div>
     </main>

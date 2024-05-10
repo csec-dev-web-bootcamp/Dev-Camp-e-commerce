@@ -1,5 +1,3 @@
-"use client";
-import { BsCart2 } from "react-icons/bs";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
@@ -23,7 +21,7 @@ export function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="blue" className="items-center">
-          <BsCart2 size={30} />
+          Cart
         </Button>
       </SheetTrigger>
       <SheetContent>
@@ -56,7 +54,7 @@ export function Cart() {
             <img
               src="https://new.axilthemes.com/demo/template/etrade/assets/images/product/electric/product-01.png"
               alt=""
-              className="w-40"
+              className="w-20"
             />
           </div>
 
