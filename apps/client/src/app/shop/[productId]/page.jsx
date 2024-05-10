@@ -1,26 +1,25 @@
-"use server";
-import React from "react";
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import { jewelery } from "@app/client/api/products";
-import Link from "next/link";
-import ProductCard from "@app/client/components/global/ProductCard";
-async function Home({ params }) {
-  const filteredProducts = jewelery.filter(
-    (product) => product.id === params.productId
+import ProductDetail from "@app/client/components/global/ProductDetail";
+export default function Home({ params }) {
+  const router = useRouter();
+  const productFiltered = jewelery.filter(
+    (product) => product.id === Number(params.productId)
   );
-  console.log(filteredProducts);
+
   return (
-    <main>
-      <div className="grid grid-cols-4 gap-10">
-        {filteredProducts.map((categore) => (
-          <Link
-            href={`/shop/productDetail?productId=${categore.id}`}
-            key={categore.id}
+    <>
+      {productFiltered.map((product) => (
+        <ProductDetail key={product.id} product={product}>
+          <button
+            className="px-6 py-2 border-black font-bold absolute top-0 left-0"
+            onClick={() => router.back()}
           >
-            <ProductCard categore={categore} />
-          </Link>
-        ))}
-      </div>
-    </main>
+            &larr; Back
+          </button>
+        </ProductDetail>
+      ))}
+    </>
   );
 }
-export { Home };

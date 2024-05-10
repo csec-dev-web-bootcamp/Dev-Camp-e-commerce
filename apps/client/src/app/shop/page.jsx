@@ -6,16 +6,21 @@ import { Button } from "../../components/ui/button";
 // import { Link } from "react-router-dom";
 import { jewelery } from "../../api/products";
 import { womenClothing } from "../../api/womenClothing";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@app/client/store/cart";
 import ProductCard from "@app/client/components/global/ProductCard";
-const womenClothingCard = ({ params }) => {
-  console.log(params);
+const WomenClothingCard = () => {
+  const parameter = useSearchParams();
+  const category = parameter.get("category");
+  const filteredProducts = category
+    ? jewelery.filter((product) => product.category === category)
+    : jewelery;
+
   return (
     <main>
       <div className="grid grid-cols-4 gap-10">
-        {jewelery.map((categore) => (
+        {filteredProducts.map((categore) => (
           <Link href={`/shop/${categore.id}`} key={categore.id}>
             <ProductCard categore={categore} />
           </Link>
@@ -25,4 +30,4 @@ const womenClothingCard = ({ params }) => {
   );
 };
 
-export default womenClothingCard;
+export default WomenClothingCard;
