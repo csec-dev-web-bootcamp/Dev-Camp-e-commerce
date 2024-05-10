@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@app/client/store/cart";
+import Link from "next/link";
 import { BsCart2 } from "react-icons/bs";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -97,7 +98,11 @@ export function Cart() {
         <SheetFooter>
           {/* <SheetClose asChild>
             <Button type="submit">Save changes</Button>
-          </SheetClose> */}
+          </SheetClose> */
+         <Link href="/shop/carts">
+            <Button>View Carts</Button>
+         </Link>
+          }
         </SheetFooter>
       </SheetContent>
     </Sheet>
