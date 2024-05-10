@@ -1,6 +1,8 @@
 import React from "react";
 import { X } from "lucide-react";
-export default function CartItem({ product, children }) {
+import { useCart } from "@app/client/store/cart";
+export default function CartItem({ product }) {
+  const { removeProductFromCart } = useCart();
   return (
     <div key={product.id} className="flex mb-5 relative items-center gap-4">
       <img className="w-20 h-20" src={`${product.image}`} alt="" />
@@ -14,7 +16,6 @@ export default function CartItem({ product, children }) {
       >
         <X className="h-6 w-6" />
       </button>
-      {children}
     </div>
   );
 }

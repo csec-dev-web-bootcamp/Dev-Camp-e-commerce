@@ -50,10 +50,6 @@ const Card = () => {
             >
               Show Detail
             </Link>
-            {/* <p>price</p>
-            <p>rating</p>
-            <p>description</p>
-            <Button>Add To Cart</Button> */}
           </div>
         ))}
       </div>
