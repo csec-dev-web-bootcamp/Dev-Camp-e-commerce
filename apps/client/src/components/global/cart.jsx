@@ -19,6 +19,8 @@ import React from "react";
 import { AiTwotonePlusCircle } from "react-icons/ai";
 import { AiTwotoneMinusCircle } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import CountQuantity from "./CountQuantity";
+import CartItem from "./CartItem";
 
 export function Cart() {
   const { cartProducts, removeProductFromCart } = useCart();
@@ -27,7 +29,10 @@ export function Cart() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="blue" className="items-center">
+        <Button variant="blue" className="items-center relative">
+          <span className="absolute top-0 left-0 text-lg font-bold bg-yellow-600 p-4 w-8 h-8 flex items-center justify-center text-white rounded-full">
+            {cartProducts.length}
+          </span>
           <BsCart2 size={30} />
         </Button>
       </SheetTrigger>
@@ -35,23 +40,15 @@ export function Cart() {
         <div className="grid gap-4 py-4 mt-10 ">
           {cartProducts.length > 0 ? (
             cartProducts.map((product) => (
-              <div key={product.id} className="flex mb-5 items-center gap-4">
-                <img className="w-20 h-20" src={`${product.image}`} alt="" />
-                <div>
-                  <h6 className="text-sm">{product.title}</h6>
-                  <span>${product.price}</span>
-                </div>
-                <button onClick={() => removeProductFromCart(product.id)}>
-                  <X className="h-6 w-6" />
-                </button>
-                {/* <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" /> */}
-              </div>
+              <CartItem key={product.id} product={product}>
+                <CountQuantity />
+              </CartItem>
             ))
           ) : (
-            <h1>Cart Empty</h1>
+            <h1 className="flex items-center justify-center font-bold text-2xl ">
+              {" "}
+              Cart Empty
+            </h1>
           )}
           {/* <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">

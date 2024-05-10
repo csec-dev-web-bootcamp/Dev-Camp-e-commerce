@@ -46,7 +46,9 @@ const Header = () => {
           <Link href="">
             <MdFavoriteBorder size={30} />
           </Link>
-          <Cart />
+          <div>
+            <Cart />
+          </div>
 
           <Link href="/profile">
             <FiUser size={30} />
