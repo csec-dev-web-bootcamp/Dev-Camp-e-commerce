@@ -23,7 +23,7 @@ const about = ({ children }) => {
 
   return (
     <>
-      <div className="flex  shadow-lg">
+      <div className="flex  shadow-lg h-screen scrollbar-thumb-sky-700 scrollbar-track-sky-300">
         <div className="col-span-1 bg-gray-300 p-6 px-9 ">
           <div className="p-4">side bar </div>
           <Link href="/shop/mensClothing">
@@ -59,11 +59,12 @@ const about = ({ children }) => {
             </div>
           </Link>
         </div>
-        <div className="shadow-lg w-full">
+        <div className="shadow-lg w-full h-screen scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300  overflow-y-scroll">
           <FaBars className="cursor-pointer" onClick={toggleSidebar} />
           <p>{children}</p>
         </div>
       </div>
+     
     </>
   );
 };
