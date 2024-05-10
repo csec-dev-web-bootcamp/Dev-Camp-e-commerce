@@ -11,7 +11,7 @@ export default function CartItem({ product }) {
         <span>${product.price}</span>
       </div>
       <button
-        className="absolute top-0.1 left-0"
+        className="absolute top-0 left-0"
         onClick={() => removeFromCart(product.id)}
       >
         <X className="h-6 w-6" />
