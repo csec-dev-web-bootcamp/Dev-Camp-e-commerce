@@ -11,7 +11,7 @@ const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
 
   return (
-    <header className="w-full  mx-auto ">
+    <header className="w-full  mx-auto sticky top-0 z-50 ">
       <nav className="w-full flex justify-center items-center h-16 bg-gray-50 font-semibold text-black gap-10 shadow-md  text-md">
         <ul className="flex gap-20 items-center">
           <Link href="/">

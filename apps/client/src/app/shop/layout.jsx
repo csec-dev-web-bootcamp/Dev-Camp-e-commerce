@@ -1,102 +1,65 @@
-"use client";
-import Link from "next/link";
-import React from "react";
+"use client"; // New line at the top
+import React, { useState } from 'react';
+import { FaBars } from "react-icons/fa";
+import { MdManageAccounts } from "react-icons/md";
+import { GiFemaleVampire } from "react-icons/gi";
+import { FcElectronics } from "react-icons/fc";
+import { GiBigDiamondRing } from "react-icons/gi";
+import Link from 'next/link';
 import { useCollapsed } from "@app/client/store/collapse";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
 import { useSelectedMenu } from "@app/client/store/selectedMenuItem";
-const { Header, Sider, Content } = Layout;
 
-export default function layout({ children }) {
+const about = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const { isCollapsed, setIsCollapsed } = useCollapsed();
   const { selectedMenuItem, setSelectedMenuItem } = useSelectedMenu();
-  // const [collapsed, setCollapsed] = useState(false);
-  // const [selectedMenuItem, setSelectedMenuItem] = useState(null); // Track the selected menu item
+  
 
   const handleMenuClick = (menuItem) => {
     setSelectedMenuItem(menuItem.key);
   };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen); // Ensure state update
+  };
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
+  
   return (
-    <l>
-      <Sider trigger={null} collapsible collapsed={isCollapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          onClick={handleMenuClick} // Handle menu item click event
-        >
-          <Menu.Item key="1" icon={<UserOutlined />} label="Male Cloth">
-            <Link href="/shop/mensClothing">
-              <li>Male Cloth</li>
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item key="2" icon={<UserOutlined />} label="Female Cloth">
-            <Link href="/shop/womenClothing">
-              <li>Female Cloth</li>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<VideoCameraOutlined />} label="Electronics">
-            <Link href="/shop/electronics">
-              <li>Electronics</li>
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item key="4" icon={<UploadOutlined />} label="Jewelry">
-            <Link href="/shop/jewelery">
-              <li>Jewelery</li>
-            </Link>
-          </Menu.Item>
-
-          {/* <Menu.Item key="5" icon={<UserOutlined />} label="Detail Cloth">
-            <Link href="shop/detail">
-              <li>Detail</li>
-            </Link>
-          </Menu.Item> */}
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        >
-          <Button
-            type="text"
-            icon={isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 400,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          {children}
-        </Content>
-      </Layout>
-    </l>
-  );
+    <>
+      <div className='flex  shadow-lg'>
+        <div className='col-span-1 bg-gray-300 p-6 px-9 '>
+          <div className='p-4'>side bar </div>
+          <Link href="/shop/mensClothing">
+            <div className='flex my-3 hover:text-blue-500 border-white-500'> 
+                  <div><MdManageAccounts /></div> 
+                  <div>Male Cloth</div> 
+            </div>
+          </Link>
+          <Link href="/shop/womenClothing">
+              <div className='flex mb-3 hover:text-blue-500 border-white-500'> 
+                  <div><GiFemaleVampire /></div>
+                  <div>Female Cloth</div> 
+              </div>
+          </Link>
+          <Link href="/shop/jewelery">
+            <div className='flex mb-3 hover:text-blue-500 border-white-500'> 
+                <div><GiBigDiamondRing /></div>
+                <div>Jewllery</div> 
+            </div>
+          </Link>
+          <Link href="/shop/electronics">
+            <div className='flex mb-3 hover:text-blue-500 border-white-500'> 
+                <div><FcElectronics /></div>
+                <div>Electronics</div> 
+            </div>
+          </Link>
+        </div>
+        <div className='shadow-lg w-full'> 
+          <FaBars  className='cursor-pointer' onClick={toggleSidebar} />
+          <p >{ children }</p>
+        </div>
+      </div>
+    </>
+  )
 }
+
+export default about
