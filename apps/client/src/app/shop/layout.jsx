@@ -9,7 +9,14 @@ import Link from "next/link";
 import { useCollapsed } from "@app/client/store/collapse";
 import { useSelectedMenu } from "@app/client/store/selectedMenuItem";
 
-const about = ({ children }) => {
+const categories = [
+  {
+    slug: "womenClothing",
+    Icon: MdManageAccounts,
+    name: "Male Cloth",
+  },
+];
+const About = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isCollapsed, setIsCollapsed } = useCollapsed();
   const { selectedMenuItem, setSelectedMenuItem } = useSelectedMenu();
@@ -23,17 +30,19 @@ const about = ({ children }) => {
 
   return (
     <>
-      <div className="flex  shadow-lg">
+      <div className="flex  shadow-lg h-screen scrollbar-thumb-sky-700 scrollbar-track-sky-300">
         <div className="col-span-1 bg-gray-300 p-6 px-9 ">
           <div className="p-4">side bar </div>
-          <Link href="/shop/mensClothing">
-            <div className="flex my-3 hover:text-blue-500 border-white-500">
-              <div>
-                <MdManageAccounts />
+          {categories.map(({ Icon, name, slug }, ind) => (
+            <Link key={ind} href={`/shop?category=${slug}`}>
+              <div className="flex my-3 hover:text-blue-500 border-white-500">
+                <div>
+                  <Icon />
+                </div>
+                <div>{name}</div>
               </div>
-              <div>Male Cloth</div>
-            </div>
-          </Link>
+            </Link>
+          ))}
           <Link href="/shop/womenClothing">
             <div className="flex mb-3 hover:text-blue-500 border-white-500">
               <div>
@@ -50,7 +59,7 @@ const about = ({ children }) => {
               <div>Jewllery</div>
             </div>
           </Link>
-          <Link href="/shop/electronics">
+          <Link href="/shop?category=electronics">
             <div className="flex mb-3 hover:text-blue-500 border-white-500">
               <div>
                 <FcElectronics />
@@ -59,13 +68,14 @@ const about = ({ children }) => {
             </div>
           </Link>
         </div>
-        <div className="shadow-lg w-full">
+        <div className="shadow-lg w-full h-screen scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300  overflow-y-scroll">
           <FaBars className="cursor-pointer" onClick={toggleSidebar} />
           <p>{children}</p>
         </div>
       </div>
+     
     </>
   );
 };
 
-export default about;
+export default About;
