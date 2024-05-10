@@ -16,10 +16,7 @@ const womenClothingCard = ({ params }) => {
     <main>
       <div className="grid grid-cols-4 gap-10">
         {jewelery.map((categore) => (
-          <Link
-            href={`/shop/productDetail?productId=${categore.id}`}
-            key={categore.id}
-          >
+          <Link href={`/shop/${categore.id}`} key={categore.id}>
             <ProductCard categore={categore} />
           </Link>
         ))}

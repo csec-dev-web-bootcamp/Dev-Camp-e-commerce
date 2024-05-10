@@ -1,12 +1,11 @@
-"use client";
+"use server";
 import React from "react";
 import { jewelery } from "@app/client/api/products";
 import Link from "next/link";
 import ProductCard from "@app/client/components/global/ProductCard";
-export default function Home({ params }) {
-  const category = params.category;
+async function Home({ params }) {
   const filteredProducts = jewelery.filter(
-    (product) => product.category === category
+    (product) => product.id === params.productId
   );
   console.log(filteredProducts);
   return (
@@ -24,3 +23,4 @@ export default function Home({ params }) {
     </main>
   );
 }
+export { Home };
