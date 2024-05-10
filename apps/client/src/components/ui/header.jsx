@@ -7,12 +7,20 @@ const Header = () => {
     <header className="w-full  mx-auto mt-4">
       <nav className="w-full flex justify-between p-4 bg-slate-500">
         <ul className="flex gap-10">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/shop">Shop</Link></li>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/shop">Shop</Link>
+          </li>
         </ul>
         <ul className="flex gap-10">
-          <li><Link href="/cart">Cart</Link></li>
-          <li><Link href="/profile">Profile</Link></li>
+          <li>
+            <Link href="/cart">Cart</Link>
+          </li>
+          <li>
+            <Link href="/profile">Profile</Link>
+          </li>
         </ul>
       </nav>
     </header>

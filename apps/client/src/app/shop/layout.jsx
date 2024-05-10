@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
+import { useCollapsed } from "@app/client/store/collapse";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -9,11 +10,14 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
+import { useSelectedMenu } from "@app/client/store/selectedMenuItem";
 const { Header, Sider, Content } = Layout;
 
 export default function layout({ children }) {
-  const [collapsed, setCollapsed] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null); // Track the selected menu item
+  const { isCollapsed, setIsCollapsed } = useCollapsed();
+  const { selectedMenuItem, setSelectedMenuItem } = useSelectedMenu();
+  // const [collapsed, setCollapsed] = useState(false);
+  // const [selectedMenuItem, setSelectedMenuItem] = useState(null); // Track the selected menu item
 
   const handleMenuClick = (menuItem) => {
     setSelectedMenuItem(menuItem.key);
@@ -25,7 +29,7 @@ export default function layout({ children }) {
 
   return (
     <l>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider trigger={null} collapsible collapsed={isCollapsed}>
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
@@ -34,33 +38,33 @@ export default function layout({ children }) {
           onClick={handleMenuClick} // Handle menu item click event
         >
           <Menu.Item key="1" icon={<UserOutlined />} label="Male Cloth">
-            <Link href="shop/menClothing">
+            <Link href="/shop/mensClothing">
               <li>Male Cloth</li>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="2" icon={<UserOutlined />} label="Female Cloth">
-            <Link href="shop/womenClothing">
+            <Link href="/shop/womenClothing">
               <li>Female Cloth</li>
             </Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<VideoCameraOutlined />} label="Electronics">
-            <Link href="shop/electronics">
+            <Link href="/shop/electronics">
               <li>Electronics</li>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="4" icon={<UploadOutlined />} label="Jewelry">
-            <Link href="shop/jewelry">
-              <li>Jewelry</li>
+            <Link href="/shop/jewelery">
+              <li>Jewelery</li>
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="5" icon={<UserOutlined />} label="Detail Cloth">
+          {/* <Menu.Item key="5" icon={<UserOutlined />} label="Detail Cloth">
             <Link href="shop/detail">
               <li>Detail</li>
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Sider>
       <Layout>
@@ -72,8 +76,8 @@ export default function layout({ children }) {
         >
           <Button
             type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
+            icon={isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setIsCollapsed(!isCollapsed)}
             style={{
               fontSize: "16px",
               width: 64,

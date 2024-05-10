@@ -1,33 +1,27 @@
+"use client";
 import React from "react";
 import { Button } from "../../components/ui/button";
 // import Rating from "@mui/material/Rating";
 // import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 // import { Link } from "react-router-dom";
+import { jewelery } from "../../api/products";
 import { womenClothing } from "../../api/womenClothing";
-
-const womenClothingCard = ({ searchParams }) => {
-  const filteredProduct = womenClothing.filter(
-    (product) => product.category === searchParams.category
-  );
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useCart } from "@app/client/store/cart";
+import ProductCard from "@app/client/components/global/ProductCard";
+const womenClothingCard = ({ params }) => {
+  console.log(params);
   return (
     <main>
       <div className="grid grid-cols-4 gap-10">
-        {filteredProduct.map((categore) => (
-          <div
+        {jewelery.map((categore) => (
+          <Link
+            href={`/shop/productDetail?productId=${categore.id}`}
             key={categore.id}
-            className="flex flex-col shadow-md items-center justify-center p-4 border rounded-xl"
           >
-            <img src={categore.image} alt="image" className="w-28" />
-            <p className="text-center">{categore.title.slice(0, 25)}</p>
-            <p className="py-2">{categore.category}</p>
-            {/* <Button>Show Detail</Button> */}
-            <p className="justify-end">
-              {categore.rating.rate} + " " + {categore.rating.count}
-            </p>
-            <p>{categore.price}</p>
-            <p>{categore.description.slice(0, 20) + "....."}</p>
-            <Button>Add To Cart</Button>
-          </div>
+            <ProductCard categore={categore} />
+          </Link>
         ))}
       </div>
     </main>
