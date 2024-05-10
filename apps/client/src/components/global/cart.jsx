@@ -40,7 +40,10 @@ export function Cart() {
         <div className="grid gap-4 py-4 mt-10 ">
           {cartProducts.length > 0 ? (
             cartProducts.map((product) => (
-              <CartItem key={product.id} product={product} />
+              <>
+                <CartItem key={product.id} product={product} />
+                <CountQuantity product={product} />
+              </>
             ))
           ) : (
             <h1 className="flex items-center justify-center font-bold text-2xl ">

@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       colors: {
         "bg-cart": "#68C17C",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
