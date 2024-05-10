@@ -3,8 +3,13 @@ import React from "react";
 import { jewelery } from "@app/client/api/products";
 import Link from "next/link";
 import ProductCard from "@app/client/components/global/ProductCard";
+import Carts from "@app/client/components/global/Carts";
+import { Car } from "lucide-react";
 export default function Home({ params }) {
   const category = params.category;
+
+ if (category === 'carts') return <Carts />
+
   const filteredProducts = jewelery.filter(
     (product) => product.category === category
   );

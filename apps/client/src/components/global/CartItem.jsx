@@ -1,5 +1,6 @@
 import React from "react";
 import { X } from "lucide-react";
+
 export default function CartItem({ product, children }) {
   return (
     <div key={product.id} className="flex mb-5 relative items-center gap-4">
