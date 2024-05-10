@@ -11,9 +11,24 @@ import { useSelectedMenu } from "@app/client/store/selectedMenuItem";
 
 const categories = [
   {
-    slug: "womenClothing",
+    slug: "mensClothing",
     Icon: MdManageAccounts,
     name: "Male Cloth",
+  },
+  {
+    slug: "womenClothing",
+    Icon: GiFemaleVampire,
+    name: "Female Cloth",
+  },
+  {
+    slug: "jewelery",
+    Icon: GiBigDiamondRing ,
+    name: "Jewllery",
+  },
+  {
+    slug: "electronics",
+    Icon: FcElectronics ,
+    name: "Electronics",
   },
 ];
 const About = ({ children }) => {
@@ -43,30 +58,6 @@ const About = ({ children }) => {
               </div>
             </Link>
           ))}
-          <Link href="/shop/womenClothing">
-            <div className="flex mb-3 hover:text-blue-500 border-white-500">
-              <div>
-                <GiFemaleVampire />
-              </div>
-              <div>Female Cloth</div>
-            </div>
-          </Link>
-          <Link href="/shop/jewelery">
-            <div className="flex mb-3 hover:text-blue-500 border-white-500">
-              <div>
-                <GiBigDiamondRing />
-              </div>
-              <div>Jewllery</div>
-            </div>
-          </Link>
-          <Link href="/shop?category=electronics">
-            <div className="flex mb-3 hover:text-blue-500 border-white-500">
-              <div>
-                <FcElectronics />
-              </div>
-              <div>Electronics</div>
-            </div>
-          </Link>
         </div>
         <div className="shadow-lg w-full h-screen scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300  overflow-y-scroll">
           <FaBars className="cursor-pointer" onClick={toggleSidebar} />
