@@ -2,6 +2,8 @@
 import React from "react";
 import { jewelery } from "../../api/products";
 import Link from "next/link";
+
+import { useCart } from "@app/client/store/cart";
 import ProductCard from "@app/client/components/global/ProductCard";
 import { useSearchParams } from "next/navigation";
 export default function WomenClothingCard() {

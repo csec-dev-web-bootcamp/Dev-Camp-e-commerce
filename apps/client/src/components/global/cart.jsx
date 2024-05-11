@@ -3,9 +3,7 @@ import { useCart } from "@app/client/store/cart";
 import { BsCart2 } from "react-icons/bs";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { X } from "lucide-react";
+
 import {
   Sheet,
   SheetClose,
@@ -17,10 +15,7 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import React from "react";
-import { AiTwotonePlusCircle } from "react-icons/ai";
-import { AiTwotoneMinusCircle } from "react-icons/ai";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import CountQuantity from "./CountQuantity";
+
 import CartItem from "./CartItem";
 
 export function Cart() {
@@ -49,55 +44,15 @@ export function Cart() {
               Cart Empty
             </h1>
           )}
-
-          {/* <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div> */}
         </div>
 
-        {/* <div className="flex m-5"> */}
-        {/* <div>
-            <img
-              src="https://new.axilthemes.com/demo/template/etrade/assets/images/product/electric/product-01.png"
-              alt=""
-              className="w-40"
-            />
-          </div> */}
-
-        {/* <div className="mx-10">
-            <div>rating</div>
-            <div>title</div>
-            <div>price</div>
-            <div>{cartProducts.length}</div>
-          </div> */}
-
-        {/* <div className="ml-20 my-5">
-            <div className="flex ">
-              <div className="mr-4">
-                <AiTwotoneMinusCircle />
-              </div>
-              <div className="mr-4">15</div>
-              <div>
-                <AiTwotonePlusCircle />
-              </div>
-            </div>
-            <div>
-              <div>
-                <RiDeleteBin6Line />
-              </div>
-            </div>
-          </div>
-        </div> */}
         <SheetFooter>
           {cartProducts.length > 0 ? (
             <div className="flex gap-4">
-              <Link href="shop/carts">
+              <Link href="carts">
                 <Button>View Carts</Button>
               </Link>
-              <Link href="/checkout">
+              <Link href="checkout">
                 <Button>Checkout</Button>
               </Link>
             </div>
