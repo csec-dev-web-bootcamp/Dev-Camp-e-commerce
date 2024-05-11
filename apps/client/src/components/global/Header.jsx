@@ -6,7 +6,7 @@ import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { useCartStore } from "@app/client/store/cart";
-import { Cart } from "./cart";
+import { Cart } from "./Cart";
 const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
 

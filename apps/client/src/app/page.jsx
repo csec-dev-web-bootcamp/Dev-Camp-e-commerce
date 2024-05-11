@@ -5,7 +5,7 @@ import CarouselEffect from "../components/global/carousel/Carousel";
 
 export default function Page() {
   return (
-    <main className="w-full  mx-auto">
+    <main className="w-full  mx-auto ">
       <div className="w-full flex flex-col gap-4 ">
         {/* <CarouselEffect /> */}
         <Welcome />

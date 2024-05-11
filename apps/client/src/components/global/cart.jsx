@@ -1,10 +1,10 @@
 "use client";
 import { useCart } from "@app/client/store/cart";
 import { BsCart2 } from "react-icons/bs";
-import { Button } from "../../components/ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
-import { Input } from "../../components/ui/input";
-import { Label } from "../../components/ui/label";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import { X } from "lucide-react";
 import {
   Sheet,
@@ -15,7 +15,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../../components/ui/sheet";
+} from "../ui/sheet";
 import React from "react";
 import { AiTwotonePlusCircle } from "react-icons/ai";
 import { AiTwotoneMinusCircle } from "react-icons/ai";
@@ -31,20 +31,17 @@ export function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="blue" className="items-center relative">
-          <span className="absolute top-0 left-0 text-lg font-bold bg-yellow-600 p-4 w-8 h-8 flex items-center justify-center text-white rounded-full">
+          <span className="absolute top-0 right-1 text-sm font-bold border-black border-2 p-2 bg-white  h-3 w-3 flex items-center justify-center text-black rounded-full">
             {cartProducts.length}
           </span>
           <BsCart2 size={30} />
         </Button>
       </SheetTrigger>
-      <SheetContent className="overflow-scroll scroll-my-0">
+      <SheetContent className=" overflow-scroll scroll-my-0">
         <div className="grid gap-4 py-4 mt-10 ">
           {cartProducts.length > 0 ? (
             cartProducts.map((product) => (
-              <>
-                <CartItem key={product.id} product={product} />
-                <CountQuantity product={product} />
-              </>
+              <CartItem key={product.id} product={product} />
             ))
           ) : (
             <h1 className="flex items-center justify-center font-bold text-2xl ">
@@ -95,14 +92,18 @@ export function Cart() {
           </div>
         </div> */}
         <SheetFooter>
-          {/* <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-           */}
-
-           <Link href="shop/carts">
-             <Button>View Carts</Button>
-           </Link>
+          {cartProducts.length > 0 ? (
+            <div className="flex gap-4">
+              <Link href="shop/carts">
+                <Button>View Carts</Button>
+              </Link>
+              <Link href="/checkout">
+                <Button>Checkout</Button>
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </SheetFooter>
       </SheetContent>
     </Sheet>
