@@ -8,11 +8,14 @@ import { jewelery } from "../../api/products";
 import { womenClothing } from "../../api/womenClothing";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Carts from "@app/client/components/global/Carts";
 import { useCart } from "@app/client/store/cart";
 import ProductCard from "@app/client/components/global/ProductCard";
 const WomenClothingCard = () => {
   const parameter = useSearchParams();
   const category = parameter.get("category");
+  
+  if(category === 'carts') return <Carts />
   const filteredProducts = category
     ? jewelery.filter((product) => product.category === category)
     : jewelery;
