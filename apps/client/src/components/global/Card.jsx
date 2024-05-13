@@ -10,25 +10,28 @@ const categories = [
     title:
       "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
     image:
-      "https://img.freepik.com/free-photo/abstract-gold-chain-jewellery-presentation_23-2149599103.jpg?t=st=1715213778~exp=1715217378~hmac=ace0d055a0b5ecc59b17ba275008351d50bcdbd25ec575f751efa241c2d6abf6&w=360",
+      "https://new.axilthemes.com/demo/template/etrade/assets/images/product/jewellery/product-4.png",
   },
   {
     id: 9,
     slug: "electronics",
-    title: "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-    image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+    title: " Portable External Hard Drive - USB 3.0 ",
+    image:
+      "https://new.axilthemes.com/demo/template/etrade/assets/images/product/electric/product-01.png",
   },
   {
     id: 1,
     slug: "mens-clothing",
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    title: "Denim Jacket",
+    image:
+      "https://new.axilthemes.com/demo/template/etrade/assets/images/product/fashion/product-4.png",
   },
   {
     id: 15,
     slug: "women-clothing",
-    title: "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-    image: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+    title: "Women's stylish hat",
+    image:
+      "https://new.axilthemes.com/demo/template/etrade/assets/images/product/fashion/product-6.png",
   },
 ];
 
@@ -39,17 +42,30 @@ const Card = () => {
         {categories.map((categore) => (
           <div
             key={categore.id}
-            className="flex flex-col shadow-md items-center justify-center p-4 border rounded-xl"
+            className="flex flex-col  items-start border shadow-md rounded-xl"
           >
-            <img src={categore.image} alt="image" className="w-28" />
-            <p className="text-center">{categore.title.slice(0, 25)}</p>
-            <p className="py-2">{categore.slug}</p>
+            <div className="flex items-center justify-center p-4 bg-gray-50">
+              <img
+                src={categore.image}
+                alt="image"
+                className="w-56 pb-6 rounded-md"
+              />
+            </div>
+            <div className="py-4">
+               <p className="text-center text-gray-500 px-4 font-semibold">
+              {categore.title.slice(0, 25)}
+            </p>
+            <p className="py-2 font-semibold text-gray-500 px-4">
+              {" "}
+              {categore.slug}
+            </p>
             <Link
               className={cn(buttonVariants({ variant: "link" }))}
               href={`/shop?categore=${categore.slug}`}
             >
-              Show Detail
+              <Button className="">Show Detail</Button>
             </Link>
+            </div>
           </div>
         ))}
       </div>

@@ -44,7 +44,9 @@ const Header = () => {
         </ul>
         <ul className="flex gap-4 items-center">
           <Link href="">
-            <MdFavoriteBorder size={30} />
+           <div className="flex items-center justify-center">
+           <MdFavoriteBorder size={30} className="flex hover:bg-[#FF0003] hover:text-white rounded-full "/>
+           </div>
           </Link>
           <div>
             <Cart />
