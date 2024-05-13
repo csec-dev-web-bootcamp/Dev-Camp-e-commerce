@@ -12,6 +12,7 @@ module.exports = {
   theme: {
     fontFamily: {
       helvetica: ["DM Sans", "sans-serif"],
+      "dm-sans": "DM Sans",
     },
 
     container: {
@@ -25,6 +26,8 @@ module.exports = {
       colors: {
         "bg-cart": "#68C17C",
         "product-bg": "#F8F3F1",
+        "custom-gray": "#777777",
+        "wishlist-header": "#F7F6FB",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

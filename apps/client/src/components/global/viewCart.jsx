@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useCart } from "@app/client/store/cart";
 import { X } from "lucide-react";

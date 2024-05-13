@@ -11,7 +11,7 @@ export default function Home({ params }) {
   return (
     <>
       {productFiltered.map((product) => (
-        <ProductDetail key={product.id} product={product}>
+        <ProductDetail key={product.id} product={product} id={params.productId}>
           <button
             className="px-6 py-2 border-black font-bold absolute top-0 left-0"
             onClick={() => router.back()}

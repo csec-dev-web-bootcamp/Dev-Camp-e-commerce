@@ -6,9 +6,7 @@ import Link from "next/link";
 
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -20,6 +18,7 @@ import CartItem from "./CartItem";
 
 export function Cart() {
   const { cartProducts, removeProductFromCart } = useCart();
+
   console.log(cartProducts);
 
   return (
@@ -32,7 +31,9 @@ export function Cart() {
           <BsCart2 size={30} />
         </Button>
       </SheetTrigger>
-      <SheetContent className=" overflow-scroll scroll-my-0">
+      <SheetContent className="p-8 overflow-scroll ">
+        <SheetTitle className="text-2xl font-medium">Cart Review</SheetTitle>
+
         <div className="grid gap-4 py-4 mt-10 ">
           {cartProducts.length > 0 ? (
             cartProducts.map((product) => (

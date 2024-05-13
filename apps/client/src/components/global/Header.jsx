@@ -7,6 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { useCartStore } from "@app/client/store/cart";
 import { Cart } from "./Cart";
+import Wishlist from "./Wishlist";
 const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
 
@@ -43,9 +44,12 @@ const Header = () => {
           </Link>
         </ul>
         <ul className="flex gap-4 items-center">
-          <Link href="">
+          <div>
+            <Wishlist />
+          </div>
+          {/* <Link href="">
             <MdFavoriteBorder size={30} />
-          </Link>
+          </Link> */}
           <div>
             <Cart />
           </div>

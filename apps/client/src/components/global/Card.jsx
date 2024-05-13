@@ -42,7 +42,7 @@ const Card = () => {
             className="flex flex-col shadow-md items-center justify-center p-4 border rounded-xl"
           >
             <img src={categore.image} alt="image" className="w-28" />
-            <p className="text-center">{categore.title.slice(0, 25)}</p>
+            <p className="text-center">{categore.title.slice(0, 10)}</p>
             <p className="py-2">{categore.slug}</p>
             <Link
               className={cn(buttonVariants({ variant: "link" }))}
