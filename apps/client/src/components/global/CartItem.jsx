@@ -1,6 +1,8 @@
 import React from "react";
-import { X } from "lucide-react";
+import { X, Delete } from "lucide-react";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { useCart } from "@app/client/store/cart";
+import CountQuantity from "./CountQuantity";
 export default function CartItem({ product }) {
   const { removeFromCart } = useCart();
   return (
@@ -14,8 +16,9 @@ export default function CartItem({ product }) {
         className="absolute top-0 left-0"
         onClick={() => removeFromCart(product.id)}
       >
-        <X className="h-6 w-6" />
+        <RiDeleteBin6Line className="h-6 w-6 absolute -top-3 bg-white" />
       </button>
+      <CountQuantity product={product} />
     </div>
   );
 }

@@ -4,17 +4,16 @@ import React from "react";
 import { cn } from "@app/client/lib/utils";
 import { Button, buttonVariants } from "../ui/button";
 export default function ProductCard({ categore }) {
-  const { addToCart, cartProducts } = useCart();
+  const { addToCart, cartProducts, removeFromCart } = useCart();
+  const exist = cartProducts.find((cart) => cart.id === categore.id);
   function handleAddToCart(product) {
-    const exist = cartProducts.find((cart) => cart.id === product.id);
-    if (!exist) {
-      addToCart(product);
-    }
+    !exist && addToCart(product);
+    exist && removeFromCart(product);
   }
 
   return (
     <div className="flex flex-col items-center justify-center p-4 border rounded-xl hover:border-slate-950 transition-all cursor-pointer">
-      <img src={categore.image} alt="image" className="w-28" />
+      <img src={categore.image} alt="image" className="w-24 " />
       <p className="text-center">{categore.title.slice(0, 25)}</p>
       <p className="py-2">{categore.category}</p>
       {/* <Button>Show Detail</Button> */}
@@ -30,7 +29,7 @@ export default function ProductCard({ categore }) {
           handleAddToCart(categore);
         }}
       >
-        Add To Cart
+        {exist ? "Added" : "Add To Cart"}
       </Link>
     </div>
   );

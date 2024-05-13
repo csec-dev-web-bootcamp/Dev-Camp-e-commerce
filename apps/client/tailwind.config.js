@@ -8,7 +8,12 @@ module.exports = {
     "./src/**/*.{js,jsx}",
   ],
   prefix: "",
+
   theme: {
+    fontFamily: {
+      helvetica: ["DM Sans", "sans-serif"],
+    },
+
     container: {
       center: true,
       padding: "2rem",
@@ -19,6 +24,8 @@ module.exports = {
     extend: {
       colors: {
         "bg-cart": "#68C17C",
+        "product-bg": "#F8F3F1",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -27,6 +34,9 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        spacing: {
+          "cart-500": "500px",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

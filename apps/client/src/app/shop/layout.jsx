@@ -21,31 +21,27 @@ const categories = [
     name: "Female Cloth",
   },
   {
-    slug: "jewelery",
-    Icon: GiBigDiamondRing ,
-    name: "Jewllery",
+    slug: "electronics",
+    Icon: GiBigDiamondRing,
+    name: "Electronics",
   },
   {
-    slug: "electronics",
-    Icon: FcElectronics ,
-    name: "Electronics",
+    slug: "jewelery",
+    Icon: MdManageAccounts,
+    name: "Jewelery",
   },
 ];
 const About = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isCollapsed, setIsCollapsed } = useCollapsed();
   const { selectedMenuItem, setSelectedMenuItem } = useSelectedMenu();
 
   const handleMenuClick = (menuItem) => {
-    setSelectedMenuItem(menuItem.key);
-  };
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); // Ensure state update
+    setIsCollapsed(menuItem.key);
   };
 
   return (
     <>
-      <div className="flex  shadow-lg h-screen scrollbar-thumb-sky-700 scrollbar-track-sky-300">
+      <div className="flex  shadow-lg">
         <div className="col-span-1 bg-gray-300 p-6 px-9 ">
           <div className="p-4">side bar </div>
           {categories.map(({ Icon, name, slug }, ind) => (
@@ -59,12 +55,11 @@ const About = ({ children }) => {
             </Link>
           ))}
         </div>
-        <div className="shadow-lg w-full h-screen scrollbar scrollbar-thumb-sky-700 scrollbar-track-sky-300  overflow-y-scroll">
-          <FaBars className="cursor-pointer" onClick={toggleSidebar} />
+        <div className="shadow-lg w-full">
+          <FaBars className="cursor-pointer" onClick={handleMenuClick} />
           <p>{children}</p>
         </div>
       </div>
-     
     </>
   );
 };

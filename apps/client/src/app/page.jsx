@@ -10,6 +10,7 @@ import Carousel from "../components/global/Carousel";
 
 export default function Page() {
   return (
+
     <main className="w-full mx-auto">
       <div className="flex flex-col w-full gap-4 ">
         {/* <CarouselEffect /> */}
