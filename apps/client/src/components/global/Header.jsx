@@ -7,6 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { useCartStore } from "@app/client/store/cart";
 import { Cart } from "./Cart";
+import Wishlist from "./Wishlist";
 const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
 
@@ -43,11 +44,12 @@ const Header = () => {
           </Link>
         </ul>
         <ul className="flex gap-4 items-center">
-          <Link href="">
-           <div className="flex items-center justify-center">
-           <MdFavoriteBorder size={30} className="flex hover:bg-[#FF0003] hover:text-white rounded-full "/>
-           </div>
-          </Link>
+          <div>
+            <Wishlist />
+          </div>
+          {/* <Link href="">
+            <MdFavoriteBorder size={30} />
+          </Link> */}
           <div>
             <Cart />
           </div>

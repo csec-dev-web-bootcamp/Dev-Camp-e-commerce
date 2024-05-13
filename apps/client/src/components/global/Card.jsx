@@ -42,23 +42,11 @@ const Card = () => {
         {categories.map((categore) => (
           <div
             key={categore.id}
-            className="flex flex-col  items-start border shadow-md rounded-xl"
+            className="flex flex-col shadow-md items-center justify-center p-4 border rounded-xl"
           >
-            <div className="flex items-center justify-center p-4 bg-gray-50">
-              <img
-                src={categore.image}
-                alt="image"
-                className="w-56 pb-6 rounded-md"
-              />
-            </div>
-            <div className="py-4">
-               <p className="text-center text-gray-500 px-4 font-semibold">
-              {categore.title.slice(0, 25)}
-            </p>
-            <p className="py-2 font-semibold text-gray-500 px-4">
-              {" "}
-              {categore.slug}
-            </p>
+            <img src={categore.image} alt="image" className="w-28" />
+            <p className="text-center">{categore.title.slice(0, 10)}</p>
+            <p className="py-2">{categore.slug}</p>
             <Link
               className={cn(buttonVariants({ variant: "link" }))}
               href={`/shop?categore=${categore.slug}`}

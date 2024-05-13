@@ -3,13 +3,13 @@ import { create } from "zustand";
 export const useCart = create((set) => ({
   cartProducts: [],
 
-  addToCart: (product) =>
+  addToCart: (product, numb = 0) =>
     set((state) => {
       const currentState = JSON.parse(JSON.stringify(state));
       currentState.cartProducts.push({
         ...product,
         totalPrice: product.price,
-        amount: 1,
+        amount: 1 + numb,
       });
 
       return currentState;
