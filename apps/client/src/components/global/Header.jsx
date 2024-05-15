@@ -9,8 +9,7 @@ import { useCartStore } from "@app/client/store/cart";
 import { Cart } from "./cart";
 import Wishlist from "./Wishlist";
 const Header = () => {
-  // const cart = useCartStore((state)=> state.cart);
-
+  
   return (
     <header className="w-full  mx-auto sticky top-0 z-50">
       <nav className="w-full text-sm flex justify-center items-center h-16 bg-gray-50 font-medium text-black gap-10  text-md">
