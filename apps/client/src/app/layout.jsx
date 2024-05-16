@@ -3,10 +3,11 @@ import "./globals.css";
 import Header from "../components/global/Header";
 import Footer from "../components/global/Footer";
 
-
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@app/client/lib/utils";
+import Message from "../components/global/Message";
+import Subscribe from "../components/global/Subscribe";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,12 +24,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-dm-sans antialiased",
           fontSans.variable
         )}
       >
         <Header />
         {children}
+        <Subscribe />
+        <Message />
         <Footer />
       </body>
     </html>
