@@ -6,6 +6,8 @@ import Footer from "../components/global/Footer";
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@app/client/lib/utils";
+import Message from "../components/global/Message";
+import Subscribe from "../components/global/Subscribe";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,6 +30,8 @@ export default function RootLayout({ children }) {
       >
         <Header />
         {children}
+        <Subscribe />
+        <Message />
         <Footer />
       </body>
     </html>

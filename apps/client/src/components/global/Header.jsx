@@ -6,14 +6,14 @@ import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { useCartStore } from "@app/client/store/cart";
-import { Cart } from "./Cart";
+import { Cart } from "./cart";
 import Wishlist from "./Wishlist";
 const Header = () => {
   // const cart = useCartStore((state)=> state.cart);
 
   return (
-    <header className="w-full  mx-auto sticky top-0 z-50 ">
-      <nav className="w-full flex justify-center items-center h-16 bg-gray-50 font-semibold text-black gap-10 shadow-md  text-md">
+    <header className="w-full  mx-auto sticky top-0 z-50">
+      <nav className="w-full text-sm flex justify-center items-center h-16 bg-gray-50 font-medium text-black gap-10  text-md">
         <ul className="flex gap-20 items-center">
           <Link href="/">
             <li>Logo</li>

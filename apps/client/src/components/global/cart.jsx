@@ -15,9 +15,13 @@ import {
 import React from "react";
 
 import CartItem from "./CartItem";
+import CurrencyFormat from "./currencyFormater";
 
 export function Cart() {
   const { cartProducts, removeProductFromCart } = useCart();
+  const subtotalPrice = cartProducts
+    .map((product) => product.totalPrice)
+    .reduce((a, b) => a + b, []);
 
   console.log(cartProducts);
 
@@ -25,10 +29,10 @@ export function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="blue" className="items-center relative">
-          <span className="absolute top-0 right-1 text-sm font-bold border-black border-2 p-2 bg-white  h-3 w-3 flex items-center justify-center text-black rounded-full">
+          <span className="absolute bg-color-primary top-0 right-1 text-xs font-bold  border-2 p-2  h-3 w-3 flex items-center justify-center text-white rounded-full">
             {cartProducts.length}
           </span>
-          <BsCart2 size={30} />
+          <BsCart2 className="" size={30} />
         </Button>
       </SheetTrigger>
       <SheetContent className="p-8 overflow-scroll ">
@@ -46,21 +50,32 @@ export function Cart() {
             </h1>
           )}
         </div>
-
-        <SheetFooter>
-          {cartProducts.length > 0 ? (
-            <div className="flex gap-4">
-              <Link href="carts">
-                <Button>View Carts</Button>
-              </Link>
-              <Link href="checkout">
-                <Button>Checkout</Button>
-              </Link>
+        {cartProducts.length > 0 ? (
+          <>
+            <div className="flex justify-between text-xl my-5 font-bold">
+              <h3 className="">Subtotal</h3>
+              <p>
+                <CurrencyFormat amount={subtotalPrice} />
+              </p>
             </div>
-          ) : (
-            ""
-          )}
-        </SheetFooter>
+            <SheetFooter>
+              <div className="flex justify-between gap-4 w-full">
+                <Link href="/carts">
+                  <button className="bg-color-primary px-7 py-3 rounded text-white">
+                    View Carts
+                  </button>
+                </Link>
+                <Link href="/checkout">
+                  <button className="bg-color-secondary px-7 py-3 rounded text-white">
+                    Checkout
+                  </button>
+                </Link>
+              </div>
+            </SheetFooter>
+          </>
+        ) : (
+          ""
+        )}
       </SheetContent>
     </Sheet>
   );

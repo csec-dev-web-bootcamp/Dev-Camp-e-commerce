@@ -46,7 +46,7 @@ export default function CheckoutProductInfo() {
       <div className="flex flex-col gap-4 pt-6 overflow-hidden">
         <button
           type="button"
-          className=" rounded font-medium text-base bg-yellow-600 text-white py-5"
+          className=" rounded font-medium text-base bg-color-primary hover:scale-110 hover:rounded-xl transition-all ease-in-out duration-200 text-white py-5"
         >
           Continue to Shipping
         </button>

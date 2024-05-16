@@ -11,7 +11,7 @@ export default function CartItem({ product }) {
       <img className="w-20 h-20" src={`${product.image}`} alt="" />
 
       <div className="flex flex-col gap-1">
-        <Rating rating={Math.ceil(product.rating.rate)} />
+        <Rating rating={Math.ceil(product.rating.rate) || 4} />
         <h6 className="text-sm">{product.title.slice(0, 20)}</h6>
         <small>${product.price}</small>
       </div>

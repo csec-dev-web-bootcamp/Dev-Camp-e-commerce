@@ -8,8 +8,8 @@ export const useCart = create((set) => ({
       const currentState = JSON.parse(JSON.stringify(state));
       currentState.cartProducts.push({
         ...product,
-        totalPrice: product.price,
-        amount: 1 + numb,
+        totalPrice: numb > 0 ? product.price * numb : product.price,
+        amount: numb || 1,
       });
 
       return currentState;

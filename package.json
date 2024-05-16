@@ -28,6 +28,7 @@
   "dependencies": {
     "@babel/core": "^7.24.5",
     "@prisma/client": "^5.13.0",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "embla-carousel-autoplay": "^8.0.4",
     "next": "14.2.3",
     "pure-react-carousel": "^1.30.1",

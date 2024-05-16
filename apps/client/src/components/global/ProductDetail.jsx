@@ -3,7 +3,7 @@ import React from "react";
 import { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { cn } from "@app/client/lib/utils";
+
 import { jewelery } from "@app/client/api/products";
 // Import Swiper styles
 import "swiper/css";
@@ -12,20 +12,21 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import "./styles.css";
-import { buttonVariants } from "../ui/button";
+
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import CurrencyFormat from "./currencyFormater";
 import Rating from "./Rating";
 import CountQuantity from "./CountQuantity";
-import { Button } from "../ui/button";
+
 import { useCount } from "@app/client/store/count";
+import { BsCart2 } from "react-icons/bs";
 export default function ProductDetail({ product, children }) {
+  const { addToCart, cartProducts } = useCart();
   const images = jewelery.map((product) => product.image);
+  const exist = cartProducts.find((cart) => cart.id === product.id);
   console.log(product);
   images.length = 7;
-
-  const { addToCart } = useCart();
   const { count } = useCount();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
@@ -80,7 +81,7 @@ export default function ProductDetail({ product, children }) {
         <h1 className=" text-slate-900 font-extrabold text-4xl">
           {product.title.slice(0, 30)}
         </h1>
-        <span className="px-1.5 py-1 text-sm self-start bg-yellow-600 text-white rounded-full">
+        <span className="px-2 py-1 text-sm self-start bg-color-primary text-white rounded-full">
           In stock
         </span>
         <div className="flex gap-4 text-2xl font-medium">
@@ -96,11 +97,14 @@ export default function ProductDetail({ product, children }) {
         <p className="text-base w-3/4 text-gray-600">
           {product.description.slice(0, 270)}...
         </p>
-        <div className="flex gap-10">
+        <div className="flex gap-10 mt-4">
           <CountQuantity />
-          <Button className={cn(buttonVariants({ variant: "primary" }))}>
-            Add to cart
-          </Button>
+          <button
+            onClick={() => !exist && addToCart(product, count)}
+            className="flex gap-2 items-center bg-color-primary hover:scale-110 transition-all ease-in-out duration-200 px-6 py-2 text-white rounded text-sm"
+          >
+            <BsCart2 size={20} /> Add To Cart
+          </button>
         </div>
       </div>
     </div>
