@@ -28,7 +28,7 @@ app.all("*", (req, res) => {
   return res.status(404).json({ error: "Not Found" });
 });
 
-
+app.use(asyncHandler);
 app.use(httpExceptionHandler);
 
 app.listen(8000, () => {

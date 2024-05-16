@@ -119,10 +119,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  content: 'content'
+  name: 'name',
+  email: 'email',
+  password: 'password'
 };
 
 exports.Prisma.SortOrder = {
@@ -135,14 +136,9 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
-  Post: 'Post'
+  User: 'User'
 };
 
 /**
