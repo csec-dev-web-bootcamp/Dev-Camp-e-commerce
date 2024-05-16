@@ -38,6 +38,29 @@ const Header = () => {
           <Link href="/contact">
             <li>Contact</li>
           </Link>
+          
+          <Link href="/customer">
+            <li>customer</li>
+          </Link>
+
+          {/* <Link href="/dashboard">
+            <li>dashbord</li>
+          </Link> */}
+
+          <Link href="/admin">Admin</Link>
+          {/* <Link href="/admin">
+              <select id="gender" name="gender">
+                <option value="none" selected><Link href="/admin">Admin</Link></option>
+                <option value="dashboard"><Link href="/dashboard">dashboard</Link></option>
+                <option value="order"><Link href="/order">Orders</Link></option>
+                <option value="other"><Link href="/product">product</Link></option>
+                <option value="customer"><Link href="/customer">Customer</Link></option>
+                <option value="other"><Link href="/buyer">Buyer</Link></option>
+                <option value="buyer"><Link href="/invoice">Invoices</Link></option>
+                <option value="other"><Link href="/feedback">Feedback</Link>other</option>
+              </select>
+          </Link> */}
+
           <Link href="/order">
             <li>Order</li>
           </Link>
