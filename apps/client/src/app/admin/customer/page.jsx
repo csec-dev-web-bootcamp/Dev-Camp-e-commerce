@@ -1,8 +1,6 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-
-
 
 import {
   Table,
@@ -13,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table"
+} from "@app/client/components/ui/table";
 
 const invoices = [
   {
@@ -72,37 +70,43 @@ const invoices = [
     totalAmount: "$250.00",
     paymentMethod: "Credit Card",
   },
-]
-
+];
 
 const Customer = () => {
   const [options, setOptions] = useState({
     series: [
       {
-        name: 'series1',
-        data: [90, 95, 100, 80, 90, 75, 95,89 ]
+        name: "series1",
+        data: [90, 95, 100, 80, 90, 75, 95, 89],
       },
-      
     ],
     chart: {
       height: 350,
-      type: 'area'
+      type: "area",
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     stroke: {
-      curve: 'smooth'
+      curve: "smooth",
     },
     xaxis: {
-      type: 'datetime',
-      categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+      type: "datetime",
+      categories: [
+        "2018-09-19T00:00:00.000Z",
+        "2018-09-19T01:30:00.000Z",
+        "2018-09-19T02:30:00.000Z",
+        "2018-09-19T03:30:00.000Z",
+        "2018-09-19T04:30:00.000Z",
+        "2018-09-19T05:30:00.000Z",
+        "2018-09-19T06:30:00.000Z",
+      ],
     },
     tooltip: {
       x: {
-        format: 'dd/MM/yy HH:mm'
-      }
-    }
+        format: "dd/MM/yy HH:mm",
+      },
+    },
   });
 
   useEffect(() => {
@@ -115,50 +119,57 @@ const Customer = () => {
 
   return (
     <>
-    <div className='mx-56'>
+      <div className="mx-56">
         <div id="chart">wws</div>
         {/* <div id="chart">sddd</div> */}
-    </div>
-    
-    <div className='mx'>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium my-4">{invoice.invoice}</TableCell>
-            <TableCell className = "my-4">{invoice.paymentStatus}</TableCell>
-            <TableCell className = "my-4">{invoice.paymentMethod}</TableCell>
-            <TableCell className = "my-4"> {invoice.paymentStatus}</TableCell>
-            <TableCell className = "my-4">{invoice.paymentMethod}</TableCell>
-            <TableCell className = "my-4">{invoice.paymentStatus}</TableCell>
-            <TableCell className="text-right my-4">{invoice.totalAmount}</TableCell>
-            <TableCell className="text-right  my-4">{invoice.totalAmount}</TableCell>
-            <TableCell className="text-right my-4">{invoice.totalAmount}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
+      </div>
 
-    </div>
+      <div className="mx">
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[100px]">Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.invoice}>
+              <TableCell className="font-medium my-4">
+                {invoice.invoice}
+              </TableCell>
+              <TableCell className="my-4">{invoice.paymentStatus}</TableCell>
+              <TableCell className="my-4">{invoice.paymentMethod}</TableCell>
+              <TableCell className="my-4"> {invoice.paymentStatus}</TableCell>
+              <TableCell className="my-4">{invoice.paymentMethod}</TableCell>
+              <TableCell className="my-4">{invoice.paymentStatus}</TableCell>
+              <TableCell className="text-right my-4">
+                {invoice.totalAmount}
+              </TableCell>
+              <TableCell className="text-right  my-4">
+                {invoice.totalAmount}
+              </TableCell>
+              <TableCell className="text-right my-4">
+                {invoice.totalAmount}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell className="text-right">$2,500.00</TableCell>
+          </TableRow>
+        </TableFooter>
+      </div>
     </>
-  )
-}
+  );
+};
 export default Customer;

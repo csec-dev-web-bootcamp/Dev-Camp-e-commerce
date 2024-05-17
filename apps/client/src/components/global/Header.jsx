@@ -9,7 +9,6 @@ import Wishlist from "./Wishlist";
 import CategoriesMenu from "./CategoriesMenu";
 import ProfileMenu from "./ProfileMenu";
 const Header = () => {
-  
   return (
     <header className="w-full  mx-auto sticky top-0 z-50">
       <nav className="w-full text-sm flex justify-center items-center h-16 bg-gray-50 font-medium text-black gap-10  text-md">
@@ -36,16 +35,16 @@ const Header = () => {
           <Link href="/contact">
             <li>Contact</li>
           </Link>
-          
-          <Link href="/customer">
+
+          {/* <Link href="/customer">
             <li>customer</li>
-          </Link>
+          </Link> */}
 
           {/* <Link href="/dashboard">
             <li>dashbord</li>
           </Link> */}
 
-          <Link href="/admin">Admin</Link>
+          {/* <Link href="/admin">Admin</Link> */}
           {/* <Link href="/admin">
               <select id="gender" name="gender">
                 <option value="none" selected><Link href="/admin">Admin</Link></option>

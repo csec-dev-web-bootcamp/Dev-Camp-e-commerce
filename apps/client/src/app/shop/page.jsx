@@ -21,6 +21,7 @@ export default function WomenClothingCard() {
 
   return (
     <>
+      <Header />
       <main>
         <div className="grid grid-cols-4 gap-10">
           {filteredProducts.map((categore) => (
@@ -33,6 +34,8 @@ export default function WomenClothingCard() {
             </Link>
           ))}
         </div>
+        <Message />
+        <Footer />
       </main>
     </>
   );

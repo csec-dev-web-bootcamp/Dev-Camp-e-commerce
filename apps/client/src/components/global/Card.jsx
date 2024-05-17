@@ -53,8 +53,7 @@ const Card = () => {
             >
               <Button className="">Show Detail</Button>
             </Link>
-            </div>
-         
+          </div>
         ))}
       </div>
     </main>

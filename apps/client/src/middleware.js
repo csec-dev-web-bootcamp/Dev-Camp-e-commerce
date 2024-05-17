@@ -7,6 +7,7 @@ const authRoutes = ["/auth"];
 
 export async function middleware(request) {
   const pathname = request.nextUrl.pathname;
+
   const cookiesManager = cookies();
   const accessToken = cookiesManager.get("accessToken")?.value;
   const authUser = accessToken ? jwtDecode(accessToken) : null;
@@ -17,9 +18,8 @@ export async function middleware(request) {
     pathname.startsWith(route)
   );
   const isRolePath = roleRoutes.find((route) => pathname.startsWith(route));
-
   if (authUser?.userId && authUser.role) {
-    const authRolePath = "ADMIN";
+    const authRolePath = `/${authUser.role.toLowerCase()}`;
     if (isRolePath && !pathname.startsWith(authRolePath)) {
       const currentPath = pathname.replace(
         RegExp(roleRoutes.join("|")),
@@ -36,6 +36,8 @@ export async function middleware(request) {
   } else if (isProtectedPath) {
     NextResponse.redirect(new URL("/auth/login", request.url));
   }
+
+  request.headers.set("x-pathname", pathname);
   return NextResponse.next();
 }
 

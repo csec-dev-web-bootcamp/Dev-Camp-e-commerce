@@ -2,6 +2,9 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { jewelery } from "@app/client/api/products";
 import ProductDetail from "@app/client/components/global/ProductDetail";
+import Message from "@app/client/components/global/Message";
+import { Footer } from "antd/es/layout/layout";
+import Header from "@app/client/components/global/Header";
 export default function Home({ params }) {
   const router = useRouter();
   const productFiltered = jewelery.filter(
@@ -10,6 +13,7 @@ export default function Home({ params }) {
 
   return (
     <>
+      <Header />
       {productFiltered.map((product) => (
         <ProductDetail key={product.id} product={product} id={params.productId}>
           <button
@@ -20,6 +24,8 @@ export default function Home({ params }) {
           </button>
         </ProductDetail>
       ))}
+      <Message />
+      <Footer />
     </>
   );
 }
