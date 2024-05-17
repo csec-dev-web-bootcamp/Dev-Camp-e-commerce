@@ -20,7 +20,7 @@ const Welcome = () => {
             Don't Miss !
           </p>
           <p className=" w-full text-black font-bold text-5xl ">
-            Let's Shopping Today
+            Let's Start Shopping Today
           </p>
           <div className="flex  top-[7rem] absolute gap-4  text-gray-600 ">
             <div className="flex items-center p-6 w-20 h-20 font-semibold text-md flex-col rounded-full  bg-white text-gray-600 justify-center">

@@ -1,9 +1,29 @@
 "use client";
+
 import Link from "next/link";
-import React from "react";
-import Input from "./Input";
+import { login } from "../../data/auth";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
+  function onChange(e) {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    const res = await login(formState);
+
+    res?.err ? alert(JSON.stringify(res.err)) : router.push("/");
+
+    console.log(formState);
+  }
+
   return (
     <div className="">
       <header className="z-10 fixed px-24 py-20 inset-0 flex justify-between h-10">
@@ -12,7 +32,7 @@ export default function Login() {
           <p className="text-sm">Not a member ?</p>
           <Link
             className="px-9 py-4 ml-10 bg-color-secondary text-color-white  rounded-md inline-block"
-            href={"/register"}
+            href={"/auth/register"}
           >
             Sign Up Now
           </Link>
@@ -24,7 +44,7 @@ export default function Login() {
         </div>
         <div className="flex mt-16  items-center justify-center  w-full">
           <div className="w-2/3">
-            <form action="" className="w-2/3">
+            <form action="" onSubmit={onSubmit} className="w-2/3">
               <h3 className="font-bold mb-3 text-2xl">Sign in to e-store</h3>
               <small className="text-color-body ">Enter detail below</small>
               <div className="relative mt-10 ">
@@ -35,6 +55,8 @@ export default function Login() {
                   Email
                 </label>
                 <input
+                  name="email"
+                  onChange={onChange}
                   type="text"
                   className="w-full text-sm py-3 mb-6 px-7 border-color-light text-color-body rounded-md border"
                 />
@@ -47,6 +69,8 @@ export default function Login() {
                   Password
                 </label>
                 <input
+                  name="password"
+                  onChange={onChange}
                   type="password"
                   className="focus:border-color-primary w-full text-sm py-3 mb-9 px-7 border-color-light text-color-body rounded-md border"
                 />

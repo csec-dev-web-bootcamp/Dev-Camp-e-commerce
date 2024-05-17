@@ -24,8 +24,12 @@ export default function WomenClothingCard() {
       <main>
         <div className="grid grid-cols-4 gap-10">
           {filteredProducts.map((categore) => (
-            <Link href={`/shop/${categore.id}`} key={categore.id}>
-              <ProductCard categore={categore} />
+            <Link
+              href={`/shop/${categore.id}`}
+              onClick={(e) => e.stopPropagation()}
+              key={categore.id}
+            >
+              <ProductCard key={categore.id} categore={categore} />
             </Link>
           ))}
         </div>

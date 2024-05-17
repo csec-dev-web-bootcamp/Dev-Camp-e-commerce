@@ -7,7 +7,7 @@ import Categories from "../components/global/Categories";
 // import { CarouselPlugin } from "../components/global/Carousel";
 import Carousel from "../components/global/Carousel";
 
-export default function Page() {
+export default function Page({ children }) {
   return (
     <main className="w-full mx-auto">
       <div className="flex flex-col w-full gap-4 ">

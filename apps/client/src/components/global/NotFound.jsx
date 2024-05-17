@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import "font-awesome/css/font-awesome.min.css";
+
 import { CiWarning } from "react-icons/ci";
 export default function NotFound() {
   return (
