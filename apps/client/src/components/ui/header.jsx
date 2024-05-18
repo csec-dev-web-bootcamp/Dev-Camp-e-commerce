@@ -4,7 +4,7 @@ import { SheetDemo } from "@app/client/app/sheet";
 
 const Header = () => {
   return (
-    <header className="w-full  mx-auto mt-4">
+    <header className="w-full   mt-4">
       <nav className="w-full flex justify-between p-4 bg-slate-500">
         <ul className="flex gap-10">
           <li>

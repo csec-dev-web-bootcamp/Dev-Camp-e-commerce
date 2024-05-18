@@ -21,22 +21,19 @@ export default function WomenClothingCard() {
 
   return (
     <>
-      <Header />
-      <main>
+      <main className="px-15">
         <div className="grid grid-cols-4 gap-10">
           {filteredProducts.map((categore) => (
-            <Link
-              href={`/shop/${categore.id}`}
-              onClick={(e) => e.stopPropagation()}
-              key={categore.id}
-            >
-              <ProductCard key={categore.id} categore={categore} />
-            </Link>
+            // <Link
+            //   href={`/shop/${categore.id}`}
+            //   onClick={(e) => e.stopPropagation()}
+            //   key={categore.id}
+            // >
+            <ProductCard key={categore.id} categore={categore} />
           ))}
         </div>
-        <Message />
-        <Footer />
       </main>
+      <Message />
     </>
   );
 }

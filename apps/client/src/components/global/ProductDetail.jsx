@@ -100,7 +100,9 @@ export default function ProductDetail({ product, children }) {
         <div className="flex gap-10 mt-4">
           <CountQuantity />
           <button
-            onClick={() => !exist && addToCart(product, count)}
+            onClick={() => {
+              !exist && addToCart(product, count);
+            }}
             className="flex gap-2 items-center bg-color-primary hover:scale-110 transition-all ease-in-out duration-200 px-6 py-2 text-white rounded text-sm"
           >
             <BsCart2 size={20} /> Add To Cart

@@ -13,7 +13,6 @@ export default function Home({ params }) {
 
   return (
     <>
-      <Header />
       {productFiltered.map((product) => (
         <ProductDetail key={product.id} product={product} id={params.productId}>
           <button
@@ -24,8 +23,6 @@ export default function Home({ params }) {
           </button>
         </ProductDetail>
       ))}
-      <Message />
-      <Footer />
     </>
   );
 }

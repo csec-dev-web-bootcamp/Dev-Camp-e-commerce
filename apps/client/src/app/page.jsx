@@ -13,15 +13,15 @@ import Footer from "../components/global/Footer";
 export default function Page({ children }) {
   return (
     <main className="w-full ">
-      <div className="flex flex-col w-full gap-4 ">
-        {/* <CarouselEffect /> */}
-        <Header />
-        <Welcome />
-        <Categories />
-        <Subscribe />
-        <Message />
-        <Footer />
-      </div>
+      {/* <div className=" m-auto"> */}
+      {/* <CarouselEffect /> */}
+
+      <Welcome />
+      <Categories />
+      <Subscribe />
+      <Message />
+
+      {/* </div> */}
     </main>
   );
 }

@@ -3,7 +3,7 @@ import { FaAddressCard, FaNewspaper } from "react-icons/fa";
 
 export default function Subscribe() {
   return (
-    <div className="p-28 bg-newsletter w-10/12 m-auto mt-10">
+    <div className="p-28 bg-newsletter bg-cover bg-center bg-no-repeat  mt-10">
       <small className="text-color-primary flex items-center gap-3 font-bold text-base mb-5">
         <span className="bg-color-primary p-2 rounded-full">
           <FaNewspaper color="white" />
