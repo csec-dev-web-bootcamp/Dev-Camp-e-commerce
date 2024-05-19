@@ -1,37 +1,45 @@
 "use server";
 import axios from "axios";
 import { cookies } from "next/headers";
-const SERVER_HOST = "http://localhost:8000";
+const server_host = "http://localhost:8000";
+
 export async function login(formData) {
-  const cookieManager = cookies();
+  const cookieStore = cookies();
   try {
-    const res = await axios.post(`${SERVER_HOST}/auth/login`, formData);
+    const res = await axios.post(server_host + "/auth/login", formData);
     const data = res.data;
     if (data.user && data.jwt) {
-      cookieManager.set({
+      cookieStore.set({
         name: "accessToken",
         value: data.jwt,
         secure: process.env.NODE_ENV === "production",
-        expires: 12 * 36000,
       });
     }
-  } catch (err) {
-    return { err: err.response ? err.response.data : err.message };
+    return { user: data.user };
+  } catch (error) {
+    console.log({ error });
+    const data = error.response?.data;
+    return { error: data || "Unknow error" };
   }
 }
+
 export async function register(formData) {
-  const cookieManager = cookies();
+  const cookieStore = cookies();
   try {
-    const res = await axios.post(`${SERVER_HOST}/auth/register`, formData);
+    const res = await axios.post(server_host + "/auth/register", formData);
+    console.log({ res });
     const data = res.data;
     if (data.user && data.jwt) {
-      cookieManager.set({
+      cookieStore.set({
         name: "accessToken",
-        value: data.jwt.accessToken,
+        value: data.jwt,
         secure: process.env.NODE_ENV === "production",
       });
     }
-  } catch (err) {
-    return { err: err.response ? err.response.data : err.message };
+    return { user: data.user };
+  } catch (error) {
+    console.log({ error });
+    const data = error.response?.data;
+    return { error: data || "Unknow error" };
   }
 }

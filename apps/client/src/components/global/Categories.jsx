@@ -1,8 +1,10 @@
 import React from "react";
 import Card from "./Card";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { FaTags } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CategoriesSlider from "./CategoriesSlider";
 
 const Categories = () => {
   return (
@@ -36,7 +38,7 @@ const Categories = () => {
           ))}
         </Swiper> */}
 
-        <Card />
+        {<Card /> || <Skeleton />}
       </div>
     </main>
   );

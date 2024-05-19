@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 export default function Message() {
   return (
-    <div className="flex justify-between mt-10">
+    <div className="flex justify-between mt-10 px-16">
       <div className="flex gap-4 items-center">
         <img
           className="w-11 h-10"

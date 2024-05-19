@@ -1,19 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { jewelery } from "../../api/products";
-import Link from "next/link";
 
-import { useCart } from "@app/client/store/cart";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import ProductCard from "@app/client/components/global/ProductCard";
 import { useSearchParams } from "next/navigation";
-import Header from "@app/client/components/global/Header";
-import Subscribe from "@app/client/components/global/Subscribe";
+
 import Message from "@app/client/components/global/Message";
-import Footer from "@app/client/components/global/Footer";
+
+import Rating from "@app/client/components/global/Rating";
+import Link from "next/link";
+import Loader from "@app/client/components/global/Loader";
 export default function WomenClothingCard() {
   const parameter = useSearchParams();
   const category = parameter.get("category");
   const search = parameter.get("search");
+  const [isLoading, setIsLoading] = useState(false);
 
   const filteredProducts = category
     ? jewelery.filter((product) => product.category === category)
@@ -21,16 +25,24 @@ export default function WomenClothingCard() {
 
   return (
     <>
-      <main className="px-15">
+      <main className="px-15 my-10">
+        <h1 className="font-bold text-3xl mb-6">Explore Our Products</h1>
         <div className="grid grid-cols-4 gap-10">
-          {filteredProducts.map((categore) => (
-            // <Link
-            //   href={`/shop/${categore.id}`}
-            //   onClick={(e) => e.stopPropagation()}
-            //   key={categore.id}
-            // >
-            <ProductCard key={categore.id} categore={categore} />
-          ))}
+          {filteredProducts.map((categore) =>
+            isLoading ? (
+              <Loader key={categore.id} />
+            ) : (
+              <Link
+                href={`/shop/${categore.id}`}
+                onClick={(e) => e.stopPropagation()}
+                key={categore.id}
+              >
+                <ProductCard key={categore.id} categore={categore}>
+                  <Rating rating={categore.rating.rate} />
+                </ProductCard>
+              </Link>
+            )
+          )}
         </div>
       </main>
       <Message />

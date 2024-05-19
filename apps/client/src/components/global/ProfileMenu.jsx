@@ -1,5 +1,6 @@
 // "use server";
-import { Button } from "../ui/button";
+
+// import { Button } from "../ui/button";
 import { FiUser } from "react-icons/fi";
 import {
   DropdownMenu,
@@ -7,19 +8,43 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
+  // DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
+  // DropdownMenuSub,
+  // DropdownMenuSubContent,
+  // DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { FaBackward, FaLanguage, FaTeamspeak, FaUser } from "react-icons/fa";
 import Link from "next/link";
+// import { getMe } from "@app/client/data/users";
+// import Username from "../user/Username";
 import { getMe } from "@app/client/data/users";
+import { useEffect, useState } from "react";
+import { BsPerson, BsPersonBadge } from "react-icons/bs";
+import Loader from "./Loader";
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ children }) {
+  const [username, setUsername] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(
+    function () {
+      const userName = async () => {
+        setIsLoading(true);
+        try {
+          const user = await getMe();
+          setUsername(!user.error ? user.name : username);
+          setIsLoading(false);
+        } catch (error) {
+          return { error: message };
+        }
+      };
+      userName();
+    },
+    [username]
+  );
   // const user = await getMe();
   return (
     <DropdownMenu>
@@ -29,15 +54,31 @@ export default function ProfileMenu() {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mt-10">
-        <DropdownMenuLabel>My account</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-center font-bold text-md flex gap-3 items-center ">
+          <BsPerson
+            className="text-color-white p-2 bg-color-secondary rounded-full"
+            size={30}
+          />
+
+          <span className="text-sm text-[#777777]">
+            {isLoading ? (
+              <Loader />
+            ) : (
+              username && username.charAt(0).toUpperCase() + username.slice(1)
+            )}
+          </span>
+        </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>
-              <FaUser />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
+          {username && (
+            <DropdownMenuItem>
+              My Account
+              <DropdownMenuShortcut>
+                <FaUser />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem>
             Intiate Return
             <DropdownMenuShortcut>
@@ -59,24 +100,38 @@ export default function ProfileMenu() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
-          <Link
-            href={"/auth/login"}
-            className="w-full bg-color-primary p-3 text-white text-base font-medium rounded-md hover:scale-105 transition-all ease-in-out duration-200"
-          >
-            Login
-          </Link>
-        </DropdownMenuItem>
+        {!username && (
+          <DropdownMenuItem>
+            <Link
+              href={"/auth/login"}
+              className="w-full bg-color-primary p-3 text-white text-base font-medium rounded-md hover:scale-105 transition-all ease-in-out duration-200"
+            >
+              Login
+            </Link>
+          </DropdownMenuItem>
+        )}
+        {username && (
+          <DropdownMenuItem>
+            <Link
+              href={"/auth/login"}
+              className="w-full bg-color-primary p-3 text-white text-base font-medium rounded-md hover:scale-105 transition-all ease-in-out duration-200"
+            >
+              Logout
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex items-center justify-between text-xs">
-          <small>No Account Yet?</small>
-          <Link
-            href={"/auth/register"}
-            className="uppercase font-bold underline  "
-          >
-            register here
-          </Link>
-        </DropdownMenuItem>
+        {!username && (
+          <DropdownMenuItem className="flex items-center justify-between text-xs">
+            <small>No Account Yet?</small>
+            <Link
+              href={"/auth/register"}
+              className="uppercase font-bold underline  "
+            >
+              register here
+            </Link>
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

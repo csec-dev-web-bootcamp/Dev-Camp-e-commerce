@@ -9,15 +9,19 @@ import Categories from "../components/global/Categories";
 import Subscribe from "../components/global/Subscribe";
 import Message from "../components/global/Message";
 import Footer from "../components/global/Footer";
+import Flashsales from "../components/global/Flashsales";
+import Feedback from "../components/global/Feedback";
 
 export default function Page({ children }) {
   return (
-    <main className="w-full ">
+    <main className="w-full">
       {/* <div className=" m-auto"> */}
       {/* <CarouselEffect /> */}
 
       <Welcome />
+      <Flashsales />
       <Categories />
+      <Feedback />
       <Subscribe />
       <Message />
 

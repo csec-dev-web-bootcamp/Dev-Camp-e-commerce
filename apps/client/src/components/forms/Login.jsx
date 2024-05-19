@@ -4,6 +4,8 @@ import Link from "next/link";
 import { login } from "../../data/auth";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Loader from "../global/Loader";
+// import { loginSchema } from "@app/client/lib/validation";
 
 export default function Login() {
   const router = useRouter();
@@ -11,17 +13,30 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusCode, setStatusCode] = useState();
+
   function onChange(e) {
     setFormState({ ...formState, [e.target.name]: e.target.value });
+    setStatusCode();
   }
 
   async function onSubmit(e) {
     e.preventDefault();
-    const res = await login(formState);
-
-    res?.err ? alert(JSON.stringify(res.err)) : router.push("/");
-
-    console.log(formState);
+    setIsLoading(true);
+    try {
+      const res = await login(formState);
+      setIsLoading(false);
+      console.log(res.error);
+      if (res?.error) {
+        alert(JSON.stringify(res.error));
+        setStatusCode(res.error.statusCode);
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      return { error };
+    }
   }
 
   return (
@@ -58,7 +73,9 @@ export default function Login() {
                   name="email"
                   onChange={onChange}
                   type="text"
-                  className="w-full text-sm py-3 mb-6 px-7 border-color-light text-color-body rounded-md border"
+                  className={`w-full text-sm py-3 mb-6 px-7 ${
+                    statusCode === 404 ? "border-red-500" : "border-color-light"
+                  } text-color-body rounded-md border`}
                 />
               </div>
               <div className="relative w-full">
@@ -76,8 +93,11 @@ export default function Login() {
                 />
               </div>
               <div className="flex justify-between  items-center">
-                <button className="rounded text-color-white px-8 py-3 bg-color-primary">
-                  Sign In
+                <button
+                  className="rounded w-32 h-12 flex justify-center items-center text-color-white px-8 py-3 bg-color-primary"
+                  disabled={isLoading}
+                >
+                  {isLoading ? <Loader size={20} /> : "Sign In"}
                 </button>
                 <Link href="" className="text-sm text-color-primary">
                   Forgot Password ?

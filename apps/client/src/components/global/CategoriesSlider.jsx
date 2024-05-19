@@ -1,22 +1,8 @@
-import React from "react";
-import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
-import { cn } from "@app/client/lib/utils";
-
-import { useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-import "./styles.css";
-import "swiper/css/navigation";
+import React from "react";
+import Card from "./Card";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
 const categories = [
   {
@@ -79,46 +65,22 @@ const categories = [
       "https://new.axilthemes.com/demo/template/etrade/assets/images/product/fashion/product-6.png",
   },
 ];
-
-export default function Card() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+export default function CategoriesSlider({ product }) {
   return (
-    <div className="my-10">
-      <Swiper
-        style={{
-          "--swiper-navigation-color": "#000000",
+    <Card products={categories}>
+      <Link href={`/shop?product=${product.slug}`}>
+        <div className=" h-11/12  border rounded-xl">
+          <img
+            src={product.image}
+            alt="image"
+            className="w-full rounded-t-xl"
+          />
 
-          "--swiper-pagination-color": "#fff",
-          "--swiper-height": "5px",
-          "--swiper-width": "5px",
-          "--swiper-navigation-width": "5px",
-        }}
-        slidesPerView={5}
-        spaceBetween={20}
-        freeMode={true}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className=""
-      >
-        {categories.map((categore) => (
-          <SwiperSlide key={categore.id} className="m-10 w-1/2 h-1/2">
-            <Link href={`/shop?categore=${categore.slug}`}>
-              <div className=" h-11/12  border rounded-xl">
-                <img
-                  src={categore.image}
-                  alt="image"
-                  className="w-full rounded-t-xl"
-                />
-
-                <p className="py-2 text-center text-color-heading font-medium">
-                  {categore.slug.toUpperCase()}
-                </p>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+          <p className="py-2 text-center text-color-heading font-medium">
+            {product.slug.toUpperCase()}
+          </p>
+        </div>
+      </Link>
+    </Card>
   );
 }
