@@ -86,9 +86,9 @@ export default function Feedback() {
         modules={[FreeMode, Navigation, Thumbs]}
         className=""
       >
-        {userReview.map((reviewItem) => (
+        {userReview.map((reviewItem, ind) => (
           <SwiperSlide key={reviewItem.name}>
-            <div className=" py-10 px-16">
+            <div className={`py-10 px-16 ${ind % 2 === 0 && "mt-3"}`}>
               <FeedbackMessage reviewItem={reviewItem} />
               <UserDetail reviewItem={reviewItem} />
             </div>

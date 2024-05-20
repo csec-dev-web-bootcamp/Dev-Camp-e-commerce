@@ -1,6 +1,6 @@
 "use client";
 import { useCart } from "@app/client/store/cart";
-import { BsCart2 } from "react-icons/bs";
+import { BsCart2, BsHeart } from "react-icons/bs";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
@@ -15,9 +15,15 @@ import {
 import React from "react";
 
 import CartItem from "./CartItem";
-import { MdFavoriteBorder } from "react-icons/md";
+import {
+  MdFavorite,
+  MdFavoriteBorder,
+  MdOutlineFavoriteBorder,
+} from "react-icons/md";
 import { useWishlist } from "@app/client/store/wishlist";
 import WishlistItem from "./WishlistItem";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FileHeartIcon } from "lucide-react";
 
 export default function Wishlist() {
   const { wishlist } = useWishlist();
@@ -26,9 +32,9 @@ export default function Wishlist() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="blue" className="items-center relative">
+        <button className="items-center relative p-4">
           <MdFavoriteBorder size={30} />
-        </Button>
+        </button>
       </SheetTrigger>
       <SheetContent side={"bottom"} className="p-24 overflow-scroll ">
         <SheetTitle className="mb-6">My Wish List on eTrade</SheetTitle>

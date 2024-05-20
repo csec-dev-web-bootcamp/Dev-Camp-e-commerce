@@ -8,6 +8,7 @@ export default function Loader({ size, color }) {
       viewBox="0 0 38 38"
       xmlns="http://www.w3.org/2000/svg"
       stroke={`${color || "#fff"}`}
+      className="p-2"
     >
       <g fill="none" fill-rule="evenodd">
         <g transform="translate(1 1)" stroke-width="4">

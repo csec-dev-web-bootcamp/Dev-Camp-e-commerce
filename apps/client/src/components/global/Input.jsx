@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
-export default function Input({ name }) {
+export default function Input({ name, value = "" }) {
   return (
     <div className="relative">
       <input
         type="text"
         name="mail"
+        value={`${value}`}
         className="border rounded h-10 w-full focus:outline-none   p-8 mt-2 text-sm"
         placeholder={`${name}`}
       />
