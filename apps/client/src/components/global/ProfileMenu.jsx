@@ -24,6 +24,7 @@ import { getMe } from "@app/client/data/users";
 import { useEffect, useState } from "react";
 import { BsPerson, BsPersonBadge } from "react-icons/bs";
 import Loader from "./Loader";
+import Greeting from "../user/Greeting";
 
 export default function ProfileMenu({ children }) {
   const [username, setUsername] = useState(null);
@@ -61,11 +62,7 @@ export default function ProfileMenu({ children }) {
           />
 
           <span className="text-sm text-[#777777]">
-            {isLoading ? (
-              <Loader />
-            ) : (
-              username && username.charAt(0).toUpperCase() + username.slice(1)
-            )}
+            <Greeting name={true} />
           </span>
         </DropdownMenuLabel>
 

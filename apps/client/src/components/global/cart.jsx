@@ -36,7 +36,9 @@ export function Cart() {
         </Button>
       </SheetTrigger>
       <SheetContent className="p-8 overflow-scroll ">
-        <SheetTitle className="text-2xl font-medium">Cart Review</SheetTitle>
+        <SheetTitle className="text-xl text-color-dark font-medium">
+          Cart Review
+        </SheetTitle>
 
         <div className="grid gap-4 py-4 mt-10 ">
           {cartProducts.length > 0 ? (
@@ -44,7 +46,7 @@ export function Cart() {
               <CartItem key={product.id} product={product} />
             ))
           ) : (
-            <h1 className="flex items-center justify-center font-bold text-2xl ">
+            <h1 className="flex items-center justify-center font-bold text-color-light ">
               {" "}
               Cart Empty
             </h1>

@@ -93,8 +93,8 @@ export default function Card() {
           "--swiper-width": "5px",
           "--swiper-navigation-width": "5px",
         }}
-        slidesPerView={5}
-        spaceBetween={20}
+        slidesPerView={6}
+        spaceBetween={-20}
         freeMode={true}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}

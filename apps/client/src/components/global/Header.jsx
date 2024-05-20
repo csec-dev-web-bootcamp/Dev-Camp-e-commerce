@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
+import SearchProducts from "./SearchProducts";
 import { CiSearch } from "react-icons/ci";
 import { cn } from "@app/client/lib/utils";
 import { Cart } from "./cart";
@@ -46,15 +46,9 @@ const Header = () => {
           <Link href="/about">
             <li>About</li>
           </Link>
-          <li className="flex relative">
-            <input
-              type="text"
-              placeholder="Search"
-              className="border items-center border-slate-200 rounded-md py-3 px-10  shadow-md focus:outline-none focus:border-sky-400 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-            />
-            <CiSearch size={24} className="absolute top-3 right-6" />
+          <li>
+            <SearchProducts />
           </li>
-
           <Link href="/contact">
             <li>Contact</li>
           </Link>

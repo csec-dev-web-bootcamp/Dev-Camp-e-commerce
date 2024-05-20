@@ -21,6 +21,10 @@ export const metadata = {
 const noHeaderFooterPaths = [
   "/auth/login",
   "/auth/signin",
+  "/admin/dashboard",
+  "/admin/order",
+  "/admin/customer",
+  "/admin/products",
   "/signup",
   "/auth/register",
   "/reset-password",

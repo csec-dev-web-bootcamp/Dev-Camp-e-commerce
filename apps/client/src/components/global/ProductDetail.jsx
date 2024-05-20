@@ -1,6 +1,6 @@
 import { useCart } from "@app/client/store/cart";
 import React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -21,6 +21,8 @@ import CountQuantity from "./CountQuantity";
 
 import { useCount } from "@app/client/store/count";
 import { BsCart2 } from "react-icons/bs";
+import Loader from "./Loader";
+
 export default function ProductDetail({ product, children }) {
   const { addToCart, cartProducts } = useCart();
   const images = jewelery.map((product) => product.image);
@@ -32,26 +34,25 @@ export default function ProductDetail({ product, children }) {
   return (
     <div className="mt-24">
       <div className="flex w-full gap-10 justify-between">
-        <div className=" w-2/6 h-2/6">
+        <div className=" w-1/2 h-2/6">
           <Swiper
-            style={{
-              "--swiper-navigation-color": "gray",
-              "--swiper-pagination-color": "#fff",
-              "--swiper-height": "10px",
-            }}
             loop={true}
             spaceBetween={10}
-            navigation={true}
+            autoplay={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
             className="h-72 "
           >
             {images.map((img, i) => (
               <SwiperSlide key={i} className="w-10 relative">
-                <img
-                  src={`${img}`}
-                  className="w-1/2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                />
+                {img ? (
+                  <img
+                    src={`${img}`}
+                    className="w-1/2 absolute top-1/2 left-1/2 -translate-x-1/2 object-cover object-center scale-50 -translate-y-1/2"
+                  />
+                ) : (
+                  <Loader size={30} color="#777777" />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
@@ -70,13 +71,16 @@ export default function ProductDetail({ product, children }) {
                 key={i}
                 className="flex items-center justify-center  p-4"
               >
-                <img src={`${img}`} className="h-16 " />
+                {img ? (
+                  <img src={`${img}`} className="h-16 " />
+                ) : (
+                  <Loader size={30} color="#777777" />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
         <div className="flex gap-4 flex-col flex-1 justify-center">
-          <span className="text-gray-600">{product.category} Products</span>
           <h1 className=" text-slate-900 font-extrabold text-4xl">
             {product.title.slice(0, 30)}
           </h1>
