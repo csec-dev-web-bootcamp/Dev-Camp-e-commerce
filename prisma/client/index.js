@@ -120,7 +120,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/phyro/Desktop/csecbootcamp/prisma/client",
+      "value": "C:\\Users\\Phyro\\Desktop\\Dev-Camp-e-commerce\\prisma\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -129,7 +129,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
@@ -147,7 +147,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -156,8 +156,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  name     String @db.Char(100)\n  email    String @unique\n  password String\n}\n",
-  "inlineSchemaHash": "d0b62898f7cbd0171284d900b55d1b273500600e660281936710a872fff0a4ca",
+  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  output   = \"./client\"\r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel User {\r\n  id       Int    @id @default(autoincrement())\r\n  name     String @db.Char(100)\r\n  email    String @unique\r\n  password String\r\n}\r\n",
+  "inlineSchemaHash": "dfca203332d5f2e473200e2ddc2220bc1004964e48da220ae850bf6a39d44b16",
   "copyEngine": true
 }
 
@@ -195,8 +195,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
-path.join(process.cwd(), "prisma/client/libquery_engine-debian-openssl-3.0.x.so.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "prisma/client/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/client/schema.prisma")
