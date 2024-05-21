@@ -20,7 +20,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+<<<<<<< HEAD
   image String? @db.VarChar(255)
+=======
+  image String? @default("") @db.VarChar(255)
+>>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 
   order Order[]
 
@@ -28,6 +32,7 @@ model User {
 }
 
 model Product {
+<<<<<<< HEAD
   id          String      @id @default(uuid())
   name        String      @db.VarChar(255)
   price       Float       @default(0)
@@ -37,6 +42,30 @@ model Product {
   orderItems  OrderItem[]
 
   @@map("prioducts")
+=======
+  id   String @id @default(uuid())
+  name String @db.VarChar(255)
+
+  price        Float          @default(0)
+  description  String?        @db.Text
+  rating       Float          @default(0) @db.Float
+  category     Category?      @relation(fields: [categoryId], references: [id])
+  categoryId   String?
+  orderItems   OrderItem[]
+  imageUrl     String         @default("")
+  ProductImage ProductImage[]
+
+  @@map("products")
+}
+
+model ProductImage {
+  id        String  @id @default(uuid())
+  url       String  @db.VarChar(255)
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  @@map("product_images")
+>>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 }
 
 model Category {
@@ -78,6 +107,16 @@ enum UserRole {
   ADMIN    @map("admin")
   CUSTOMER @map("customer")
   DRIVER   @map("driver")
+<<<<<<< HEAD
+=======
+}
+
+enum PaymentStatus {
+  PENDING  @map("PENDING")
+  CANCELED @map("CANCELED")
+  NOTPAID  @map("NOTPAID")
+  PAID     @map("PAID")
+>>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 }
 
 enum PaymentStatus {

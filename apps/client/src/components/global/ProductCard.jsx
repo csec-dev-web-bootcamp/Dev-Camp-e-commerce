@@ -7,6 +7,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useWishlist } from "@app/client/store/wishlist";
 import CurrencyFormat from "./currencyFormater";
 import { BsCart2 } from "react-icons/bs";
+import { getOneProduct } from "@app/client/data/products";
 
 export default function ProductCard({ categore, children }) {
   const { addToCart, cartProducts } = useCart();

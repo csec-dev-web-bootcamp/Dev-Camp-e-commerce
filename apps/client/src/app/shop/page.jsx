@@ -14,7 +14,12 @@ import Rating from "@app/client/components/global/Rating";
 import Link from "next/link";
 import Loader from "@app/client/components/global/Loader";
 import { useItemViewed } from "@app/client/store/vieweditems";
+import useQuery from "@app/client/components/hooks/useQuery";
+import { getManyProducts } from "../../data/products";
+
 export default function WomenClothingCard() {
+  const { data } = useQuery(getManyProducts);
+  console.log(data);
   const parameter = useSearchParams();
   const category = parameter.get("category");
   const search = parameter.get("search");

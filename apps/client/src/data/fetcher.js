@@ -9,9 +9,18 @@ fetcher.interceptors.request.use(async (request) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
   if (accessToken) {
-    request.headers["Authorization"] = `Bearer ${accessToken}`;
+    request.headers.Authorization = `Bearer ${accessToken}`;
   }
   return request;
 });
+
+fetcher.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    return Promise.resolve(error.response);
+  }
+);
 
 export default fetcher;

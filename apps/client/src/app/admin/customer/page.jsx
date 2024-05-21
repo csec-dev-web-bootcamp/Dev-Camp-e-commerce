@@ -18,6 +18,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
+import AddProduct from "@app/client/components/forms/addProduct";
+import SignUp from "@app/client/components/forms/SignUp";
 
 const invoices = [
   {

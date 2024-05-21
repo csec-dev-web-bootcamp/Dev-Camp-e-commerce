@@ -1,31 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../global/Loader";
 import { getMe } from "@app/client/data/users";
+import useQuery from "../hooks/useQuery";
 
 export default function Greeting({ email = false, name = false }) {
-  const [username, setUsername] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  // const namee = user();
-
-  useEffect(function () {
-    const userName = async () => {
-      try {
-        setIsLoading(true);
-        const user = await getMe();
-        setUsername(
-          !user.error && name
-            ? user.name
-            : !user.error && email
-            ? user.email
-            : username
-        );
-        setIsLoading(false);
-      } catch (error) {
-        return { error };
-      }
-    };
-    userName();
-  }, []);
+  const { data, isLoading, isError } = useQuery(getMe);
+  // const { data, isLoading, isError } = use(getMe);
   return (
     <div>
       {name && (
@@ -33,7 +13,8 @@ export default function Greeting({ email = false, name = false }) {
           {isLoading ? (
             <Loader size={40} color={"black"} />
           ) : (
-            username && username.charAt(0).toUpperCase() + username.slice(1)
+            data &&
+            data.firstName.charAt(0).toUpperCase() + data.firstName.slice(1)
           )}
         </span>
       )}
@@ -42,7 +23,7 @@ export default function Greeting({ email = false, name = false }) {
           {isLoading ? (
             <Loader size={40} color={"black"} />
           ) : (
-            username && username.email
+            data && data.email
           )}
         </span>
       )}

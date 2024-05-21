@@ -447,7 +447,7 @@ export default function Layout({ children }) {
           </div>
           {/*  */}
         </div>
-        <div className="bg-gray-50 w-full h-full overflow-y-scroll">
+        <div className="bg-gray-50 w-2/3  h-full overflow-y-scroll">
           {children}
         </div>
       </div>
