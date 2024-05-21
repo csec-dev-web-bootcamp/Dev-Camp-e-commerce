@@ -20,11 +20,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-<<<<<<< HEAD
-  image String? @db.VarChar(255)
-=======
   image String? @default("") @db.VarChar(255)
->>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 
   order Order[]
 
@@ -32,17 +28,6 @@ model User {
 }
 
 model Product {
-<<<<<<< HEAD
-  id          String      @id @default(uuid())
-  name        String      @db.VarChar(255)
-  price       Float       @default(0)
-  description String?     @db.Text
-  category    Category?   @relation(fields: [categoryId], references: [id])
-  categoryId  String?
-  orderItems  OrderItem[]
-
-  @@map("prioducts")
-=======
   id   String @id @default(uuid())
   name String @db.VarChar(255)
 
@@ -65,7 +50,6 @@ model ProductImage {
   productId String
 
   @@map("product_images")
->>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 }
 
 model Category {
@@ -107,8 +91,6 @@ enum UserRole {
   ADMIN    @map("admin")
   CUSTOMER @map("customer")
   DRIVER   @map("driver")
-<<<<<<< HEAD
-=======
 }
 
 enum PaymentStatus {
@@ -116,7 +98,6 @@ enum PaymentStatus {
   CANCELED @map("CANCELED")
   NOTPAID  @map("NOTPAID")
   PAID     @map("PAID")
->>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 }
 
 enum PaymentStatus {
