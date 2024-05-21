@@ -7,6 +7,7 @@ import { corsOptions } from "./config/cors-options";
 import { exceptionHandler } from "./middlewares/exception-handler";
 import productsController from "./products/products.controller";
 import usersController from "./users/users.controller";
+import categoriesController from "./categories/categories.controller";
 
 const app = express();
 
@@ -20,8 +21,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productsController);
-app.use("/auth", authController);
+app.use("/auth", authController); 
 app.use("/users", usersController);
+app.use("/categories", categoriesController)
 
 app.all("*", (req, res) => {
   throw new HttpException("Not Found", 404);
