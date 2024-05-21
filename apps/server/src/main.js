@@ -7,12 +7,8 @@ import { corsOptions } from "./config/cors-options";
 import { exceptionHandler } from "./middlewares/exception-handler";
 import productsController from "./products/products.controller";
 import usersController from "./users/users.controller";
-<<<<<<< HEAD
-import categoriesController from "./categories/categories.controller";
-=======
 // import { multer } from "multer";
 // import { path } from "path";
->>>>>>> c8bfd8e7c21b4333862670d095532b30b064778e
 
 const app = express();
 
