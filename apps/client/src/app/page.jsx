@@ -11,8 +11,9 @@ import Message from "../components/global/Message";
 import Footer from "../components/global/Footer";
 import Flashsales from "../components/global/Flashsales";
 import Feedback from "../components/global/Feedback";
-
+// import useQuery from "../components/hooks/useQuery";
 export default function Page({ children }) {
+  // console.log(data);
   return (
     <main className="w-full">
       {/* <div className=" m-auto"> */}

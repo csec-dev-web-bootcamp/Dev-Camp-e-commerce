@@ -1,44 +1,59 @@
-import { HttpException } from '../common/http-exception';
-import prisma from '../common/prisma-client';
+import prisma from "../config/prisma-client";
 
 export async function createProduct(data) {
+  console.log({ data });
+
   const product = await prisma.product.create({
-    data: data,
+    data: {
+      ProductImage: {
+        createMany: {
+          data: ["url", "url2"].map((url) => ({ url })),
+        },
+      },
+    },
+    include: {
+      category: true,
+    },
   });
   return product;
 }
 
-export async function getManyProducts(query) {
-  const products = await prisma.product.findMany();
+export async function getManyProducts() {
+  const products = await prisma.product.findMany({
+    include: {
+      category: true,
+    },
+  });
   return products;
 }
 
 export async function getOneProduct(id) {
-  const product = await prisma.product.findFirst({ where: { id } });
-  if (!product) {
-    throw new HttpException('Product not found', 404);
-  }
+  const product = await prisma.product.findFirst({
+    where: { id },
+    include: {
+      category: true,
+    },
+  });
   return product;
 }
 
 export async function updateProduct(id, data) {
-  const productExist = await prisma.product.findFirst({ where: { id } });
-  if (!productExist) {
-    throw new HttpException('Product not found', 404);
-  }
   const product = await prisma.product.update({
     where: { id },
     data: data,
+    include: {
+      category: true,
+    },
   });
-
   return product;
 }
 
 export async function deleteProduct(id) {
-  const productExist = await prisma.product.findFirst({ where: { id } });
-  if (!productExist) {
-    throw new HttpException('Product not found', 404);
-  }
-  const product = await prisma.product.findFirst({ where: { id } });
+  const product = await prisma.product.delete({
+    where: { id },
+    include: {
+      category: true,
+    },
+  });
   return product;
 }

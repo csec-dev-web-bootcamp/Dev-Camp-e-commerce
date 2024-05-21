@@ -1,9 +1,11 @@
-import React from 'react'
+"use client";
+import AddProduct from "@app/client/components/forms/addProduct";
+import React from "react";
 
-const page = () => {
+export default function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <AddProduct />
+    </div>
+  );
 }
-
-export default page
