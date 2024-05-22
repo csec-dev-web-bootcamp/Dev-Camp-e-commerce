@@ -1,16 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `product` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `user` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE `product`;
-
--- DropTable
-DROP TABLE `user`;
-
 -- CreateTable
 CREATE TABLE `users` (
     `id` VARCHAR(191) NOT NULL,
@@ -22,19 +9,30 @@ CREATE TABLE `users` (
     `blocked` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
-    `image` VARCHAR(255) NULL,
+    `image` VARCHAR(255) NULL DEFAULT '',
 
     UNIQUE INDEX `users_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `prioducts` (
+CREATE TABLE `products` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `price` DOUBLE NOT NULL DEFAULT 0,
     `description` TEXT NULL,
+    `rating` FLOAT NOT NULL DEFAULT 0,
     `categoryId` VARCHAR(191) NULL,
+    `imageUrl` VARCHAR(191) NOT NULL DEFAULT '',
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `product_images` (
+    `id` VARCHAR(191) NOT NULL,
+    `url` VARCHAR(255) NOT NULL,
+    `productId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -72,10 +70,13 @@ CREATE TABLE `orders` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `prioducts` ADD CONSTRAINT `prioducts_categoryId_fkey` FOREIGN KEY (`categoryId`) REFERENCES `categories`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `products` ADD CONSTRAINT `products_categoryId_fkey` FOREIGN KEY (`categoryId`) REFERENCES `categories`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `orderItems` ADD CONSTRAINT `orderItems_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `prioducts`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `product_images` ADD CONSTRAINT `product_images_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `orderItems` ADD CONSTRAINT `orderItems_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `orderItems` ADD CONSTRAINT `orderItems_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

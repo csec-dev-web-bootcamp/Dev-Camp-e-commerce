@@ -99,10 +99,3 @@ enum PaymentStatus {
   NOTPAID  @map("NOTPAID")
   PAID     @map("PAID")
 }
-
-enum PaymentStatus {
-  PENDING  @map("PENDING")
-  CANCELED @map("CANCELED")
-  NOTPAID  @map("NOTPAID")
-  PAID     @map("PAID")
-}
