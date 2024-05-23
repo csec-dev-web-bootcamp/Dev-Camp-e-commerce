@@ -6,7 +6,7 @@ import FlashsalesSlider from "./FlashsalesSlider";
 export default function ProductSlider({
   children,
   products,
-  Icon,
+  icon,
   title = "",
   heading = "",
 }) {
@@ -15,7 +15,7 @@ export default function ProductSlider({
       <div className="flex  justify-between ">
         <span className="flex items-center gap-2 text-light-primary">
           <span className="p-2 bg-light-primary rounded-full text-white">
-            {<Icon />}
+            {icon}
           </span>
           {title}
         </span>

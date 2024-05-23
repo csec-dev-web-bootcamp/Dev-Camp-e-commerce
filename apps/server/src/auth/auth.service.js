@@ -20,7 +20,6 @@ export async function createUser(data) {
       lastName: data.lastName,
       email: data.email,
       password: hash,
-      role: data.role,
     },
   });
 

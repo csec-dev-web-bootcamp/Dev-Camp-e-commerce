@@ -32,8 +32,8 @@ export default function CheckoutProductInfo() {
             className="flex justify-between border-b py-4 border-gray-300"
           >
             <h1 className="flex gap-3 items-center">
-              <img className="w-8 h-8" src={`${product.image}`} />
-              {product.title.slice(0, 35)}
+              <img className="w-8 h-8" src={`${product.imageUrl}`} />
+              {product.name.slice(0, 35)}
             </h1>
             <CurrencyFormat amount={product.totalPrice} />
           </div>

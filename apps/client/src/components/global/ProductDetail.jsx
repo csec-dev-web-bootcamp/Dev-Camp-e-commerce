@@ -1,3 +1,4 @@
+"use client";
 import { useCart } from "@app/client/store/cart";
 import React from "react";
 import { useState } from "react";
@@ -23,12 +24,12 @@ import { useCount } from "@app/client/store/count";
 import { BsCart2 } from "react-icons/bs";
 import Loader from "./Loader";
 
-export default function ProductDetail({ product, children }) {
+export default function ProductDetail({ singleProduct, children }) {
   const { addToCart, cartProducts } = useCart();
-  const images = jewelery.map((product) => product.image);
-  const exist = cartProducts.find((cart) => cart.id === product.id);
-  console.log(product);
-  images.length = 7;
+  // const images = jewelery.map((product) => product.image);
+  const exist = cartProducts.find((cart) => cart.id === singleProduct.id);
+  // console.log(product);
+  // images.length = 7;
   const { count } = useCount();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
@@ -43,18 +44,17 @@ export default function ProductDetail({ product, children }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="h-72 "
           >
-            {images.map((img, i) => (
-              <SwiperSlide key={i} className="w-10 relative">
-                {img ? (
-                  <img
-                    src={`${img}`}
-                    className="w-1/2 absolute top-1/2 left-1/2 -translate-x-1/2 object-cover object-center scale-50 -translate-y-1/2"
-                  />
-                ) : (
-                  <Loader size={30} color="#777777" />
-                )}
-              </SwiperSlide>
-            ))}
+            {/* {images.map((img, i) => ( */}
+            <SwiperSlide className="w-10 relative">
+              {singleProduct.imageUrl ? (
+                <img
+                  src={`${singleProduct.imageUrl}`}
+                  className="w-1/2 absolute top-1/2 left-1/2 -translate-x-1/2 object-cover object-center scale-50 -translate-y-1/2"
+                />
+              ) : (
+                <Loader size={30} color="#777777" />
+              )}
+            </SwiperSlide>
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -66,45 +66,42 @@ export default function ProductDetail({ product, children }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="m-4  h-full p-4 w-full"
           >
-            {images.map((img, i) => (
-              <SwiperSlide
-                key={i}
-                className="flex items-center justify-center  p-4"
-              >
-                {img ? (
-                  <img src={`${img}`} className="h-16 " />
-                ) : (
-                  <Loader size={30} color="#777777" />
-                )}
-              </SwiperSlide>
-            ))}
+            {/* {images.map((img, i) => ( */}
+            <SwiperSlide className="flex items-center justify-center  p-4">
+              {singleProduct.imageUrl ? (
+                <img src={`${singleProduct.imageUrl}`} className="h-16 " />
+              ) : (
+                <Loader size={30} color="#777777" />
+              )}
+            </SwiperSlide>
+            {/* ))} */}
           </Swiper>
         </div>
         <div className="flex gap-4 flex-col flex-1 justify-center">
           <h1 className=" text-slate-900 font-extrabold text-4xl">
-            {product.title.slice(0, 30)}
+            {singleProduct.name.slice(0, 30)}
           </h1>
           <span className="px-2 py-1 text-sm self-start bg-color-primary text-white rounded-full">
             In stock
           </span>
           <div className="flex gap-4 text-2xl font-medium">
             <p className="text-gray-400 line-through">
-              <CurrencyFormat amount={product.price + 100} />
+              <CurrencyFormat amount={singleProduct.price + 100} />
             </p>
             <p>
-              <CurrencyFormat amount={product.price} />
+              <CurrencyFormat amount={singleProduct.price} />
             </p>
           </div>
-          <Rating rating={product.rating.rate} />
+          <Rating rating={singleProduct.rating} />
           <small>Description</small>
           <p className="text-base w-3/4 text-gray-600">
-            {product.description.slice(0, 270)}...
+            {singleProduct.description.slice(0, 270)}...
           </p>
           <div className="flex gap-10 mt-4">
             <CountQuantity />
             <button
               onClick={() => {
-                !exist && addToCart(product, count);
+                !exist && addToCart(singleProduct, count);
               }}
               className="flex gap-2 items-center bg-color-primary hover:scale-110 transition-all ease-in-out duration-200 px-6 py-2 text-white rounded text-sm"
             >

@@ -4,13 +4,7 @@ export async function createProduct(data) {
   console.log({ data });
 
   const product = await prisma.product.create({
-    data: {
-      ProductImage: {
-        createMany: {
-          data: ["url", "url2"].map((url) => ({ url })),
-        },
-      },
-    },
+    data: data,
     include: {
       category: true,
     },

@@ -9,12 +9,22 @@ export default function SignUp() {
     name: "",
     description: "",
     price: 0,
+    categoryId: "",
     rating: 0,
     imageUrl: "",
   });
 
   function onChange(e) {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    if (e.target.name === price || e.target.name === rating) {
+      setFormState({
+        ...formState,
+        [e.target.name]: Number(e.target.value),
+      });
+    }
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
   }
 
   async function onSubmit(e) {
@@ -91,6 +101,21 @@ export default function SignUp() {
                   onChange={onChange}
                   name="rating"
                   type="number"
+                  className="w-full text-sm py-3 mb-9 px-7 border-color-light text-color-body rounded-md border"
+                />
+              </div>
+              <div className="relative w-full">
+                <label
+                  htmlFor="files"
+                  className="absolute focus:border-color-primary text-color-body mb-1.5 text-sm font-medium inline-block -top-3 left-5 pointer-events-none bg-white py-0 px-2.5"
+                >
+                  Category Id
+                </label>
+                <input
+                  onChange={onChange}
+                  name="categoryId"
+                  type="text"
+                  multiple
                   className="w-full text-sm py-3 mb-9 px-7 border-color-light text-color-body rounded-md border"
                 />
               </div>

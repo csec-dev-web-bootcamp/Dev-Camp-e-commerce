@@ -3,7 +3,6 @@
 import * as React from "react";
 import { MdManageAccounts } from "react-icons/md";
 import { GiFemaleVampire } from "react-icons/gi";
-
 import { GiBigDiamondRing } from "react-icons/gi";
 import { Button } from "../ui/button";
 import {
@@ -19,25 +18,30 @@ import {
 import Link from "next/link";
 
 export default function CategiesMenu() {
-  const [position, setPosition] = React.useState("bottom");
+  // const [position, setPosition] = React.useState("bottom");
   const categories = [
     {
-      slug: "mensClothing",
+      id: 12,
+
+      slug: "Mens-Clothing",
       Icon: MdManageAccounts,
-      name: "Male Cloth",
+      name: "Male-Cloth",
     },
     {
-      slug: "womenClothing",
+      id: 11,
+      slug: "Womens-Clothing",
       Icon: GiFemaleVampire,
       name: "Female Cloth",
     },
     {
-      slug: "electronics",
+      id: 10,
+      slug: "Electronics",
       Icon: GiBigDiamondRing,
       name: "Electronics",
     },
     {
-      slug: "jewelery",
+      id: 1,
+      slug: "Jewelery",
       Icon: MdManageAccounts,
       name: "Jewelery",
     },

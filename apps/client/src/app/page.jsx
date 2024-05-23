@@ -1,5 +1,3 @@
-"use client";
-
 import Header from "../components/global/Header";
 import Welcome from "../components/global/Welcome";
 import Categories from "../components/global/Categories";
@@ -11,8 +9,12 @@ import Message from "../components/global/Message";
 import Footer from "../components/global/Footer";
 import Flashsales from "../components/global/Flashsales";
 import Feedback from "../components/global/Feedback";
+import { getManyProducts } from "../data/products";
 // import useQuery from "../components/hooks/useQuery";
-export default function Page({ children }) {
+export default async function Page({ children }) {
+  const products = await getManyProducts();
+  products.length = 7;
+
   // console.log(data);
   return (
     <main className="w-full">
@@ -20,7 +22,7 @@ export default function Page({ children }) {
       {/* <CarouselEffect /> */}
 
       <Welcome />
-      <Flashsales />
+      <Flashsales products={products} />
       <Categories />
       <Feedback />
       <Subscribe />

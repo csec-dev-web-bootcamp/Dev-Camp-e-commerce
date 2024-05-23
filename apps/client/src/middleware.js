@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 const roleRoutes = ["/manager"];
 const protectedRoutes = [...roleRoutes, "/profile", "/carts"];
 const authRoutes = ["/auth"];
-
+const homeRoutes = ["/"];
 export async function middleware(request) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", request.nextUrl.pathname);
@@ -17,6 +17,8 @@ export async function middleware(request) {
   const isAuthPath = authRoutes.find((route) => pathname.startsWith(route));
 
   const isRolePath = roleRoutes.find((route) => pathname.startsWith(route));
+
+  const isHomePath = homeRoutes.find((route) => pathname === route);
 
   const isProtectedPath = protectedRoutes.find((route) =>
     pathname.startsWith(route)
@@ -30,16 +32,15 @@ export async function middleware(request) {
         RegExp(roleRoutes.join("|")),
         userRolePath
       );
-      if (roleRoutes.includes(roleRoutes.includes(currentPath))) {
+      if (roleRoutes.includes(userRolePath)) {
         return NextResponse.redirect(new URL(currentPath, request.url));
       }
       return NextResponse.redirect(new URL("/", request.url));
     }
 
-    if (isAuthPath) {
-      if (roleRoutes.includes(roleRoutes.includes(userRolePath))) {
-        return NextResponse.redirect(new URL(userRolePath, request.url));
-      }
+    if (isHomePath && roleRoutes.includes(userRolePath)) {
+      return NextResponse.redirect(new URL(userRolePath, request.url));
+    } else if (isAuthPath) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   } else if (isProtectedPath) {

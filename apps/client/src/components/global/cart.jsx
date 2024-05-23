@@ -19,11 +19,26 @@ import CurrencyFormat from "./currencyFormater";
 
 export function Cart() {
   const { cartProducts, removeProductFromCart } = useCart();
+  const getCartProductsFromSession = () => {
+    const storedState = sessionStorage.getItem("cart-products");
+    if (storedState) {
+      try {
+        const parsedState = JSON.parse(storedState);
+        return parsedState.state.cartProducts || [];
+      } catch (error) {
+        console.error(
+          "Failed to parse cart-products from sessionStorage:",
+          error
+        );
+        return [];
+      }
+    }
+    return [];
+  };
+  const cart = getCartProductsFromSession();
   const subtotalPrice = cartProducts
     .map((product) => product.totalPrice)
     .reduce((a, b) => a + b, []);
-
-  console.log(cartProducts);
 
   return (
     <Sheet>

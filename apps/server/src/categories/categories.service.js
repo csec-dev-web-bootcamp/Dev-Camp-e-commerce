@@ -1,5 +1,5 @@
-import { Prisma } from '@repo/prisma-client';
-import prisma from '../config/prisma-client';
+// import { Prisma } from '@repo/prisma-client';
+import prisma from "../config/prisma-client";
 
 export async function createCategory(data) {
   console.log({ data });
@@ -20,10 +20,7 @@ export async function getOneCategory(id) {
   return category;
 }
 
-export async function updateCategory(
-  id,
-  data,
-) {
+export async function updateCategory(id, data) {
   const category = await prisma.category.update({
     where: { id },
     data: data,

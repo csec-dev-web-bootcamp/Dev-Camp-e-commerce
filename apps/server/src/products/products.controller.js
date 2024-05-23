@@ -1,6 +1,6 @@
 import express from "express";
 import { authGuard } from "../auth/auth.guard";
-import { roleGuard } from "../auth/role.guard";
+// import { roleGuard } from "../auth/role.guard";
 import { asyncHandler } from "../common/async-handler";
 import { createProductPipe, updateProductPipe } from "./products.pipe";
 import {
@@ -26,17 +26,18 @@ productsController.post(
   "/",
   // authGuard,
   // roleGuard(['CUSTOMER', 'OWNER']),
-  createProductPipe,
+  // createProductPipe,
   asyncHandler(async (req, res) => {
     const data = req.body;
     const product = await createProduct(data);
+
     return res.json(product);
   })
 );
 
 productsController.get(
   "/:id",
-  authGuard,
+  // authGuard,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const product = await getOneProduct(id);

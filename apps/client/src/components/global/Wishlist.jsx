@@ -27,8 +27,6 @@ import { FileHeartIcon } from "lucide-react";
 
 export default function Wishlist() {
   const { wishlist } = useWishlist();
-  console.log(wishlist);
-
   return (
     <Sheet>
       <SheetTrigger asChild>

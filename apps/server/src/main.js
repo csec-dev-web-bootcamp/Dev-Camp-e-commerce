@@ -7,6 +7,7 @@ import { corsOptions } from "./config/cors-options";
 import { exceptionHandler } from "./middlewares/exception-handler";
 import productsController from "./products/products.controller";
 import usersController from "./users/users.controller";
+import categoriesController from "./categories/categories.controller";
 // import { multer } from "multer";
 // import { path } from "path";
 
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productsController);
+app.use("/categories", categoriesController);
 app.use("/auth", authController);
 app.use("/users", usersController);
 

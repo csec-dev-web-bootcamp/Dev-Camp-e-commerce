@@ -37,7 +37,7 @@ const sheetVariants = cva(
           "inset-x-0 left-0 w-full h-3/4 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
         left: "inset-y-0  left-0 h-full  border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
-          "top-0 right-0 h-full w-1/2 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "top-0 right-0 h-full w-1/3 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right ",
       },
     },
     defaultVariants: {
@@ -56,7 +56,7 @@ const SheetContent = React.forwardRef(
         {...props}
       >
         {children}
-        <SheetPrimitive.Close className=" absolute outline-none border-0  rounded-full right-4 top-2   ease-in-out ring-offset-background transition-all p-2 hover:bg-color-secondary hover:text-white focus:outline-none  disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <SheetPrimitive.Close className="w-1/ absolute outline-none border-0  rounded-full right-4 top-2   ease-in-out ring-offset-background transition-all p-2 hover:bg-color-secondary hover:text-white focus:outline-none  disabled:pointer-events-none data-[state=open]:bg-secondary">
           <Cross2Icon className="h-6 w-6 " />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>

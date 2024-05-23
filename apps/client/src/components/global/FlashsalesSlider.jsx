@@ -81,7 +81,7 @@ export default function FlashsalesSlider({ products }) {
         {products.map((product, ind) => (
           <SwiperSlide key={product.id} className="m-10 w-1/2 h-1/2">
             <Link href={`/shop/${product.id}`} className="w-1/4">
-              <ProductCard categore={product}>
+              <ProductCard product={product}>
                 {ind % 2 === 0 && (
                   <div className="absolute w-20  top-5 -right-5 bg-color-primary shadow-md rounded text-sm font-bold px-2 py-1 text-white">
                     <span>{Math.trunc(Math.random() * 100)}% OFF</span>

@@ -8,9 +8,13 @@ export async function createProduct(data) {
   return JSON.stringify(product);
 }
 
-export async function getManyProducts() {
-  const res = await fetcher.get("/products?qury");
-  return res.data;
+export async function getManyProducts(query = "") {
+  try {
+    const res = await fetcher.get(`/products?category=${query}`);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getOneProduct(id) {
