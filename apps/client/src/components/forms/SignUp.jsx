@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 export default function SignUp() {
   const router = useRouter();
   const [formState, setFormState] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -45,19 +46,35 @@ export default function SignUp() {
             <form action="" onSubmit={onSubmit} className="w-2/3">
               <h3 className="font-bold mb-3 text-2xl">{"I'm New Here"}</h3>
               <small className="text-color-body ">Enter detail below</small>
-              <div className="relative mt-10 ">
-                <label
-                  htmlFor=""
-                  className="absolute text-color-body mb-1.5 text-sm font-medium inline-block -top-3 left-5 pointer-events-none bg-white py-0 px-2.5"
-                >
-                  User Name
-                </label>
-                <input
-                  name="name"
-                  onChange={onChange}
-                  type="text"
-                  className="w-full text-sm py-3 mb-6 px-7 border-color-light text-color-body rounded-md border"
-                />
+              <div className="flex gap-6">
+                <div className="relative mt-10 ">
+                  <label
+                    htmlFor=""
+                    className="absolute text-color-body mb-1.5 text-sm font-medium inline-block -top-3 left-5 pointer-events-none bg-white py-0 px-2.5"
+                  >
+                    First Name
+                  </label>
+                  <input
+                    name="firstName"
+                    onChange={onChange}
+                    type="text"
+                    className="w-full text-sm py-3 mb-6 px-7 border-color-light text-color-body rounded-md border"
+                  />
+                </div>
+                <div className="relative mt-10 ">
+                  <label
+                    htmlFor=""
+                    className="absolute text-color-body mb-1.5 text-sm font-medium inline-block -top-3 left-5 pointer-events-none bg-white py-0 px-2.5"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    name="lastName"
+                    onChange={onChange}
+                    type="text"
+                    className="w-full text-sm py-3 mb-6 px-7 border-color-light text-color-body rounded-md border"
+                  />
+                </div>
               </div>
               <div className="relative  ">
                 <label

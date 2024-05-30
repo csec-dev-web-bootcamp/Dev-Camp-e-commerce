@@ -7,6 +7,7 @@ import Rating from "./Rating";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useWishlist } from "@app/client/store/wishlist";
 import CurrencyFormat from "./currencyFormater";
+import Link from "next/link";
 // import { BsCart2 } from "react-icons/bs";
 // import { getOneProduct } from "@app/client/data/products";
 
@@ -34,12 +35,14 @@ export default function ProductCard({ product, children }) {
     <div className="group flex flex-col border rounded-xl p-4 transition-all cursor-pointer">
       <div className="h-52 relative overflow-hidden w-full self-center transition-all ease-in-out mb-3">
         <div className="p-4">
-          {product.imageUrl ? (
-            <img
-              src={product.imageUrl}
-              alt="image"
-              className="scale-110 group-hover:scale-125 transition-all ease-in-out duration-300 w-full object-contain h-36"
-            />
+          {product.images[0].url ? (
+            <Link href={`shop/${product.id}`}>
+              <img
+                src={product.images[0].url}
+                alt="image"
+                className="scale-110 group-hover:scale-125 transition-all ease-in-out duration-300 w-full object-contain h-36"
+              />
+            </Link>
           ) : (
             <div className=" flex items-center justify-center h-36">
               <Skeleton width={200} height={144} />

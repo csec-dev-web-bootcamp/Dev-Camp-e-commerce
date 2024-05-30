@@ -1,40 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const orders = [
-  {
-    id: 6523,
-    date: "September 10, 2020",
-    status: "Processing",
-    price: "$326.63 for 3 items",
-  },
-  {
-    id: 6524,
-    date: "September 10, 2020",
-    status: "Processing",
-    price: "$326.63 for 3 items",
-  },
-  {
-    id: 6525,
-    date: "September 10, 2020",
-    status: "Processing",
-    price: "$326.63 for 3 items",
-  },
-  {
-    id: 6526,
-    date: "September 10, 2020",
-    status: "Processing",
-    price: "$326.63 for 3 items",
-  },
-  {
-    id: 6527,
-    date: "September 10, 2020",
-    status: "Processing",
-    price: "$326.63 for 3 items",
-  },
-];
-
-export default function Orders() {
+export default function Orders({ orders }) {
   return (
     <div>
       <div className="flex px-5 text-xl font-medium border-b-2 border-color-lighter items-center justify-between">
@@ -50,7 +17,7 @@ export default function Orders() {
         >
           <h2 className="text-color-chart03">#{order.id}</h2>
           <h2>{order.date}</h2>
-          <h2>{order.status}</h2>
+          <h2>{order.paymentStatus}</h2>
           <h2 className="py-4">
             <Link
               href={""}

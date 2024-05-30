@@ -39,7 +39,7 @@ const page = () => {
     <div>
       <div className="">
         <div className="flex justify-center gap-7 mb-6">
-          <div className="shadow-xl p-4">
+          <div className="shadow-xl p-4 bg-white">
             <h1 className="mb-3">Sales Chart</h1>
             <Chart
               options={state.options}
@@ -48,7 +48,7 @@ const page = () => {
               width="450"
             />
           </div>
-          <div className="shadow-xl">
+          <div className="shadow-xl bg-white p-4 ">
             <h1 className="my-3">Sales Chart</h1>
             <Chart
               options={state.options}
@@ -59,7 +59,7 @@ const page = () => {
           </div>
         </div>
         <div className="justify-center flex gap-4">
-          <div className="shadow-xl ">
+          <div className="shadow-xl  bg-white p-4">
             <p>
               <AiOutlineBarChart />
             </p>
@@ -76,7 +76,7 @@ const page = () => {
             <h3>Over last month 1.4% </h3>
           </div>
 
-          <div className="shadow-xl ">
+          <div className="shadow-xl  bg-white p-4">
             <p>
               <AiOutlineBarChart />
             </p>
@@ -93,7 +93,7 @@ const page = () => {
             <h3>Over last month 2.4% </h3>
           </div>
 
-          <div className="shadow-xl ">
+          <div className="shadow-xl  bg-white p-4">
             <p>
               <AiOutlineBarChart />
             </p>
@@ -129,7 +129,7 @@ const page = () => {
             </div>
           </div>
 
-          <div className="shadow-xl w-56">
+          <div className="shadow-xl w-56  bg-white p-4">
             <div className="flex justify-center">
               <VscListUnordered
                 className="my-5 w-40 text-red-500"

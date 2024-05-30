@@ -10,10 +10,11 @@ import Footer from "../components/global/Footer";
 import Flashsales from "../components/global/Flashsales";
 import Feedback from "../components/global/Feedback";
 import { getManyProducts } from "../data/products";
+import { getManyCategories } from "../data/categories";
 // import useQuery from "../components/hooks/useQuery";
 export default async function Page({ children }) {
+  const categories = await getManyCategories();
   const products = await getManyProducts();
-  products.length = 7;
 
   // console.log(data);
   return (
@@ -23,7 +24,7 @@ export default async function Page({ children }) {
 
       <Welcome />
       <Flashsales products={products} />
-      <Categories />
+      <Categories categories={categories} />
       <Feedback />
       <Subscribe />
       <Message />

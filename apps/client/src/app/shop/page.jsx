@@ -11,15 +11,20 @@ import Link from "next/link";
 // import { useSearchParams } from "next/navigation";
 
 import { getManyProducts } from "@app/client/data/products";
-export default async function WomenClothingCard({ params }) {
-  console.log(params);
+import { getManycategories } from "@app/client/data/categories";
+export default async function WomenClothingCard({ searchParams }) {
+  console.log(searchParams);
   // const parameter = useSearchParams();
   // const category = parameter.get("category");
   const products = await getManyProducts();
+  console.log(products);
+  console.log("Search Param", searchParams);
+
+  // console.log(categories);
   return (
     <>
       <main className="px-16 my-10">
-        <h1>{JSON.stringify(params)}</h1>
+        {/* <h1>{searchParams}</h1> */}
         <h1 className="font-bold text-3xl mb-6">Explore Our Products</h1>
         <div className="grid grid-cols-4 gap-10">
           {products.map((product) => {
@@ -28,11 +33,9 @@ export default async function WomenClothingCard({ params }) {
             // );
             // isLoading && <Loader key={product.category.id} />;
             return (
-              <Link href={`/shop/${product.id}`} key={product.id}>
-                <ProductCard product={product}>
-                  <Rating rating={product?.rating ?? 0} />
-                </ProductCard>
-              </Link>
+              <ProductCard key={product.id} product={product}>
+                <Rating rating={product?.rating ?? 0} />
+              </ProductCard>
             );
           })}
         </div>

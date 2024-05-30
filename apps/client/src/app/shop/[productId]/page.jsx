@@ -19,9 +19,7 @@ export default async function Home({ params }) {
   // function handleAddToItems(product) {
   //   addItemViewed(product);
   // }
-  const singleProduct = await getOneProduct(
-    "012afcf8-be3e-4194-9e57-a5fd46c423e6"
-  );
+  const singleProduct = await getOneProduct(params.productId);
   console.log("");
 
   return <ProductDetail singleProduct={singleProduct} id={params.productId} />;

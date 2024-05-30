@@ -1,21 +1,31 @@
 import prisma from "../config/prisma-client";
 
 export async function createProduct(data) {
-  console.log({ data });
-
-  const product = await prisma.product.create({
-    data: data,
-    include: {
-      category: true,
-    },
-  });
-  return product;
+  try {
+    const product = await prisma.product.create({
+      data: {
+        name: data.name,
+        description: data.description,
+        price: parseFloat(data.price),
+        rating: parseFloat(data.rating),
+        categorySlug: data.categorySlug,
+        images: { create: data.images },
+        stockStatus: data.stockStatus,
+        quantity: parseInt(data.quantity),
+      },
+      include: { category: true, images: true },
+    });
+    return product;
+  } catch (error) {
+    throw new Error("Failed to create product: " + error.message);
+  }
 }
 
 export async function getManyProducts() {
   const products = await prisma.product.findMany({
     include: {
       category: true,
+      images: true,
     },
   });
   return products;
@@ -26,6 +36,7 @@ export async function getOneProduct(id) {
     where: { id },
     include: {
       category: true,
+      images: true,
     },
   });
   return product;

@@ -4,8 +4,17 @@ import fetcher from "./fetcher";
 // import revalidate from "./revalidate.service";
 
 export async function createProduct(data) {
-  const product = fetcher.post("/products", data);
-  return JSON.stringify(product);
+  try {
+    const product = await fetcher.post("/products", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return product.data;
+  } catch (error) {
+    return { error: error };
+  }
 }
 
 export async function getManyProducts(query = "") {
@@ -28,6 +37,6 @@ export async function updateProduct(id, data) {
 }
 
 export async function deleteProduct(id) {
-  const res = await fetcher.get(`/products/${id}`);
+  const res = await fetcher.delete(`/products/${id}`);
   return res.data;
 }

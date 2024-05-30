@@ -20,18 +20,16 @@ export const metadata = {
 
 const noHeaderFooterPaths = [
   "/auth/login",
-  "/auth/signin",
+
   "/admin/dashboard",
   "/admin/order",
   "/admin/customer",
   "/admin/products",
-  "/signup",
+  "/admin/addProduct",
   "/auth/register",
-  "/reset-password",
-  "/forgot-password",
-  "/checkout",
   "/payment",
-
+  "/admin/category/addCategory",
+  "/admin/category",
   "/404",
   "/500",
 
@@ -40,7 +38,9 @@ const noHeaderFooterPaths = [
 
 export default function RootLayout({ children }) {
   const pathname = headers().get("x-pathname");
-  const noHeaderFooter = noHeaderFooterPaths.includes(pathname);
+  const noHeaderFooter =
+    pathname.split("/").includes("auth") ||
+    pathname.split("/").includes("admin");
 
   return (
     <html lang="en">

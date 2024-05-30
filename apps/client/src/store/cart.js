@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+// Define the store
 export const useCart = create(
   persist(
     (set) => ({
@@ -21,7 +22,6 @@ export const useCart = create(
       removeFromCart: (id) =>
         set((state) => {
           const currentState = JSON.parse(JSON.stringify(state));
-
           currentState.cartProducts = currentState.cartProducts.filter(
             (product) => product.id !== id
           );
@@ -32,7 +32,6 @@ export const useCart = create(
       addProductAmount: (id) =>
         set((state) => {
           const currentState = JSON.parse(JSON.stringify(state));
-
           currentState.cartProducts = currentState.cartProducts.map((product) =>
             product.id === id
               ? {
@@ -49,7 +48,6 @@ export const useCart = create(
       minusProductAmount: (id) =>
         set((state) => {
           const currentState = JSON.parse(JSON.stringify(state));
-
           currentState.cartProducts = currentState.cartProducts.map((product) =>
             product.id === id && product.amount > 1
               ? {
@@ -65,11 +63,6 @@ export const useCart = create(
     }),
     {
       name: "cart-products", // name of the item in the storage (must be unique)
-      storage: {
-        getItem: (name) => sessionStorage.getItem(name),
-        setItem: (name, value) => sessionStorage.setItem(name, value),
-        removeItem: (name) => sessionStorage.removeItem(name),
-      },
     }
   )
 );

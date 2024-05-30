@@ -14,10 +14,14 @@ export default function useMutation() {
   }, [isPending, isTransitionStarted]);
 
   async function startMutation(callBack) {
-    setPending(true);
-    await callBack();
-    startTransition(router.refresh);
-    setPending(false);
+    try {
+      setPending(true);
+      await callBack();
+      startTransition(router.refresh);
+      setPending(false);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return {

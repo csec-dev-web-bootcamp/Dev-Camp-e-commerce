@@ -27,7 +27,7 @@ import Loader from "./Loader";
 export default function ProductDetail({ singleProduct, children }) {
   const { addToCart, cartProducts } = useCart();
   // const images = jewelery.map((product) => product.image);
-  const exist = cartProducts.find((cart) => cart.id === singleProduct.id);
+  const exist = cartProducts.find((cart) => cart.id === singleProduct?.id);
   // console.log(product);
   // images.length = 7;
   const { count } = useCount();
@@ -44,17 +44,18 @@ export default function ProductDetail({ singleProduct, children }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="h-72 "
           >
-            {/* {images.map((img, i) => ( */}
-            <SwiperSlide className="w-10 relative">
-              {singleProduct.imageUrl ? (
-                <img
-                  src={`${singleProduct.imageUrl}`}
-                  className="w-1/2 absolute top-1/2 left-1/2 -translate-x-1/2 object-cover object-center scale-50 -translate-y-1/2"
-                />
-              ) : (
-                <Loader size={30} color="#777777" />
-              )}
-            </SwiperSlide>
+            {singleProduct.images.map((img) => (
+              <SwiperSlide key={img.id} className="w-10 relative">
+                {singleProduct.images ? (
+                  <img
+                    src={`${img.url}`}
+                    className=" absolute top-1/2 left-1/2 -translate-x-1/2 object-fill h-full rounded-md object-center -translate-y-1/2"
+                  />
+                ) : (
+                  <Loader size={30} color="#777777" />
+                )}
+              </SwiperSlide>
+            ))}
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -66,15 +67,18 @@ export default function ProductDetail({ singleProduct, children }) {
             modules={[FreeMode, Navigation, Thumbs]}
             className="m-4  h-full p-4 w-full"
           >
-            {/* {images.map((img, i) => ( */}
-            <SwiperSlide className="flex items-center justify-center  p-4">
-              {singleProduct.imageUrl ? (
-                <img src={`${singleProduct.imageUrl}`} className="h-16 " />
-              ) : (
-                <Loader size={30} color="#777777" />
-              )}
-            </SwiperSlide>
-            {/* ))} */}
+            {singleProduct.images.map((img) => (
+              <SwiperSlide
+                key={img.id}
+                className="flex w-20 h-20 items-center rounded-md justify-center "
+              >
+                {singleProduct.images ? (
+                  <img src={`${img.url}`} className="w-full h-full " />
+                ) : (
+                  <Loader size={30} color="#777777" />
+                )}
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="flex gap-4 flex-col flex-1 justify-center">

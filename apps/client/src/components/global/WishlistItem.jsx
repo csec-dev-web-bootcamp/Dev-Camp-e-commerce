@@ -20,7 +20,7 @@ export default function WishlistItem({ item }) {
           <X />
         </Link>
         <img src={item.image} className="w-20 h-20" />
-        {item.title.slice(0, 20)}
+        {item?.name.slice(0, 20)}
       </div>
       <h1 className="text-custom-gray ">
         <CurrencyFormat amount={item.price} />

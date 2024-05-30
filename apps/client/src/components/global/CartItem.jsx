@@ -8,7 +8,7 @@ export default function CartItem({ product }) {
   const { removeFromCart } = useCart();
   return (
     <div key={product.id} className="flex mb-5 relative items-center gap-4">
-      <img className="w-20 h-20" src={`${product.image}`} alt="" />
+      <img className="w-20 h-20" src={product.images[0]?.url} alt="" />
 
       <div className="flex flex-col gap-1">
         <Rating rating={Math.ceil(product.rating) || 4} />

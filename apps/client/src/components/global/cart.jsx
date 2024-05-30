@@ -12,34 +12,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import React from "react";
+import React, { useMemo } from "react";
 
 import CartItem from "./CartItem";
 import CurrencyFormat from "./currencyFormater";
 
 export function Cart() {
-  const { cartProducts, removeProductFromCart } = useCart();
-  const getCartProductsFromSession = () => {
-    const storedState = sessionStorage.getItem("cart-products");
-    if (storedState) {
-      try {
-        const parsedState = JSON.parse(storedState);
-        return parsedState.state.cartProducts || [];
-      } catch (error) {
-        console.error(
-          "Failed to parse cart-products from sessionStorage:",
-          error
-        );
-        return [];
-      }
-    }
-    return [];
-  };
-  const cart = getCartProductsFromSession();
-  const subtotalPrice = cartProducts
-    .map((product) => product.totalPrice)
-    .reduce((a, b) => a + b, []);
+  const cartProducts =
+    useCart((state) => state.cartProducts) ||
+    localStorage.getItem("cart-products");
 
+  const totalPrice = useMemo(() => {
+    let total = 0;
+    cartProducts.forEach((item) => {
+      total += item.totalPrice;
+    });
+    return total;
+  }, [cartProducts]);
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -72,7 +61,7 @@ export function Cart() {
             <div className="flex justify-between text-xl my-5 font-bold">
               <h3 className="">Subtotal</h3>
               <p>
-                <CurrencyFormat amount={subtotalPrice} />
+                <CurrencyFormat amount={totalPrice} />
               </p>
             </div>
             <SheetFooter>

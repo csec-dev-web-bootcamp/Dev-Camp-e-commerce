@@ -2,10 +2,11 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { jwtDecode } from "jwt-decode";
 
-const roleRoutes = ["/manager"];
-const protectedRoutes = [...roleRoutes, "/profile", "/carts"];
+const roleRoutes = ["/admin"];
+const protectedRoutes = [...roleRoutes, "/profile", "/checkout", "/carts"];
 const authRoutes = ["/auth"];
 const homeRoutes = ["/"];
+
 export async function middleware(request) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", request.nextUrl.pathname);
@@ -14,13 +15,10 @@ export async function middleware(request) {
   const accessToken = cookieStore.get("accessToken")?.value;
   const authUser = accessToken ? jwtDecode(accessToken) : null;
 
-  const isAuthPath = authRoutes.find((route) => pathname.startsWith(route));
-
-  const isRolePath = roleRoutes.find((route) => pathname.startsWith(route));
-
-  const isHomePath = homeRoutes.find((route) => pathname === route);
-
-  const isProtectedPath = protectedRoutes.find((route) =>
+  const isAuthPath = authRoutes.some((route) => pathname.startsWith(route));
+  const isRolePath = roleRoutes.some((route) => pathname.startsWith(route));
+  const isHomePath = homeRoutes.includes(pathname);
+  const isProtectedPath = protectedRoutes.some((route) =>
     pathname.startsWith(route)
   );
 
@@ -29,7 +27,7 @@ export async function middleware(request) {
 
     if (isRolePath && !pathname.startsWith(userRolePath)) {
       const currentPath = pathname.replace(
-        RegExp(roleRoutes.join("|")),
+        new RegExp(roleRoutes.join("|")),
         userRolePath
       );
       if (roleRoutes.includes(userRolePath)) {
@@ -55,7 +53,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|~offline|static|sw.js|.*\\..*|_next|favicon.ico|robots.txt).*)",
-  ],
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };

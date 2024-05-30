@@ -2,21 +2,37 @@
 import prisma from "../config/prisma-client";
 
 export async function createCategory(data) {
-  console.log({ data });
-
+  const { name, slug, image } = data;
+  const imageUrl = image.url;
+  const existingCategory = await getOneCategory(slug);
+  if (existingCategory) {
+    console.log("Category exists");
+    return;
+  }
   const category = await prisma.category.create({
-    data: data,
+    data: {
+      name,
+      slug,
+      image: imageUrl,
+    },
+    include: {
+      products: true,
+    },
   });
   return category;
 }
 
 export async function getManyCategories() {
-  const categories = await prisma.category.findMany();
+  const categories = await prisma.category.findMany({
+    include: {
+      products: true,
+    },
+  });
   return categories;
 }
 
-export async function getOneCategory(id) {
-  const category = await prisma.category.findFirst({ where: { id } });
+export async function getOneCategory(slug) {
+  const category = await prisma.category.findFirst({ where: { slug } });
   return category;
 }
 

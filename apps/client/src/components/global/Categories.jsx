@@ -7,7 +7,7 @@ import { FaTags } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CategoriesSlider from "./CategoriesSlider";
 
-const Categories = () => {
+export default function Categories({ categories }) {
   return (
     <main className="w-full px-16 mt-10">
       <div className="">
@@ -39,10 +39,8 @@ const Categories = () => {
           ))}
         </Swiper> */}
 
-        {<Card /> || <Skeleton />}
+        {<Card categories={categories} /> || <Skeleton />}
       </div>
     </main>
   );
-};
-
-export default Categories;
+}

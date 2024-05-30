@@ -24,16 +24,20 @@ export default function CartItem({ product }) {
         </div>
       </div>
       <div className="flex flex-col gap-5 text-color-body">
+        {/* <button onClick={addToCart(product)}> */}
         <BsCart3
           size={30}
           // onClick={addToCart(product)}
           className="cursor-pointer"
         />
+        {/* </button> */}
+        {/* <button onClick={addToWishlist(product)}> */}
         <MdFavoriteBorder
           size={30}
           // onClick={addToWishlist(product)}
           className="cursor-pointer"
         />
+        {/* </button> */}
       </div>
     </div>
   );
