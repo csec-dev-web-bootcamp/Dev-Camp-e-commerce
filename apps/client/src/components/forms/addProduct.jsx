@@ -224,6 +224,7 @@ export default function AddProduct({ categories }) {
               <label htmlFor="stockStatus">Stock Status</label>
               <select
                 name="stockStatus"
+                onChange={(e) => setStockStatus(e.target.value)}
                 id=""
                 className="w-full text-sm focus:outline-0 active:border-0 py-3 mb-9 px-7 border-color-light text-color-body rounded-md border"
               >

@@ -114,7 +114,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Bereket W\\Desktop\\csec-bootcamp\\Dev-Camp-e-commerce\\prisma\\client",
+      "value": "C:\\Users\\Phyro\\Desktop\\Dev-Camp-e-commerce\\prisma\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -140,6 +140,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
+
   "activeProvider": "mysql",
   "postinstall": true,
   "inlineDatasources": {
@@ -150,8 +151,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"./client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  name     String @db.Char(100)\n  email    String @unique\n  password String\n}\n",
-  "inlineSchemaHash": "0a831f3e1ea649b1ffcbcb7c78b0131f89a8a76422527e731db227c73ee4865f",
+  "inlineSchema": "generator client {\r\n  provider = \"prisma-client-js\"\r\n  output   = \"./client\"\r\n}\r\n\r\ndatasource db {\r\n  provider = \"postgresql\"\r\n  url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel User {\r\n  id       Int    @id @default(autoincrement())\r\n  name     String @db.Char(100)\r\n  email    String @unique\r\n  password String\r\n}\r\n",
+  "inlineSchemaHash": "dfca203332d5f2e473200e2ddc2220bc1004964e48da220ae850bf6a39d44b16",
   "copyEngine": true
 }
 config.dirname = '/'
