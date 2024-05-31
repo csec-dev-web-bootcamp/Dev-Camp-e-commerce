@@ -57,7 +57,6 @@ export default function Page() {
 
   return (
     <div>
-      <button onClick={handleDownload}>Download Products</button>
       <div className="flex items-center justify-between">
         <h1 className="text-xl text-color-heading font-bold my-4">Products</h1>
         <div className="text-sm text-color-body flex items-center gap-3">
@@ -104,7 +103,7 @@ export default function Page() {
             + Add New
           </Link>
         </div>
-        <div className="overflow-x-auto overflow-y-hidden w-full">
+        <div className="overflow-x-auto overflow-y-hidden w-full h-auto">
           <ProductsTable filteredProducts={filteredProducts} />
         </div>
         <PaginationButton

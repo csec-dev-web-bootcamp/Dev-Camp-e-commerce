@@ -23,8 +23,9 @@ ordersController.get(
   "/",
   // authGuard,
   asyncHandler(async (req, res) => {
-    const orders = await getManyOrders();
-    return res.json(orders);
+    const { page = 1, limit = 10 } = req.query;
+    const orders = await getManyOrders(parseInt(page), parseInt(limit));
+    return res.json({ orders: orders.orders, totalPage: orders.totalPage });
   })
 );
 

@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa";
 
 export default function ProductsTable({ filteredProducts }) {
   return (
-    <table className="table-auto w-screen h-400 border-collapse">
+    <table className="table-auto w-screen  border-collapse">
       <thead className="p-8 mb-3">
         <tr className="bg-[#f6f8fbcc] rounded shadow">
           <th className="text-start px-4 py-2">Product</th>

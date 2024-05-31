@@ -16,7 +16,7 @@ export default async function WomenClothingCard({ searchParams }) {
   console.log(searchParams);
   // const parameter = useSearchParams();
   // const category = parameter.get("category");
-  const products = await getManyProducts();
+  const { products } = await getManyProducts();
   console.log(products);
   console.log("Search Param", searchParams);
 

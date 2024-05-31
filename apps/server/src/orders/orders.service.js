@@ -63,8 +63,11 @@ export async function createOrder(data) {
   return order;
 }
 
-export async function getManyOrders() {
+export async function getManyOrders(page = 1, limit = 10) {
+  const skip = (page - 1) * limit;
   const orders = await prisma.order.findMany({
+    skip: skip,
+    take: limit,
     include: {
       orderItems: {
         include: {
@@ -81,7 +84,13 @@ export async function getManyOrders() {
       },
     },
   });
-  return orders;
+  const totalOrders = await prisma.order.count();
+  return {
+    orders,
+    totalProducts,
+    currentPage: page,
+    totalPages: Math.ceil(totalOrders / limit),
+  };
 }
 
 export async function getOneOrder(id) {

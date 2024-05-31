@@ -268,7 +268,7 @@ export default function Page() {
         <div className="flex w-full justify-between mb-8">
           <div className="flex items-center gap-2">
             <SelectPage
-              value={productsPerPage}
+              value={ordersPerPage}
               handleProductsPerPageChange={handleProductsPerPageChange}
             />
             <div className="relative">

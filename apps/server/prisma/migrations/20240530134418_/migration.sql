@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `products` ADD COLUMN `quantity` INTEGER NOT NULL DEFAULT 1,
-    ADD COLUMN `stockStatus` VARCHAR(191) NOT NULL DEFAULT '';
