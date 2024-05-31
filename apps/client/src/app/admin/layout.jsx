@@ -76,20 +76,20 @@ export default function Layout({ children }) {
     <div className="mx-4 h-screen m-auto">
       <AdminHeader />
       <div className="flex h-screen">
-        <div className=" scrollbar-thumb-sky-700 scrollbar-track-sky-300 overflow-y-auto fixed w-1/5 h-screen pr-8">
+        <div className=" scrollbar-thumb-sky-700 scrollbar-track-sky-300 overflow-y-auto fixed md:w-1/5 w-20 overflow-x-hidden transition-all ease-in-out  h-screen pr-8">
           <div className="flex flex-col h-full">
             <Link href="/admin/dashboard">
               <div className="border bg-white rounded-full py-3 pl-4 shadow-md flex items-center hover:bg-blue-200 my-5 cursor-pointer">
                 <AiFillSignal className="w-7 h-7 mr-4" />
 
-                <div>Dashboard</div>
+                <h1 className="max-md:hidden overflow-hidden">Dashboard</h1>
               </div>
             </Link>
             {sideBar.map(({ Icon, name, href }, ind) => (
               <Link key={ind} href={href || "/"}>
                 <div className="py-3 px-4 flex items-center hover:bg-blue-200 mb-3 cursor-pointer">
-                  <Icon className="w-7 h-7 mr-3" />
-                  <div className="">{name}</div>
+                  <Icon className="w-7 max-md:w-10 h-7 mr-3" />
+                  <h1 className="max-md:hidden overflow-hidden ">{name}</h1>
                 </div>
               </Link>
             ))}

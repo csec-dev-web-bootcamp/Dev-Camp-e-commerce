@@ -14,7 +14,8 @@ import { getManyCategories } from "../data/categories";
 // import useQuery from "../components/hooks/useQuery";
 export default async function Page({ children }) {
   const categories = await getManyCategories();
-  const products = await getManyProducts();
+  const { products, totalPages } = await getManyProducts();
+  console.log(products);
 
   // console.log(data);
   return (

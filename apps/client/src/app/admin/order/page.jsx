@@ -169,23 +169,62 @@ import { getManyProducts } from "@app/client/data/products";
 import Link from "next/link";
 import React from "react";
 import { CiSearch } from "react-icons/ci";
-import { FaCoffee } from "react-icons/fa";
+import { FaCoffee, FaDownload } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import * as XLSX from "xlsx";
+import SelectPage from "@app/client/components/admin/SelectPage";
+import PaginationButton from "@app/client/components/admin/PaginationButton";
 
 export default function Page() {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredOrders, setFilteredOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [ordersPerPage, setOrdersPerPage] = useState(10);
+
+  const handleDownload = () => {
+    // flatten object like this {id: 1, title:'', category: ''};
+    const rows = filteredOrders.map((order) => ({
+      id: order.id,
+      customerName: order.user.name,
+      email: order.user.email,
+      price: order.totalPrice,
+      status: order.paymentStatus,
+      date: order.createdAt.split("T")[0],
+    }));
+
+    // create workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Products");
+
+    // customize header names
+    XLSX.utils.sheet_add_aoa(worksheet, [
+      [
+        "Order ID",
+        "Customer Name",
+        "Customer Email",
+        "Total Price",
+        "Payment Status",
+        "Order Date",
+      ],
+    ]);
+
+    XLSX.writeFile(workbook, "ReportFor2023.xlsx", { compression: true });
+  }; // default products per page
 
   useEffect(() => {
-    async function fetchProducts() {
-      const fetchedOrders = await getManyOrders();
-      setOrders(fetchedOrders);
-      setFilteredOrders(fetchedOrders);
+    async function fetchProducts(page = 1, limit = 10) {
+      const { orders, totalPages } = await getManyOrders(page, limit);
+      setOrders(orders);
+      setFilteredOrders(orders);
+      setTotalPages(totalPages);
     }
 
-    fetchProducts();
-  }, []);
+    fetchProducts(currentPage, ordersPerPage);
+  }, [currentPage, ordersPerPage]);
 
   useEffect(() => {
     setFilteredOrders(
@@ -194,6 +233,17 @@ export default function Page() {
       )
     );
   }, [searchTerm, orders]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+  const handleProductsPerPageChange = (event) => {
+    setProductsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing products per page
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -216,24 +266,30 @@ export default function Page() {
           which you can rely on to find the exact product you need.
         </p>
         <div className="flex w-full justify-between mb-8">
-          <div className="relative">
-            <input
-              onChange={(e) => setSearchTerm(e.target.value)}
-              type="text"
-              placeholder="Search here..."
-              className="border border-color-light py-2.5 px-4 rounded-xl focus:outline-none"
+          <div className="flex items-center gap-2">
+            <SelectPage
+              value={productsPerPage}
+              handleProductsPerPageChange={handleProductsPerPageChange}
             />
-            <CiSearch
-              size={24}
-              className="absolute top-1/2 -translate-y-1/2 right-4"
-            />
+            <div className="relative">
+              <input
+                onChange={(e) => setSearchTerm(e.target.value)}
+                type="text"
+                placeholder="Search here..."
+                className="border border-color-light py-2.5 px-4 rounded-xl focus:outline-none"
+              />
+              <CiSearch
+                size={24}
+                className="absolute top-1/2 -translate-y-1/2 right-4"
+              />
+            </div>
           </div>
-          <Link
-            href="/admin/addProduct"
-            className="px-10 py-3.5 border rounded border-color-primary text-color-primary transition-all ease-in-out duration-200 hover:bg-color-primary hover:text-color-border-light"
+          <button
+            onClick={handleDownload}
+            className=" flex items-center gap-2 px-10 py-3.5 border rounded border-color-primary text-color-primary transition-all ease-in-out duration-200 hover:bg-color-primary hover:text-color-border-light"
           >
-            + Add New
-          </Link>
+            <FaDownload /> Export Orders
+          </button>
         </div>
         <div className="overflow-x-auto">
           <table className="table-auto w-screen border-collapse">
@@ -286,6 +342,11 @@ export default function Page() {
             </tbody>
           </table>
         </div>
+        <PaginationButton
+          onClick={handlePageChange}
+          totalPages={totalPages}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

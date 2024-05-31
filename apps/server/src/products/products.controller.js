@@ -63,8 +63,11 @@ const productsController = express.Router();
 productsController.get(
   "/",
   asyncHandler(async (req, res) => {
-    const products = await getManyProducts();
-    return res.json(products);
+    console.log(req.query);
+    const { page = 1, limit = 10 } = req.query;
+    const products = await getManyProducts(parseInt(page), parseInt(limit));
+
+    res.json({ products: products.products, totalPages: products.totalPages });
   })
 );
 
