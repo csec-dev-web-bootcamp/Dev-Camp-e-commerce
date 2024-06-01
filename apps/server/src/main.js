@@ -19,7 +19,7 @@ import orderItemsController from "./orderItems/orderItems.controller";
 // import orderItemsController from "./orderItem/orderitems.controller";
 // import { multer } from "multer";
 // import { path } from "path";
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 const app = express();
 // app.use(authGuard);
 // app.use(cors(corsOptions));
@@ -79,6 +79,6 @@ app.all("*", (req, res) => {
 app.use(exceptionHandler);
 
 app.listen(PORT, () => {
-  console.log("App is running at port: 8000");
+  console.log(`App is running at port: ${PORT}`);
 });
 export { upload };
