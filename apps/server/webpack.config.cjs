@@ -31,7 +31,7 @@ const config = {
   externals: [nodeExternals()],
   resolve: {
     alias: {
-      "@/prisma/client": path.resolve(__dirname, "node_modules/@prisma/client"),
+      "@/prisma/client": path.resolve(__dirname, "./prisma/client"),
     },
   },
   module: {

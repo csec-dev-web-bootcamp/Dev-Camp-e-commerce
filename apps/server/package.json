@@ -4,13 +4,14 @@
   "description": "My webpack project",
   "scripts": {
     "dev": "webpack --watch",
-    "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
+    "build": " webpack --mode=production --node-env=production",
+    "build:dev": "pnpm prisma:generate && webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "start:prod": "NODE_ENV=production node dist/main.js",
     "lint": "biome lint --apply src/**/*",
     "check": "biome check --apply src/**/*",
-    "format": "biome format --write src/**/*"
+    "format": "biome format --write src/**/*",
+    "prisma:generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
