@@ -49,7 +49,7 @@ export default function AddProduct() {
     formData.append("rating", formState.rating);
     formData.append("images", images);
     const res = await createProduct(formData);
-    console.log({ res });
+    // console.log({ res });
     //   if (res?.status === 200) {
     //     router.push("/");
     //   } else {

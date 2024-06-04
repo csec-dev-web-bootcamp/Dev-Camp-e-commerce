@@ -87,7 +87,7 @@ export async function getManyOrders(page = 1, limit = 10) {
   const totalOrders = await prisma.order.count();
   return {
     orders,
-    totalProducts,
+    totalOrders,
     currentPage: page,
     totalPages: Math.ceil(totalOrders / limit),
   };
@@ -108,9 +108,9 @@ export async function getOneOrder(id) {
   return order;
 }
 
-export async function updateOrder(id, data) {
+export async function updateOrder(tx_ref, data) {
   const order = await prisma.order.update({
-    where: { paymentRef: id },
+    where: { paymentRef: tx_ref },
     data: data,
   });
   return order;

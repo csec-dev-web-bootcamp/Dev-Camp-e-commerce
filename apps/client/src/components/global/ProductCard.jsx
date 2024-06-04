@@ -8,6 +8,10 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useWishlist } from "@app/client/store/wishlist";
 import CurrencyFormat from "./currencyFormater";
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 // import { BsCart2 } from "react-icons/bs";
 // import { getOneProduct } from "@app/client/data/products";
 
@@ -16,6 +20,14 @@ export default function ProductCard({ product, children }) {
   const { addToWishlist, wishlist } = useWishlist();
   const wishlistExist = wishlist.find((cart) => cart.id === product.id);
   const exist = cartProducts.find((cart) => cart.id === product.id);
+  useEffect(() => {
+    AOS.init({
+      once: true,
+
+      duration: 1500,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   function handleAddToCart(product, e) {
     e.stopPropagation();
@@ -32,13 +44,16 @@ export default function ProductCard({ product, children }) {
   }
 
   return (
-    <div className="group flex flex-col border rounded-xl p-4 transition-all cursor-pointer">
+    <div
+      data-aos="zoom-out-up"
+      className="group  flex flex-col border rounded-xl p-4 transition-all cursor-pointer"
+    >
       <div className="h-52 relative overflow-hidden w-full self-center transition-all ease-in-out mb-3">
         <div className="p-4">
-          {product.images[0].url ? (
+          {product.images ? (
             <Link href={`shop/${product.id}`}>
               <img
-                src={product.images[0].url}
+                src={product?.images[0]?.url || ""}
                 alt="image"
                 className="scale-110 group-hover:scale-125 transition-all ease-in-out duration-300 w-full object-contain h-36"
               />

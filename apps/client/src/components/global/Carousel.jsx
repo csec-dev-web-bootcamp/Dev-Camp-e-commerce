@@ -51,7 +51,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="bg-center p-10   bg-[#F6F7FB] bg-cover overflowX-0">
+    <div className="bg-center p-10  w-2/5 bg-cover overflowX-0">
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className="bg-center bg-cover ">

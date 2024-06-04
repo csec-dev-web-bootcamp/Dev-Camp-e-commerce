@@ -15,9 +15,10 @@ export async function createOrder(data) {
     return { success: false, data: error };
   }
 }
-export async function getManyOrders({ page = 1, limit = 10 }) {
+export async function getManyOrders(page = 1, limit = 10) {
   try {
-    const res = await fetcher.get(`/orders/page=${page}&limit=${limit}`);
+    const res = await fetcher.get(`/orders?page=${page}&limit=${limit}`);
+    console.log(res.data);
     return { orders: res.data.orders, totalPages: res.data.totalPages };
   } catch (error) {
     return { success: false, data: error };

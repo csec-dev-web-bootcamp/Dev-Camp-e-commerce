@@ -8,6 +8,7 @@ import { Cart } from "./cart";
 import Wishlist from "./Wishlist";
 import CategoriesMenu from "./CategoriesMenu";
 import ProfileMenu from "./ProfileMenu";
+import Image from "next/image";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [pos, setPos] = useState(0);
@@ -37,7 +38,10 @@ const Header = () => {
       <nav className="w-full text-sm flex  items-center justify-between h-16 bg-gray-50 font-medium text-black gap-10  text-md">
         <ul className="flex gap-10 items-center justify-between w-full">
           <Link href="/">
-            <li>Logo</li>
+            <img
+              src="https://new.axilthemes.com/demo/template/etrade/assets/images/logo/logo.png"
+              alt="logo"
+            />
           </Link>
           <CategoriesMenu />
           <Link href="/shop">

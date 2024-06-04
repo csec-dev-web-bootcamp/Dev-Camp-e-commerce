@@ -16,6 +16,7 @@ import ordersController from "./orders/orders.controller";
 import billingAddressController from "./billingAddress/billing-address.controller";
 import multer from "multer";
 import orderItemsController from "./orderItems/orderItems.controller";
+import getUsersController from "./user/users.controller";
 // import orderItemsController from "./orderItem/orderitems.controller";
 // import { multer } from "multer";
 // import { path } from "path";
@@ -61,7 +62,7 @@ app.get("/", (req, res) => {
     message: "Hello",
   });
 });
-
+app.use("/getUser", getUsersController);
 app.use("/products", productsController);
 app.use("/orders", ordersController);
 app.use("/orderitems", orderItemsController);

@@ -8,9 +8,12 @@ import ProductsTable from "@app/client/components/admin/ProductsTable";
 import PaginationButton from "@app/client/components/admin/PaginationButton";
 
 import { getManyProducts } from "@app/client/data/products";
+import AddProductSheet from "@app/client/components/global/AddProductSheet";
+import { getManyCategories } from "@app/client/data/categories";
 
 export default function Page() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   // const { data, error } = useSWR("http://localhost:8000/products", fetcher);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,9 +25,17 @@ export default function Page() {
   // console.log(data);
 
   useEffect(() => {
+    async function fetchProducts() {
+      const categories = await getManyCategories();
+      setCategories(categories);
+    }
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
     async function fetchProducts(page = 1, limit = 10) {
       const { products, totalPages } = await getManyProducts("", page, limit);
-      console.log(products, totalPages);
       setProducts(products);
       setFilteredProducts(products);
       setTotalPages(totalPages);
@@ -42,7 +53,6 @@ export default function Page() {
       )
     );
   }, [searchTerm, products]);
-  console.log(products, totalPages);
 
   const handlePageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
@@ -96,12 +106,7 @@ export default function Page() {
               />
             </div>
           </div>
-          <Link
-            href="/admin/addProduct"
-            className="px-10 py-3.5 border rounded border-color-primary text-color-primary transition-all ease-in-out duration-200 hover:bg-color-primary hover:text-color-border-light"
-          >
-            + Add New
-          </Link>
+          <AddProductSheet categories={categories} />
         </div>
         <div className="overflow-x-auto overflow-y-hidden w-full h-auto">
           <ProductsTable filteredProducts={filteredProducts} />

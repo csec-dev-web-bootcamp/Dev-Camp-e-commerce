@@ -1,4 +1,5 @@
 // import AddProduct from "@app/client/components/forms/addProduct";
+import AddCategorySheet from "@app/client/components/global/AddCategorySheet";
 import { getManyCategories } from "@app/client/data/categories";
 import Link from "next/link";
 import React from "react";
@@ -6,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 
 export default async function page() {
   const categories = await getManyCategories();
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -37,12 +38,7 @@ export default async function page() {
               className="absolute top-1/2 -translate-y-1/2 right-4"
             />
           </div>
-          <Link
-            href="/admin/addProduct"
-            className="px-10 py-3.5 border rounded border-color-primary text-color-primary  transition-all ease-in-out duration-200 hover:bg-color-primary hover:text-color-border-light"
-          >
-            + Add New
-          </Link>
+          <AddCategorySheet />
         </div>
         <div className="overflow-x-auto">
           <table className="table-auto w-screen border-collapse">

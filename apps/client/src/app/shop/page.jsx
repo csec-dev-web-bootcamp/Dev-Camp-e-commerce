@@ -13,11 +13,11 @@ import Link from "next/link";
 import { getManyProducts } from "@app/client/data/products";
 import { getManycategories } from "@app/client/data/categories";
 export default async function WomenClothingCard({ searchParams }) {
-  console.log(searchParams);
+  // console.log(searchParams);
   // const parameter = useSearchParams();
   // const category = parameter.get("category");
-  const { products } = await getManyProducts();
-  console.log(products);
+  const { products } = await getManyProducts(searchParams.category);
+  // console.log(products);
   console.log("Search Param", searchParams);
 
   // console.log(categories);

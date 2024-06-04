@@ -1,176 +1,12 @@
-// import Image from "next/image";
-// // import { orders } from "./OrderData";
-// import { CiSearch } from "react-icons/ci";
-
-// import {
-//   Table,
-//   TableBody,
-//   TableCaption,
-//   TableCell,
-//   TableFooter,
-//   TableHead,
-//   TableHeader,
-//   TableRow,
-// } from "../../../components/ui/table";
-
-// // import 'cloth' from "../../../../public/img/icons";
-
-// const orders = [
-//   {
-//     id: 1,
-//     title: "Product",
-//     productImage: "cloth",
-//     productName: "T-shirt",
-//     orderId: "#7712309",
-//     price: "$10",
-//     quantity: 2,
-//     status: "Success",
-//   },
-//   {
-//     id: 2,
-//     title: "OrderId",
-//     productImage: "cloth",
-//     productName: "Jacket",
-//     orderId: "#7712308",
-//     price: "$20",
-//     quantity: 3,
-//     status: "Pending",
-//   },
-//   {
-//     id: 1,
-//     title: "Price",
-//     productImage: "cloth",
-//     productName: "Smart Watch",
-//     orderId: "#7712307",
-//     price: "$30",
-//     quantity: 2,
-//     status: "Success",
-//   },
-//   {
-//     id: 1,
-//     title: "Quantity",
-//     productImage: "cloth",
-//     productName: "T-shirt",
-//     orderId: "#7712306",
-//     price: "$10",
-//     quantity: 1,
-//     status: "PAID",
-//   },
-//   {
-//     id: 1,
-//     title: "Status",
-//     productImage: "cloth",
-//     productName: "Shirt",
-//     orderId: "#7712305",
-//     price: "$15",
-//     quantity: 4,
-//     status: "Success",
-//   },
-//   {
-//     id: 1,
-//     productImage: "cloth",
-//     productName: "Jacket",
-//     orderId: "#7712304",
-//     price: "$30",
-//     quantity: 3,
-//     status: "Pending",
-//   },
-//   {
-//     id: 1,
-//     productImage: "cloth",
-//     productName: "Shirt",
-//     orderId: "#7712303",
-//     price: "$30",
-//     quantity: 3,
-//     status: "Success",
-//   },
-// ];
-// export default function OrderList() {
-//   return (
-//     <div className="flex flex-col px-20">
-//       <div className="px-24">
-//         <p className="font-bold text-4xl pt-10 text-gray-600">Order List</p>
-//       </div>
-//       <div className="py-10 px-24 relative justify-center bg-gray-200">
-//         <input
-//           type="text"
-//           placeholder="Search here..."
-//           className="border py-2.5 pr-60 px-4 rounded-xl onfocus:outline-none onfocus:border-none"
-//         />
-//         <CiSearch
-//           size={24}
-//           className="absolute left-[41%] top-[41%] text-gray"
-//         />
-//       </div>
-//       <Table>
-//         <TableCaption>A list of your recent invoices.</TableCaption>
-//         <TableHeader>
-//           <TableRow className="font-bold">
-//             <TableHead className=" font-bold text-xl text-gray-800">
-//               {" "}
-//               Product
-//             </TableHead>
-//             <TableHead className="font-bold text-xl text-gray-800">
-//               OrderId
-//             </TableHead>
-//             <TableHead className="font-bold text-xl text-gray-800">
-//               Price
-//             </TableHead>
-//             <TableHead className="font-bold text-xl text-gray-800">
-//               Quantity
-//             </TableHead>
-//             <TableHead className="font-bold text-xl text-gray-800">
-//               Status
-//             </TableHead>
-//           </TableRow>
-//         </TableHeader>
-//         <TableBody>
-//           {orders.map(
-//             ({
-//               id,
-//               productImage,
-//               productName,
-//               price,
-//               quantity,
-//               orderId,
-//               status,
-//             }) => (
-//               <TableRow
-//                 key={id}
-//                 className="border-b border-gray-400 font-semibold"
-//               >
-//                 {/* <TableCell><Image  src={productImage} className="w-14"/></TableCell> */}
-//                 <TableCell className="flex gap-4 items-center">
-//                   <img src={productImage} /> {productName}
-//                 </TableCell>
-//                 <TableCell className="text-start">{orderId}</TableCell>
-//                 <TableCell>{price}</TableCell>
-//                 <TableCell>{quantity}</TableCell>
-//                 <TableCell>{status}</TableCell>
-//               </TableRow>
-//             )
-//           )}
-//         </TableBody>
-//         <TableFooter>
-//           <TableRow>
-//             <TableCell colSpan={2}>Total</TableCell>
-//             <TableCell className="text-right">$2,500.00</TableCell>
-//           </TableRow>
-//         </TableFooter>
-//       </Table>
-//     </div>
-//   );
-// }
 "use client";
 import AddProduct from "@app/client/components/forms/addProduct";
 import CurrencyFormat from "@app/client/components/global/currencyFormater";
 import { getManyOrders } from "@app/client/data/order.service";
 import { getManyProducts } from "@app/client/data/products";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaCoffee, FaDownload } from "react-icons/fa";
-import { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
 import SelectPage from "@app/client/components/admin/SelectPage";
 import PaginationButton from "@app/client/components/admin/PaginationButton";
@@ -184,7 +20,6 @@ export default function Page() {
   const [ordersPerPage, setOrdersPerPage] = useState(10);
 
   const handleDownload = () => {
-    // flatten object like this {id: 1, title:'', category: ''};
     const rows = filteredOrders.map((order) => ({
       id: order.id,
       customerName: order.user.name,
@@ -194,13 +29,11 @@ export default function Page() {
       date: order.createdAt.split("T")[0],
     }));
 
-    // create workbook and worksheet
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(rows);
 
     XLSX.utils.book_append_sheet(workbook, worksheet, "Products");
 
-    // customize header names
     XLSX.utils.sheet_add_aoa(worksheet, [
       [
         "Order ID",
@@ -213,17 +46,18 @@ export default function Page() {
     ]);
 
     XLSX.writeFile(workbook, "ReportFor2023.xlsx", { compression: true });
-  }; // default products per page
+  };
 
   useEffect(() => {
-    async function fetchProducts(page = 1, limit = 10) {
-      const { orders, totalPages } = await getManyOrders(page, limit);
+    async function fetchOrders(page = 1, limit = 10) {
+      const response = await getManyOrders(page, limit);
+      const { orders, totalPages } = response;
       setOrders(orders);
       setFilteredOrders(orders);
       setTotalPages(totalPages);
     }
 
-    fetchProducts(currentPage, ordersPerPage);
+    fetchOrders(currentPage, ordersPerPage);
   }, [currentPage, ordersPerPage]);
 
   useEffect(() => {
@@ -239,9 +73,10 @@ export default function Page() {
       setCurrentPage(newPage);
     }
   };
-  const handleProductsPerPageChange = (event) => {
-    setProductsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page when changing products per page
+
+  const handleOrdersPerPageChange = (event) => {
+    setOrdersPerPage(Number(event.target.value));
+    setCurrentPage(1);
   };
 
   return (
@@ -269,7 +104,7 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <SelectPage
               value={ordersPerPage}
-              handleProductsPerPageChange={handleProductsPerPageChange}
+              handleProductsPerPageChange={handleOrdersPerPageChange}
             />
             <div className="relative">
               <input
@@ -292,7 +127,7 @@ export default function Page() {
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="table-auto w-screen border-collapse">
+          <table className="table-auto w-full border-collapse">
             <thead>
               <tr className="bg-[#f6f8fbcc] p-3">
                 <th className="px-4 py-2">Customer Name</th>
@@ -328,7 +163,7 @@ export default function Page() {
                         order.paymentStatus === "PAID"
                           ? "text-color-success border border-color-success"
                           : "text-red-600 bg-red-100"
-                      }  rounded font-medium py-0.5 px-2`}
+                      } rounded font-medium py-0.5 px-2`}
                     >
                       {order.paymentStatus}
                     </span>

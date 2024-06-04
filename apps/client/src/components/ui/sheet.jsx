@@ -33,6 +33,8 @@ const sheetVariants = cva(
     variants: {
       side: {
         top: "left-1/2 w-1/2 border-black -translate-x-1/2 top-14 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-to overflow-y-scroll",
+        center:
+          "left-1/2 w-4/5 border-black -translate-x-1/2 top-10 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-to overflow-y-scroll",
         bottom:
           "inset-x-0 left-0 w-full h-3/4 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
         left: "inset-y-0  left-0 h-full  border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
@@ -58,7 +60,7 @@ const SheetContent = React.forwardRef(
         {children}
         <SheetPrimitive.Close className="w-1/ absolute outline-none border-0  rounded-full right-4 top-2   ease-in-out ring-offset-background transition-all p-2 hover:bg-color-secondary hover:text-white focus:outline-none  disabled:pointer-events-none data-[state=open]:bg-secondary">
           <Cross2Icon className="h-6 w-6 " />
-          <span className="sr-only">Close</span>
+          <span className=" sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>

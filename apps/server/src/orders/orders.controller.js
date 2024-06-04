@@ -25,17 +25,15 @@ ordersController.get(
   asyncHandler(async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const orders = await getManyOrders(parseInt(page), parseInt(limit));
-    return res.json({ orders: orders.orders, totalPage: orders.totalPage });
+    return res.json({ orders: orders.orders, totalPages: orders.totalPages });
   })
 );
-
 ordersController.get(
-  // authGuard,
   "/checkout",
   asyncHandler(async (req, res) => {
     const { tx_ref } = req.query;
-    let paymentStatus = "PENDING";
-    console.log({ paymentStatus: paymentStatus });
+    let paymentStatus = "PAID";
+    console.log({ paymentStatus: paymentStatus, tx_ref });
 
     const config = {
       headers: {
@@ -48,16 +46,15 @@ ordersController.get(
         `https://api.chapa.co/v1/transaction/verify/${tx_ref}`,
         config
       );
+
       console.log("Payment verification response:", response.data);
 
-      if (
-        response.data.status === "success" &&
-        response.data.data.status === "success"
-      ) {
+      if (response.status === "success") {
         paymentStatus = "PAID";
 
         // Update the order status to "PAID"
-        await updateOrder(tx_ref, { paymentStatus });
+        const updatedOrder = await updateOrder(tx_ref, { paymentStatus });
+        console.log("Order updated:", updatedOrder);
 
         // Respond to the client indicating that the payment was successful and the order was updated
         res.json({

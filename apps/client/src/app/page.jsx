@@ -11,13 +11,12 @@ import Flashsales from "../components/global/Flashsales";
 import Feedback from "../components/global/Feedback";
 import { getManyProducts } from "../data/products";
 import { getManyCategories } from "../data/categories";
+import LatestProducts from "../components/global/LatestProducts";
 // import useQuery from "../components/hooks/useQuery";
 export default async function Page({ children }) {
   const categories = await getManyCategories();
   const { products, totalPages } = await getManyProducts();
-  console.log(products);
 
-  // console.log(data);
   return (
     <main className="w-full">
       {/* <div className=" m-auto"> */}
@@ -26,6 +25,7 @@ export default async function Page({ children }) {
       <Welcome />
       <Flashsales products={products} />
       <Categories categories={categories} />
+      <LatestProducts products={products} />
       <Feedback />
       <Subscribe />
       <Message />

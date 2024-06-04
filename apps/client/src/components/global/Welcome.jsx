@@ -5,7 +5,7 @@ import { SiHomebridge } from "react-icons/si";
 
 const Welcome = () => {
   return (
-    <main className="w-full">
+    <main className="w-full px-14 flex justify-center gap-8">
       <div
         className="relative"
         style={{
@@ -14,13 +14,13 @@ const Welcome = () => {
           width: "100%",
         }}
       >
-        <div className="absolute  top-20 right-[14rem]">
+        <div className="absolute  top-20 right-[10rem] z-50">
           <p className="text-[#FF0003] font-semibold">
             <SiHomebridge size={20} className="text-[#FF0003]" />
-            Don't Miss !
+            {"Don't"} Miss !
           </p>
           <p className=" w-full text-black font-bold text-5xl ">
-            Let's Start Shopping Today
+            {"Let's"} Start Shopping Today
           </p>
           <div className="flex  top-[7rem] absolute gap-4  text-gray-600 ">
             <div className="flex items-center p-6 w-20 h-20 font-semibold text-md flex-col rounded-full  bg-white text-gray-600 justify-center">
@@ -41,6 +41,7 @@ const Welcome = () => {
             </div>
           </div>
         </div>
+
         <Carousel />
       </div>
     </main>

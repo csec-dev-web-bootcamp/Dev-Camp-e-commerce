@@ -19,7 +19,7 @@ export default function SignUp() {
     e.preventDefault();
     const res = await register(formState);
 
-    console.log({ res });
+    // console.log({ res });
     res?.err ? alert(JSON.stringify(res.err)) : router.push("/");
   }
 

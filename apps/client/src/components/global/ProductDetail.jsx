@@ -45,7 +45,10 @@ export default function ProductDetail({ singleProduct, children }) {
             className="h-72 "
           >
             {singleProduct.images.map((img) => (
-              <SwiperSlide key={img.id} className="w-10 relative">
+              <SwiperSlide
+                key={img.id}
+                className="w-10 flex items-center justify-center relative"
+              >
                 {singleProduct.images ? (
                   <img
                     src={`${img.url}`}
@@ -65,7 +68,7 @@ export default function ProductDetail({ singleProduct, children }) {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="m-4  h-full p-4 w-full"
+            className="m-4  h-full p-4 w-full flex"
           >
             {singleProduct.images.map((img) => (
               <SwiperSlide
@@ -73,7 +76,7 @@ export default function ProductDetail({ singleProduct, children }) {
                 className="flex w-20 h-20 items-center rounded-md justify-center "
               >
                 {singleProduct.images ? (
-                  <img src={`${img.url}`} className="w-full h-full " />
+                  <img src={`${img.url}`} className="w-20 h-20 " />
                 ) : (
                   <Loader size={30} color="#777777" />
                 )}

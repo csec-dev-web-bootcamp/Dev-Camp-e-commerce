@@ -8,7 +8,7 @@ export async function createCategory(data) {
     const category = await fetcher.post("/categories", data);
     return category.data;
   } catch (error) {
-    console.log({ error: error });
+    // console.log({ error: error });
     return { error: error };
   }
 }
@@ -18,7 +18,7 @@ export async function getManyCategories(query = "") {
     const res = await fetcher.get(`/categories?category=${query}`);
     return res.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 

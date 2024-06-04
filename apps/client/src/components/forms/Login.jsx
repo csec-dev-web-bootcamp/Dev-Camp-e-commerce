@@ -1,11 +1,12 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
+import Logo from "../../../public/logo.png";
 import { login } from "../../data/auth";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Loader from "../global/Loader";
-// import { loginSchema } from "@app/client/lib/validation";
+import { loginSchema } from "@app/client/lib/validation";
 
 export default function Login() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function Login() {
     try {
       const res = await login(formState);
       setIsLoading(false);
-      console.log(res.error);
+      // console.log(res.error);
       if (res?.error) {
         alert(JSON.stringify(res.error));
         setStatusCode(res.error.statusCode);
@@ -40,28 +41,36 @@ export default function Login() {
   }
 
   return (
-    <div className="">
-      <header className="z-10 fixed px-24 py-20 inset-0 flex justify-between h-10">
-        <a href="/">logo</a>
-        <div className="flex items-center gap-6">
-          <p className="text-sm">Not a member ?</p>
-          <Link
-            className="px-9 py-4 ml-10 bg-color-secondary text-color-white  rounded-md inline-block"
-            href={"/auth/register"}
-          >
-            Sign Up Now
-          </Link>
+    <div className="bg-white  flex items-center justify-center mx-auto">
+      <div className="flex items-center justify-center shadow-md border mt-8 lg:mt-32">
+        <div className="flex   gap-4 flex-col items-center justify-center px-4 md:pr-12 h-96 pb-10 bg-login-bg bg-cover  shadow-lg">
+          <Image src={Logo} className="bg-gray-200 rounded-md" />
+          <h3 className="text-2xl font-bold text-gray-100">
+            We offer the best products
+          </h3>
+          <div className=" py-4 flex justify-between ">
+            <div className="flex items-center gap-6">
+              <p className="text-sm text-white">Not a member ?</p>
+              <Link
+                className="px-8 py-3  bg-white text-blue-600 font-semibold  rounded-md "
+                href={"/auth/register"}
+              >
+                Sign Up Now
+              </Link>
+            </div>
+          </div>
         </div>
-      </header>
-      <div className="flex gap-10 relative w-full h-svh items-center ">
-        <div className="px-4 bg-login-bg bg-no-repeat bg-cover w-2/4 h-full pt-52 md: pr-12 pb-10 pl-20">
-          <h3 className="text-2xl font-bold">We offer the best products</h3>
-        </div>
-        <div className="flex mt-16  items-center justify-center  w-full">
-          <div className="w-2/3">
-            <form action="" onSubmit={onSubmit} className="w-2/3">
-              <h3 className="font-bold mb-3 text-2xl">Sign in to e-store</h3>
-              <small className="text-color-body ">Enter detail below</small>
+
+        <div className="flex  items-center justify-center  ">
+          <div className="shadow-md h-96 py-10">
+            <form action="" onSubmit={onSubmit} className="px-24 py-2">
+              <h3 className="font-bold mb-3 text-2xl flex gap-4">
+                Sign in to
+                <Image src={Logo} className=" rounded-md" />
+              </h3>
+              <small className="text-color-body text-md">
+                Enter detail below
+              </small>
               <div className="relative mt-10 ">
                 <label
                   htmlFor=""
@@ -74,7 +83,7 @@ export default function Login() {
                   onChange={onChange}
                   type="text"
                   className={`w-full text-sm py-3 mb-6 px-7 ${
-                    statusCode === 404 ? "border-red-500" : "border-color-light"
+                    statusCode === 404 ? "border-red-400" : "border-color-light"
                   } text-color-body rounded-md border`}
                 />
               </div>
@@ -92,14 +101,15 @@ export default function Login() {
                   className="focus:border-color-primary w-full text-sm py-3 mb-9 px-7 border-color-light text-color-body rounded-md border"
                 />
               </div>
-              <div className="flex justify-between  items-center">
+              <div className="flex justify-between  items-center gap-4">
                 <button
-                  className="rounded w-32 h-12 flex justify-center items-center text-color-white px-8 py-3 bg-color-primary"
+                  className="rounded w-32 h-10 flex justify-center items-center text-white px-8 py-3 bg-blue-500 "
                   disabled={isLoading}
                 >
                   {isLoading ? <Loader size={20} /> : "Sign In"}
                 </button>
-                <Link href="" className="text-sm text-color-primary">
+
+                <Link href="" className="text-sm font-semibold">
                   Forgot Password ?
                 </Link>
               </div>
@@ -110,81 +120,3 @@ export default function Login() {
     </div>
   );
 }
-
-// export default function Login() {
-//   return (
-//     <div className="fixed h-full w-full overflow-hidden inset-0">
-//       <div className="fixed h-full w-full overflow-hidden inset-0 px-24 py-10">
-//         <div className="flex flex-wrap items-center -mx-4">
-//           <div className="w-1/3 px-4  flex-shrink-0 flex-grow-0 flex-auto">
-//             <a href="index.html" className="site-logo">
-//               <img
-//                 src="https://new.axilthemes.com/demo/template/etrade/assets/images/logo/logo.png"
-//                 alt="logo"
-//               />
-//             </a>
-//           </div>
-//           <div className="w-2/3 px-4 flex-shrink-0 flex-grow-0 flex-auto">
-//             <div className="flex items-center justify-end ">
-//               <p>Not a member?</p>
-//               <a
-//                 href="sign-up.html"
-//                 className="inline-block rounded-md
-//                 px-9 py-4 ml-10 bg-color-secondary text-color-white sign-up-btn"
-//               >
-//                 Sign Up Now
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="flex flex-wrap -mx-4">
-//         <div className="px-4">
-//           <div className="min-h-900 pt-52 pr-12 pb-0 pl-24  bg-login-bg bg-no-repeat bg-cover bg-center">
-//             <h3 className="text-2xl font-bold">We Offer the Best Products</h3>
-//           </div>
-//         </div>
-//         <div className="px-4">
-//           <div className="h-81.8 overflow-y-auto w-full flex mt-44  -mr-8 -mb-8 -ml-8">
-//             <div className="max-w-400 p-8 w-full ">
-//               <h3 className="text-2xl font-bold">Sign in to eTrade.</h3>
-//               <p className="text-sm mb-14">Enter your detail below</p>
-//               <form className="block m-0 pb-8">
-//                 <div className="mb-9 relative ">
-//                   <label>Email</label>
-//                   <input
-//                     type="email"
-//                     className="h-16 border-color-light py-0 px-7 text-color-body rounded-md text-sm border"
-//                     name="email"
-//                     value="annie@example.com"
-//                   />
-//                 </div>
-//                 <div className="form-group">
-//                   <label>Password</label>
-//                   <input
-//                     type="password"
-//                     className="form-control"
-//                     name="password"
-//                     value="123456789"
-//                   />
-//                 </div>
-//                 <div className="form-group d-flex align-items-center justify-content-between">
-//                   <button
-//                     type="submit"
-//                     className="axil-btn btn-bg-primary submit-btn"
-//                   >
-//                     Sign In
-//                   </button>
-//                   <a href="forgot-password.html" className="forgot-btn">
-//                     Forget password?
-//                   </a>
-//                 </div>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }

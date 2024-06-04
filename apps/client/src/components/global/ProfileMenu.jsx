@@ -1,5 +1,5 @@
 // "use server";
-
+"use client";
 // import { Button } from "../ui/button";
 import { FiUser } from "react-icons/fi";
 import {
@@ -27,14 +27,28 @@ import Link from "next/link";
 // import { getMe } from "@app/client/data/users";
 // import Username from "../user/Username";
 import { getMe } from "@app/client/data/users";
+import { logout } from "@app/client/data/auth";
 import { useEffect, useState } from "react";
 import { BsPerson, BsPersonBadge } from "react-icons/bs";
 import Loader from "./Loader";
 import Greeting from "../user/Greeting";
+import { useRouter } from "next/navigation";
 
 export default function ProfileMenu({ children }) {
   const [username, setUsername] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const result = await logout();
+    if (result.message) {
+      // Redirect to the login page or home page after logout
+      router.push("/auth/login");
+    } else {
+      // Handle logout error if necessary
+      console.error(result.error);
+    }
+  };
 
   useEffect(function () {
     async function userName() {
@@ -106,9 +120,7 @@ export default function ProfileMenu({ children }) {
         {username && (
           <DropdownMenuItem className="flex w-full  bg-color-lightest p-3 text-color-dark text-base font-medium rounded-md hover:scale-105 transition-all ease-in-out duration-200 items-center gap-2">
             <FaSignOutAlt />
-            <Link href={"/auth/login"} className="">
-              Logout
-            </Link>
+            <button onClick={handleLogout}>Logout</button>
           </DropdownMenuItem>
         )}
         <DropdownMenuSeparator />

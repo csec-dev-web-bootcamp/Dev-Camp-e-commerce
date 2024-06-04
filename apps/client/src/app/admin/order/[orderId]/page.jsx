@@ -4,9 +4,9 @@ import React from "react";
 
 export default async function page({ params }) {
   const id = params.orderId;
-  console.log("id", id);
+  // console.log("id", id);
   const order = await getOneOrder(id);
-  console.log("order", order.orderItems[0]);
+  // console.log("order", order.orderItems[0]);
 
   return (
     <div>

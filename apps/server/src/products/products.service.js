@@ -21,12 +21,14 @@ export async function createProduct(data) {
   }
 }
 
-export async function getManyProducts(page = 1, limit = 10) {
+export async function getManyProducts(category, page = 1, limit = 10) {
+  const where = category ? { categorySlug: category } : {};
   const skip = (page - 1) * limit;
   // const take = parseInt(page * limit);
   const products = await prisma.product.findMany({
     skip: skip,
     take: limit,
+    where: where,
     include: {
       category: true,
       images: true,

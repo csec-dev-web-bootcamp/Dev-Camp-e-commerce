@@ -30,7 +30,7 @@ module.exports = {
       },
       backgroundImage: {
         "login-bg":
-          "url(https://new.axilthemes.com/demo/template/etrade/assets/images/bg/bg-image-9.jpg)",
+          "url('https://bsmedia.business-standard.com/_media/bs/img/article/2020-09/18/full/1600370225-9124.jpg?im=FitAndFill=(826,465)')",
         newsletter:
           "url(https://new.axilthemes.com/demo/template/etrade/assets/images/bg/bg-image-5.jpg)",
       },

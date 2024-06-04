@@ -10,7 +10,7 @@ export default async function page() {
   const user = await getMe();
   const orders = await getOneOrder(user.id);
 
-  console.log(orders);
+  // console.log(orders);
   return (
     <div className="flex flex-col">
       <UserOrder orders={orders} />

@@ -23,27 +23,33 @@ export default function CategiesMenu() {
     {
       id: 12,
 
-      slug: "Mens-Clothing",
+      slug: "mens-clothing",
       Icon: MdManageAccounts,
-      name: "Male-Cloth",
+      name: "Mens Clothings",
     },
     {
       id: 11,
-      slug: "Womens-Clothing",
+      slug: "womens-clothing",
       Icon: GiFemaleVampire,
-      name: "Female Cloth",
+      name: "Womens Clothings",
     },
     {
       id: 10,
-      slug: "Electronics",
+      slug: "electronics",
       Icon: GiBigDiamondRing,
       name: "Electronics",
     },
     {
       id: 1,
-      slug: "Jewelery",
+      slug: "jewelery",
       Icon: MdManageAccounts,
       name: "Jewelery",
+    },
+    {
+      id: 1,
+      slug: "kids-clothing",
+      Icon: MdManageAccounts,
+      name: "Kids Clothings",
     },
   ];
 
@@ -57,15 +63,21 @@ export default function CategiesMenu() {
           Categories <span className="text-base -rotate-90 ml-2">{"<"}</span>{" "}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 mt-10">
+      <DropdownMenuContent className="w-56 mt-10 shadow-md">
         <DropdownMenuGroup>
           {categories.map(({ Icon, name, slug }, ind) => (
             <>
               <Link href={`/shop?category=${slug}`} key={ind}>
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-color-primary">
                   {name}
                   <DropdownMenuShortcut>
-                    <Icon />
+                    <Icon
+                      style={{
+                        width: "35px ",
+                        height: "25px",
+                        color: "[#3577f0]",
+                      }}
+                    />
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>
               </Link>
@@ -77,3 +89,5 @@ export default function CategiesMenu() {
     </DropdownMenu>
   );
 }
+
+// "use client";

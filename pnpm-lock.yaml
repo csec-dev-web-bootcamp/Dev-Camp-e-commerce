@@ -29,6 +29,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.40.0
         version: 5.40.0(react@18.3.1)
+      aos:
+        specifier: ^2.3.4
+        version: 2.3.4
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -2672,6 +2675,9 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
+  aos@2.3.4:
+    resolution: {integrity: sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw==}
+
   apexcharts@3.49.0:
     resolution: {integrity: sha512-2T9HnbQFLCuYRPndQLmh+bEQFoz0meUbvASaGgiSKDuYhWcLBodJtIpKql2aOtMx4B/sHrWW0dm90HsW4+h2PQ==}
 
@@ -2980,6 +2986,9 @@ packages:
 
   class-variance-authority@0.7.0:
     resolution: {integrity: sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==}
+
+  classlist-polyfill@1.2.0:
+    resolution: {integrity: sha512-GzIjNdcEtH4ieA2S8NmrSxv7DfEV5fmixQeyTmqmRmRJPGpRBaSnA2a0VrCjyT8iW8JjEdMbKzDotAJf+ajgaQ==}
 
   classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
@@ -4434,6 +4443,9 @@ packages:
 
   lodash.once@4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}
+
+  lodash.throttle@4.1.1:
+    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -9461,6 +9473,12 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
+  aos@2.3.4:
+    dependencies:
+      classlist-polyfill: 1.2.0
+      lodash.debounce: 4.0.8
+      lodash.throttle: 4.1.1
+
   apexcharts@3.49.0:
     dependencies:
       '@yr/monotone-cubic-spline': 1.0.3
@@ -9907,6 +9925,8 @@ snapshots:
   class-variance-authority@0.7.0:
     dependencies:
       clsx: 2.0.0
+
+  classlist-polyfill@1.2.0: {}
 
   classnames@2.3.2: {}
 
@@ -11471,6 +11491,8 @@ snapshots:
   lodash.merge@4.6.2: {}
 
   lodash.once@4.1.1: {}
+
+  lodash.throttle@4.1.1: {}
 
   lodash@4.17.21: {}
 
@@ -13883,7 +13905,7 @@ snapshots:
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(@webpack-cli/generators@3.0.7(encoding@0.1.13)(mem-fs@2.3.0)(webpack-cli@5.1.4)(webpack@5.91.0))(webpack@5.91.0)
+      webpack-cli: 5.1.4(@webpack-cli/generators@3.0.7)(webpack@5.91.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

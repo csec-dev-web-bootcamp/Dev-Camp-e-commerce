@@ -109,7 +109,7 @@ export default function Card({ categories }) {
                 <img
                   src={category?.image}
                   alt="image"
-                  className="w-full h-40 object-cover rounded-t-xl"
+                  className="w-full h-40 object-contain rounded-t-xl"
                 />
 
                 <p className="py-2 text-center text-color-heading font-medium">

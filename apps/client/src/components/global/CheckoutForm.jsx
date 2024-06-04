@@ -121,9 +121,9 @@ export default function CheckoutForm() {
           <button
             type="submit"
             onClick={onStartProcess}
-            className="mt-5 w-full rounded font-medium text-base bg-color-primary hover:scale-105 hover:rounded-xl transition-all ease-in-out duration-200 text-white py-5"
+            className="mt-5 w-full rounded font-medium text-base bg-[#7DC242] hover:scale-105 hover:rounded-xl transition-all ease-in-out duration-200 text-white py-5"
           >
-            Process checkout
+            Pay with chapa
           </button>
         </div>
       </div>

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createProduct } from "@app/client/data/products";
 import { FaCloud, FaRemoveFormat, FaTrash } from "react-icons/fa";
 import CategoryOption from "./CategoryOption";
 import Link from "next/link";
+import { getManyCategories } from "@app/client/data/categories";
 
-export default function AddProduct({ categories }) {
+export default function AddProduct() {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");
@@ -17,8 +18,17 @@ export default function AddProduct({ categories }) {
   const [isLoading, setIsLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [stockStatus, setStockStatus] = useState("");
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    async function fetchProducts() {
+      const categories = await getManyCategories();
+      setCategories(categories);
+    }
+
+    fetchProducts();
+  }, []);
   const handleImageUpload = (e) => {
     setError("");
     const files = Array.from(e.target.files);
@@ -48,7 +58,7 @@ export default function AddProduct({ categories }) {
     images.forEach((image) => {
       formData.append("images", image);
     });
-    console.log(images);
+    // console.log(images);
     // images.forEach((image) => {
     //   formData.append("images", image);
     // });
@@ -63,7 +73,7 @@ export default function AddProduct({ categories }) {
         set(res.message);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setIsLoading(false);
     }

@@ -34,15 +34,15 @@ export default function AddCategory() {
     if (image) {
       formData.append("image", image);
     }
-    console.log(formData);
+    // console.log(formData);
     try {
       const res = await createCategory(formData);
       if (res.error) {
         setError(res.message);
       }
-      console.log(error);
+      // console.log(error);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setIsLoading(false);
     }

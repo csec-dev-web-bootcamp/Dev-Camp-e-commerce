@@ -64,8 +64,13 @@ productsController.get(
   "/",
   asyncHandler(async (req, res) => {
     console.log(req.query);
-    const { page = 1, limit = 10 } = req.query;
-    const products = await getManyProducts(parseInt(page), parseInt(limit));
+    const { page = 1, limit = 10, category } = req.query;
+
+    const products = await getManyProducts(
+      category,
+      parseInt(page),
+      parseInt(limit)
+    );
 
     res.json({ products: products.products, totalPages: products.totalPages });
   })
@@ -90,12 +95,12 @@ productsController.post(
       const images = imageResponses.map((response) => ({
         url: response.secure_url,
       }));
-      console.log(images);
+      // console.log(images);
       data.images = images;
 
       const product = await createProduct(data);
       // isLoading = false;
-      console.log(product);
+      // console.log(product);
       return res.status(200).json(product);
     } catch (error) {
       console.error("Error uploading product:", error);

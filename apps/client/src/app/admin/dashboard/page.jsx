@@ -9,7 +9,7 @@ import { PiCarProfileLight } from "react-icons/pi";
 import { VscListUnordered } from "react-icons/vsc";
 import { CiLocationArrow1 } from "react-icons/ci";
 
-const page = () => {
+const Page = () => {
   const [state, setState] = useState({
     options: {
       chart: {
@@ -49,7 +49,7 @@ const page = () => {
             />
           </div>
           <div className="shadow-xl bg-white p-4 ">
-            <h1 className="my-3">Sales Chart</h1>
+            <h1 className="my-3">Order Chart</h1>
             <Chart
               options={state.options}
               series={state.series}
@@ -58,7 +58,8 @@ const page = () => {
             />
           </div>
         </div>
-        <div className="justify-center flex gap-4">
+
+        <div className="justify-center items-center flex gap-2  ">
           <div className="shadow-xl  bg-white p-4">
             <p>
               <AiOutlineBarChart />
@@ -70,7 +71,7 @@ const page = () => {
                 options={chart.options}
                 series={chart.series}
                 type="donut"
-                width="300"
+                width="290"
               />
             </div>
             <h3>Over last month 1.4% </h3>
@@ -87,7 +88,7 @@ const page = () => {
                 options={chart.options}
                 series={chart.series}
                 type="donut"
-                width="300"
+                width="290"
               />
             </div>
             <h3>Over last month 2.4% </h3>
@@ -97,25 +98,26 @@ const page = () => {
             <p>
               <AiOutlineBarChart />
             </p>
-            <h2>Orders</h2>
+            <h2>Products</h2>
             <h2>310</h2>
             <div>
               <Chart
                 options={chart.options}
                 series={chart.series}
                 type="donut"
-                width="300"
+                width="290"
               />
             </div>
             <h3>Over last month 1.4% </h3>
           </div>
           <div></div>
         </div>
+
         <div className="flex justify-center m-10">
           <h1 style={{ transform: "scale(1.5)" }}>Activity Overview</h1>
         </div>
-        <div className="flex justify-center gap-3">
-          <div className="shadow-xl h-40 w-56">
+        <div className="flex justify-center gap-6">
+          <div className="shadow-xl h-40 bg-white p-4 w-56">
             <div className="flex justify-center">
               <PiCarProfileLight
                 className="my-5 w-40 text-blue-500"
@@ -139,11 +141,11 @@ const page = () => {
             <div className="flex justify-center my-4">Ordered</div>
             <div className="flex justify-center">72 New Items</div>
             <div className="flex w-full flex-col gap-4">
-              <Progress value={50} color="pink" />
+              <Progress value={50} color="pink" className="pt-4" />
             </div>
           </div>
 
-          <div className="shadow-xl  w-56">
+          <div className="shadow-xl bg-white p-4 w-56">
             <div className="flex justify-center">
               {" "}
               <AiFillSignal
@@ -154,11 +156,11 @@ const page = () => {
             <div className="flex justify-center my-4">Reported</div>
             <div className="flex justify-center">50 Support New Cases</div>
             <div className="flex w-full flex-col gap-4">
-              <Progress value={50} color="red" />
+              <Progress value={50} color="red" className="pt-4" />
             </div>
           </div>
 
-          <div className="shadow-xl w-56 ">
+          <div className="shadow-xl bg-white p-4 w-56 ">
             <div className="flex justify-center">
               <CiLocationArrow1
                 className="my-5 w-40 text-green-500"
@@ -177,4 +179,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

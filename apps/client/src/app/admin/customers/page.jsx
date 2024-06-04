@@ -20,6 +20,7 @@ import {
 } from "../../../components/ui/table";
 import AddProduct from "@app/client/components/forms/addProduct";
 import SignUp from "@app/client/components/forms/SignUp";
+import Customers from "@app/client/components/global/customer/Customer";
 
 const invoices = [
   {
@@ -158,14 +159,14 @@ const Customer = () => {
 
   return (
     <>
-      <div className="flex mx-10 mt-16">
-        <div className="flex justify-start w-3/4 h-3/4 shadow">
-          <div id="chart" className="w-3/4 h-3/4">
+      <div className="flex gap-4  mt-10">
+        <div className="bg-white  flex w-full h-3/4 shadow">
+          <div id="chart" className="w-full h-3/4">
             wws
           </div>
         </div>
 
-        <div className="flex flex-col justify-end shadow-xl  w-2/4 h-1/4">
+        <div className="flex  bg-white flex-col justify-end shadow-xl  w-2/4 h-1/4">
           <div className=" flex  gap-10 mx-5">
             <div className="my-10 flex justify-center mr-16 text-xl">
               Customer Rating
@@ -177,7 +178,7 @@ const Customer = () => {
 
           <div className="text-2xl mb-5 mx-20 flex justify-center ">3.0</div>
 
-          <div className="mb-8 mx-20">
+          <div className="mb-8  mx-20">
             <Box
               sx={{
                 width: 200,
@@ -206,7 +207,7 @@ const Customer = () => {
             </Box>
           </div>
 
-          <div className="flex justify-center gap-3 mx-10 mb-5">
+          <div className="flex  justify-center gap-3 mx-10 mb-5">
             <small className="text-2xl text-red-400">
               <IoIosArrowRoundUp style={{ fill: "blue" }} />
             </small>
@@ -225,50 +226,7 @@ const Customer = () => {
         </div>
       </div>
 
-      <div className="flex justify-center text-2xl my-10">Customer Table</div>
-      <div className="mx-10 mt-5">
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="h-[100px] text-2xl">Invoice</TableHead>
-              <TableHead className="h-[100px] text-2xl">Status</TableHead>
-              <TableHead className="h-[100px] text-2xl">Method</TableHead>
-              <TableHead className="h-[100px] text-2xl">Method</TableHead>
-              <TableHead className="text-right h-[100px text-2xl">
-                Amount
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.invoice}>
-                <TableCell className="font-medium  h-[80px] text-lg">
-                  {invoice.invoice}
-                </TableCell>
-                <TableCell className="h-[80px] text-lg">
-                  {invoice.paymentStatus}
-                </TableCell>
-                <TableCell className="h-[80px] text-lg">
-                  {invoice.paymentMethod}
-                </TableCell>
-                <TableCell className="h-[80px] text-lg">
-                  {invoice.paymentMethod}
-                </TableCell>
-                <TableCell className="text-right  h-[80px] text-lg">
-                  {invoice.totalAmount}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">$2,500.00</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </div>
+      <Customers />
     </>
   );
 };

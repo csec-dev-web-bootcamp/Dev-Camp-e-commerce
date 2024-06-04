@@ -12,3 +12,12 @@ export async function getMe() {
     return { error: data || "Unknow error" };
   }
 }
+export async function getUsers() {
+  try {
+    const users = await fetcher.get("/getUser");
+    return users.data;
+  } catch (error) {
+    const data = error.response?.data;
+    return { error: data || "Unknow error" };
+  }
+}

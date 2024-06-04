@@ -17,20 +17,20 @@ export async function createProduct(data) {
   }
 }
 
-export async function getManyProducts(query, page = 1, limit = 10) {
+export async function getManyProducts(query = "", page = 1, limit = 10) {
   try {
     const res = await fetcher.get(
-      `/products?category=${query || ""}&page=${page}&limit=${limit}`
+      `/products?category=${query}&page=${page}&limit=${limit}`
     );
     // console.log(res);
     // console.log(res.data);
-    console.log({
-      products: res.data.products,
-      totalPages: res.data.totalPages,
-    });
+    // console.log({
+    //   products: res.data.products,
+    //   totalPages: res.data.totalPages,
+    // });
     return { products: res.data.products, totalPages: res.data.totalPages };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 

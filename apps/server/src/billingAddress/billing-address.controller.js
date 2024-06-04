@@ -26,7 +26,7 @@ billingAddressController.post(
   // createAddressPipe,
   asyncHandler(async (req, res) => {
     const data = req.body;
-    console.log(data);
+    // console.log(data);
     const address = await createAddress(data);
     return res.json(address);
   })

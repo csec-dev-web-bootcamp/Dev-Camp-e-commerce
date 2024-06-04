@@ -23,7 +23,7 @@ export default function ProductsTable({ filteredProducts }) {
           >
             <td className="px-4 mr-19 py-2 whitespace-nowrap font-bold flex items-center gap-2">
               <img
-                src={product.images[0].url}
+                src={product.images[0]?.url}
                 className="w-14 h-14 rounded shadow"
                 alt=""
               />
